@@ -1,6 +1,23 @@
+// =======================================================================
+// =======================================================================
+// =========================                   ===========================
+// =========================  The Tabata App   ===========================
+// =========================                   ===========================
+// =========================  By Enzo Mourany  ===========================
+// =========================                   ===========================
+// =========================      @NaysWer     ===========================
+// =========================                   ===========================
+// =======================================================================
+// =======================================================================
+
+
 import React, { useState, useEffect } from 'react';
-import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View }
+  from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+
+
+// ========================  General Consts  =============================
 
 const { width, height } = Dimensions.get('window');
 const colors = {
@@ -10,8 +27,8 @@ const colors = {
 }
 
 
+// =====================  Const for main timer  ==========================
 
-// Const for main timer
 const formatNumber = number => `0${number}`.slice(-2);
 const getRemaining = (time) => {    // Times unities
   const mins = Math.floor(time / 60);
@@ -19,7 +36,8 @@ const getRemaining = (time) => {    // Times unities
   return { mins: formatNumber(mins), secs: formatNumber(secs) };
 }
 
-// Const for countdown exercises and reset
+// ===========  Const/Var for countdown exercises and rest  ==============
+
 const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
 const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 let timerExercise = listAllTimersExercises[1];
@@ -27,8 +45,9 @@ let timerRest = listAllTimersRest[1];
 let counterExercisesTimes = 0;
 let counterRestTimes = 0;
 
-
-// -------------------- Main Function -----------------------
+// =======================================================================
+// ===========================  Main Function  ===========================
+// =======================================================================
 
 export default function App() {
 
@@ -85,7 +104,9 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isActive, remainingSecs])
 
-
+  // =======================================================================
+  // =============================  Display  ===============================
+  // =======================================================================
 
   return (
     <View style={styles.container}>
@@ -120,6 +141,9 @@ export default function App() {
   );
 }
 
+// =======================================================================
+// =============================  Styles  ================================
+// =======================================================================
 
 const styles = StyleSheet.create({
   container: {
@@ -127,6 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1E2749',
 
   },
+  // ===========================  Timer Div  ==============================
   timers: {
     flex: 2,
     justifyContent: 'center',
@@ -137,10 +162,12 @@ const styles = StyleSheet.create({
     fontSize: 75,
     marginBottom: 20
   },
+  // =========================  Countdown Div  =============================
   countDowns: {
     flex: 2,
     backgroundColor: "#fff"
   },
+  // ==========================  Counters Div  =============================
   counters: {
     flex: 0.5,
     backgroundColor: "#5C6698"
@@ -151,6 +178,7 @@ const styles = StyleSheet.create({
   counterRest: {
 
   },
+  // ==========================  Buttons Div  ==============================
   buttons: {
     flex: 2,
     backgroundColor: "#1E2749",

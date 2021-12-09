@@ -16,7 +16,8 @@ const formatNumber = number => `0${number}`.slice(-2);
 const getRemaining = (time) => {
   const mins = Math.floor(time / 60);
   const secs = time - mins * 60;
-  return { mins: formatNumber(mins), secs: formatNumber(secs) };
+  const mills = time - secs * 60;//Math.floor(((time % 360000) % 6000) % 100);
+  return { mins: formatNumber(mins), secs: formatNumber(secs), mills: formatNumber(mills) };
 }
 
 
@@ -24,16 +25,16 @@ const getRemaining = (time) => {
 // -------------------- Main Function -----------------------
 
 export default function App() {
-  const [remainingSecs, setRemaningSecs] = useState(0);
+  const [remainingMills, setRemainingMills] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const { mins, secs } = getRemaining(remainingSecs);
+  const { mins, secs, mills } = getRemaining(remainingMills);
 
   const toggle = () => {
     setIsActive(!isActive);
   }
 
   const reset = () => {
-    setRemaningSecs(0);
+    setRemainingMills(0);
     setIsActive(false);
   }
 
@@ -41,27 +42,33 @@ export default function App() {
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
-        setRemaningSecs(remainingSecs => remainingSecs + 1);
-      }, 1000)
-    } else if (!isActive && remainingSecs !== 0) {
+        setRemainingMills(remainingMills => remainingMills + 1);
+      }, 10)
+    } else if (!isActive && remainingMills !== 0) {
       clearInterval(interval)
     }
 
     return () => clearInterval(interval);
-  }, [isActive, remainingSecs])
+  }, [isActive, remainingMills])
 
 
 
   return (
     <View style={styles.container}>
+
       <StatusBar style="light-content" />
-      <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
-      <TouchableOpacity onPress={toggle} style={styles.startButton}>
-        <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={reset} style={styles.resetButton}>
-        <Text style={styles.resetButtonText}>RESET</Text>
-      </TouchableOpacity>
+      <View style={styles.timers}>
+        <Text style={styles.timerText}>{`${mins}:${secs},${mills}`}</Text>
+      </View>
+      <View style={styles.buttons}>
+        <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
+          <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={reset} style={styles.resetButton}>
+          <Text style={styles.resetButtonText}>Reset</Text>
+        </TouchableOpacity>
+      </View>
+
 
     </View>
   );
@@ -72,18 +79,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1E2749',
+
+  },
+  timers: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttons: {
+    flex: 3,
+    backgroundColor: "#1E2749",
     justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: 'flex-end'
   },
   timerText: {
     color: '#FAFAFF',
-    fontSize: 45,
+    fontSize: 75,
     marginBottom: 20
   },
   startButton: {
-    borderColor: '#E4D9FF',
-    borderWidth: 7,
+    backgroundColor: "#5C6698",
+    borderColor: '#9DA3EA',
+    borderWidth: 3,
     width: width / 3,
     height: width / 3,
     borderRadius: width / 3,
@@ -93,11 +111,26 @@ const styles = StyleSheet.create({
   },
   startButtonText: {
     fontSize: 28,
-    color: '#E4D9FF'
+    color: '#FAFAFF'
+  },
+  pauseButton: {
+    borderColor: '#65AFFF',
+    borderWidth: 3,
+    width: width / 3,
+    height: width / 3,
+    borderRadius: width / 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 100
+  },
+  pauseButtonText: {
+    fontSize: 28,
+    color: '#FAFAFF'
   },
   resetButton: {
-    borderColor: '#E4D9FF',
-    borderWidth: 7,
+    backgroundColor: "#5C6698",
+    borderColor: '#9DA3EA',
+    borderWidth: 3,
     width: width / 3,
     height: width / 3,
     borderRadius: width / 3,
@@ -107,7 +140,7 @@ const styles = StyleSheet.create({
   },
   resetButtonText: {
     fontSize: 28,
-    color: '#E4D9FF'
+    color: '#FAFAFF'
   }
 });
 

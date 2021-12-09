@@ -10,21 +10,22 @@ const colors = {
 }
 
 
-const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
-const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
-let timerExercise = listAllTimersExercises[1];
-let timerRest = listAllTimersRest[1];
 
-
+// Const for main timer
 const formatNumber = number => `0${number}`.slice(-2);
 const getRemaining = (time) => {    // Times unities
   const mins = Math.floor(time / 60);
   const secs = time - mins * 60;
-  //const timerExercise = 30;
-  //const timerRest = 10;
   return { mins: formatNumber(mins), secs: formatNumber(secs) };
 }
 
+// Const for countdown exercises and reset
+const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
+const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
+let timerExercise = listAllTimersExercises[1];
+let timerRest = listAllTimersRest[1];
+let counterExercisesTimes = 0;
+let counterRestTimes = 0;
 
 
 // -------------------- Main Function -----------------------
@@ -34,14 +35,7 @@ export default function App() {
   const [remainingSecs, setRemainingSecs] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const { mins, secs, } = getRemaining(remainingSecs);
-
-  //const [remainingTimerExercises, setRemainingTimerExercises] = useState(30);
-  //const [remainingTimerRest, setRemainingTimerRest] = useState(10);
   const [isExercise, setIsExercise] = useState(true);
-  //const { timerExercise } = getRemaining(remainingTimerExercises);
-  //const { timerRest } = getRemaining(remainingTimerRest);
-
-
 
   const toggle = () => {    // If one of buttons is clicked
     setIsActive(!isActive);
@@ -50,16 +44,12 @@ export default function App() {
   const reset = () => {   // Reset timer to 0
     setRemainingSecs(0);
     setIsActive(false);
-    //setRemainingTimerExercises(30);
-    //setRemainingTimerRest(10);
     setIsExercise(true);
     timerExercise = listAllTimersExercises[1];
     timerRest = listAllTimersRest[1];
+    counterExercisesTimes = 0;
+    counterRestTimes = 0;
   }
-
-  //const changeTimer = () => {
-  //  setIsExercise(true);
-  //}
 
   useEffect(() => {
     let interval = null;
@@ -68,17 +58,16 @@ export default function App() {
     if (isActive) {
       interval = setInterval(() => {
         setRemainingSecs(remainingSecs => remainingSecs + 1);
-        //setRemainingTimerExercises(remainingTimerExercises => remainingTimerExercises - 1);
 
         if (timerExercise == 0) {
           setIsExercise(false);
-
+          counterExercisesTimes = counterExercisesTimes + 1;
         } else if (timerRest == 0) {
           setIsExercise(true);
+          counterRestTimes = counterRestTimes + 1;
         }
         if (isExercise) {
           timerRest = listAllTimersRest[1];
-
           removeOneFromTimerExercises = 1;
           removeOneFromTimerRest = 0;
         } else if (!isExercise) {
@@ -112,6 +101,11 @@ export default function App() {
         <Text>{isExercise ? 'Exercise' : 'Rest'}</Text>
       </View>
 
+      <View style={styles.counters}>
+        <Text style={styles.counterExercises}>Exercises : {counterExercisesTimes}</Text>
+        <Text style={styles.counterRest}>Rests : {counterRestTimes}</Text>
+      </View>
+
       <View style={styles.buttons}>
         <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
           <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
@@ -138,13 +132,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  buttons: {
-    flex: 2,
-    backgroundColor: "#1E2749",
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    alignItems: 'flex-end'
-  },
   timerText: {
     color: '#FAFAFF',
     fontSize: 75,
@@ -153,6 +140,23 @@ const styles = StyleSheet.create({
   countDowns: {
     flex: 2,
     backgroundColor: "#fff"
+  },
+  counters: {
+    flex: 0.5,
+    backgroundColor: "#5C6698"
+  },
+  counterExercises: {
+
+  },
+  counterRest: {
+
+  },
+  buttons: {
+    flex: 2,
+    backgroundColor: "#1E2749",
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    alignItems: 'flex-end'
   },
   startButton: {
     backgroundColor: "#5C6698",

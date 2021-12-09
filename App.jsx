@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Animated, Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 const { width, height } = Dimensions.get('window');
@@ -9,15 +9,20 @@ const colors = {
   times: '#FAFAFF'
 }
 
-const timersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
-const timerRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
+
+const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
+const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
+let timerExercise = listAllTimersExercises[1];
+let timerRest = listAllTimersRest[1];
+
 
 const formatNumber = number => `0${number}`.slice(-2);
-const getRemaining = (time) => {
+const getRemaining = (time) => {    // Times unities
   const mins = Math.floor(time / 60);
   const secs = time - mins * 60;
-  const mills = time - secs * 60;//Math.floor(((time % 360000) % 6000) % 100);
-  return { mins: formatNumber(mins), secs: formatNumber(secs), mills: formatNumber(mills) };
+  //const timerExercise = 30;
+  //const timerRest = 10;
+  return { mins: formatNumber(mins), secs: formatNumber(secs) };
 }
 
 
@@ -25,31 +30,71 @@ const getRemaining = (time) => {
 // -------------------- Main Function -----------------------
 
 export default function App() {
-  const [remainingMills, setRemainingMills] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const { mins, secs, mills } = getRemaining(remainingMills);
 
-  const toggle = () => {
+  const [remainingSecs, setRemainingSecs] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  const { mins, secs, } = getRemaining(remainingSecs);
+
+  //const [remainingTimerExercises, setRemainingTimerExercises] = useState(30);
+  //const [remainingTimerRest, setRemainingTimerRest] = useState(10);
+  const [isExercise, setIsExercise] = useState(true);
+  //const { timerExercise } = getRemaining(remainingTimerExercises);
+  //const { timerRest } = getRemaining(remainingTimerRest);
+
+
+
+  const toggle = () => {    // If one of buttons is clicked
     setIsActive(!isActive);
   }
 
-  const reset = () => {
-    setRemainingMills(0);
+  const reset = () => {   // Reset timer to 0
+    setRemainingSecs(0);
     setIsActive(false);
+    //setRemainingTimerExercises(30);
+    //setRemainingTimerRest(10);
+    setIsExercise(true);
+    timerExercise = listAllTimersExercises[1];
+    timerRest = listAllTimersRest[1];
   }
+
+  //const changeTimer = () => {
+  //  setIsExercise(true);
+  //}
 
   useEffect(() => {
     let interval = null;
+    let removeOneFromTimerExercises = 0;
+    let removeOneFromTimerRest = 0;
     if (isActive) {
       interval = setInterval(() => {
-        setRemainingMills(remainingMills => remainingMills + 1);
-      }, 10)
-    } else if (!isActive && remainingMills !== 0) {
+        setRemainingSecs(remainingSecs => remainingSecs + 1);
+        //setRemainingTimerExercises(remainingTimerExercises => remainingTimerExercises - 1);
+
+        if (timerExercise == 0) {
+          setIsExercise(false);
+
+        } else if (timerRest == 0) {
+          setIsExercise(true);
+        }
+        if (isExercise) {
+          timerRest = listAllTimersRest[1];
+
+          removeOneFromTimerExercises = 1;
+          removeOneFromTimerRest = 0;
+        } else if (!isExercise) {
+          timerExercise = listAllTimersExercises[1];
+          removeOneFromTimerExercises = 0;
+          removeOneFromTimerRest = 1;
+        }
+        timerExercise = timerExercise - removeOneFromTimerExercises;
+        timerRest = timerRest - removeOneFromTimerRest;
+
+      }, 1000)
+    } else if (!isActive && remainingSecs !== 0) {
       clearInterval(interval)
     }
-
     return () => clearInterval(interval);
-  }, [isActive, remainingMills])
+  }, [isActive, remainingSecs])
 
 
 
@@ -57,9 +102,16 @@ export default function App() {
     <View style={styles.container}>
 
       <StatusBar style="light-content" />
+
       <View style={styles.timers}>
-        <Text style={styles.timerText}>{`${mins}:${secs},${mills}`}</Text>
+        <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
       </View>
+
+      <View style={styles.countDowns}>
+        <Text>{isExercise ? `${timerExercise}` : `${timerRest}`}</Text>
+        <Text>{isExercise ? 'Exercise' : 'Rest'}</Text>
+      </View>
+
       <View style={styles.buttons}>
         <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
           <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
@@ -87,7 +139,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttons: {
-    flex: 3,
+    flex: 2,
     backgroundColor: "#1E2749",
     justifyContent: 'space-around',
     flexDirection: 'row',
@@ -97,6 +149,10 @@ const styles = StyleSheet.create({
     color: '#FAFAFF',
     fontSize: 75,
     marginBottom: 20
+  },
+  countDowns: {
+    flex: 2,
+    backgroundColor: "#fff"
   },
   startButton: {
     backgroundColor: "#5C6698",

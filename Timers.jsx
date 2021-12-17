@@ -28,7 +28,7 @@ const getRemaining = (time) => {
 
 // ===========  Const/Var for countdown exercises and rest  ==============
 
-const listAllTimersExercises = [20, 4, 40, 45, 50, 60, 75, 100];
+const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
 const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 
 const listTimer = [listAllTimersExercises[1], listAllTimersRest[1]];
@@ -175,9 +175,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#5C6698",
     borderColor: '#9DA3EA',
     borderWidth: 3,
-    width: width / 3,
-    height: width / 3,
-    borderRadius: width / 3,
+    width: width / 4,
+    height: width / 4,
+    borderRadius: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 100
@@ -189,9 +189,9 @@ const styles = StyleSheet.create({
   pauseButton: {
     borderColor: '#65AFFF',
     borderWidth: 3,
-    width: width / 3,
-    height: width / 3,
-    borderRadius: width / 3,
+    width: width / 4,
+    height: width / 4,
+    borderRadius: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 100
@@ -204,9 +204,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#5C6698",
     borderColor: '#9DA3EA',
     borderWidth: 3,
-    width: width / 3,
-    height: width / 3,
-    borderRadius: width / 3,
+    width: width / 4,
+    height: width / 4,
+    borderRadius: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 100

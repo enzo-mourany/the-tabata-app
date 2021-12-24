@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animated, Button }
   from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import HomePage, { durationExercises, durationRest, timersExercises, timersRest, indexExercise } from './HomePageApp';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 
@@ -31,7 +33,7 @@ const getRemaining = (time) => {
 const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
 const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 
-const listTimer = [listAllTimersExercises[1], listAllTimersRest[1]];
+const listTimer = [listAllTimersExercises[1], listAllTimersRest];
 let roundsCounter = 1;
 
 
@@ -40,13 +42,15 @@ let roundsCounter = 1;
 // ===========================  Main Function  ===========================
 // =======================================================================
 
-function TimerAndCountdowns() {
+function TimerAndCountdowns( { navigation }) {
 
   const [remainingSecs, setRemainingSecs] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const { mins, secs, } = getRemaining(remainingSecs);
   const [isExercise, setIsExercise] = useState(true);
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
+  //const [remainingTimer, setRemainingTimer] = useState(navigation.durationExercises);
+
 
   const toggle = () => {    // If one of buttons is clicked
     setIsActive(!isActive);

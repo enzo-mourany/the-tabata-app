@@ -30,8 +30,8 @@ const colors = {
 
 const timersExercises = [...Array(20).keys()].map((i) => (i === 0 ? 1 : i * 5));
 const timersRest = [...Array(13).keys()].map((i) => (i === 0 ? 1 : i * 5));
-const ITEM_SIZE = width * 0.38;
-const ITEM_SPACING = (width - ITEM_SIZE) / 2;
+const item_size = width * 0.38;
+const item_spacing = (width - item_size) / 2;
 
 
 // =======================================================================
@@ -43,6 +43,7 @@ function HomePage({ navigation }) {
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
   const [durationExercises, setDurationExercises] = React.useState(timersExercises[0]);
   const [durationRest, setDurationRest] = React.useState(timersRest[0]);
+
 
 
   return (
@@ -64,6 +65,9 @@ function HomePage({ navigation }) {
           />
         </TouchableOpacity>
       </Animated.View>
+
+      <Text style={styles.textExTimers}>{durationExercises}</Text>
+
 
 
       {/* =================  Timers Exercises  =================== */}
@@ -88,24 +92,24 @@ function HomePage({ navigation }) {
 
             //TODO
             onMomentumScrollEnd={ev => {
-              const indexExercise = Math.round(ev.nativeEvent.contentOffset.x / ITEM_SIZE);
+              const indexExercise = Math.round(ev.nativeEvent.contentOffset.x / item_size);
               setDurationExercises(timersExercises[indexExercise]);
             }}
 
 
 
             showsHorizontalScrollIndicator={false}
-            snapToInterval={ITEM_SIZE}
+            snapToInterval={item_size}
             decelerationRate="fast"
             style={{flexGrow: 0}}
             contentContainerStyle={{
-              paddingHorizontal: ITEM_SPACING
+              paddingHorizontal: item_spacing
             }}
             renderItem={({item, index}) => {
               const inputRange = [
-                (index - 1) * ITEM_SIZE,
-                index * ITEM_SIZE,
-                (index + 1) * ITEM_SIZE,
+                (index - 1) * item_size,
+                index * item_size,
+                (index + 1) * item_size,
               ]
               const opacity = scrollX.interpolate({
                 inputRange,
@@ -115,7 +119,7 @@ function HomePage({ navigation }) {
                 inputRange,
                 outputRange: [.6, 1, .6]
               })
-              return <View style={{width: ITEM_SIZE, justifyContent: 'center', alignItems: 'center'}}>
+              return <View style={{width: item_size, justifyContent: 'center', alignItems: 'center'}}>
                 <Animated.Text style={[styles.textExTimers, 
                   {opacity, transform: [{
                     scale
@@ -150,24 +154,24 @@ function HomePage({ navigation }) {
 
             //TODO
             onMomentumScrollEnd={ev => {
-              const indexRest = Math.round(ev.nativeEvent.contentOffset.x / ITEM_SIZE);
+              const indexRest = Math.round(ev.nativeEvent.contentOffset.x / item_size);
               setDurationRest(timersRest[indexRest]); 
             }}
 
 
 
             showsHorizontalScrollIndicator={false}
-            snapToInterval={ITEM_SIZE}
+            snapToInterval={item_size}
             decelerationRate="fast"
             style={{flexGrow: 0}}
             contentContainerStyle={{
-              paddingHorizontal: ITEM_SPACING
+              paddingHorizontal: item_spacing
             }}
             renderItem={({item, index}) => {
               const inputRange = [
-                (index - 1) * ITEM_SIZE,
-                index * ITEM_SIZE,
-                (index + 1) * ITEM_SIZE,
+                (index - 1) * item_size,
+                index * item_size,
+                (index + 1) * item_size,
               ]
               const opacity = scrollXRest.interpolate({
                 inputRange,
@@ -177,7 +181,7 @@ function HomePage({ navigation }) {
                 inputRange,
                 outputRange: [.6, 1, .6]
               })
-              return <View style={{width: ITEM_SIZE, justifyContent: 'center', alignItems: 'center'}}>
+              return <View style={{width: item_size, justifyContent: 'center', alignItems: 'center'}}>
                 <Animated.Text style={[styles.textExTimers, 
                   {opacity, transform: [{
                     scale
@@ -212,7 +216,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.red,
   },
   text: {
-    fontSize: ITEM_SIZE * 0.8,
+    fontSize: item_size * 0.8,
     fontFamily: 'Menlo',
     color: colors.text,
     fontWeight: '900',

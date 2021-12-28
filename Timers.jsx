@@ -33,20 +33,22 @@ const getRemaining = (time) => {
 const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
 const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 
-const listTimer = [listAllTimersExercises[1], listAllTimersRest];
+//const listTimer = [listAllTimersExercises[1], listAllTimersRest[1]];
 let roundsCounter = 1;
 
 
 
 // =======================================================================
-// ===========================  Main Function  ===========================
+// ====================  Function TimerAndCountdowns  ====================
 // =======================================================================
 
-function TimerAndCountdowns( { navigation }) {
+function TimerAndCountdowns({ navigation }) {
+
+  const listTimer = [navigation.durationExercises, navigation.durationRest];
 
   const [remainingSecs, setRemainingSecs] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const { mins, secs, } = getRemaining(remainingSecs);
+  const { mins, secs } = getRemaining(remainingSecs);
   const [isExercise, setIsExercise] = useState(true);
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
   //const [remainingTimer, setRemainingTimer] = useState(navigation.durationExercises);
@@ -61,6 +63,7 @@ function TimerAndCountdowns( { navigation }) {
     setIsActive(false);
     setIsExercise(true);
     setRemainingTimer(listTimer[0]);
+    //setRemaningTimer(navigation.durationExercises)
     roundsCounter = 1;
   }
 
@@ -73,9 +76,11 @@ function TimerAndCountdowns( { navigation }) {
         setRemainingTimer(remainingTimer - 1)
         if (remainingTimer == 1 && isExercise) {
           setRemainingTimer(listTimer[1]);
+          //setRemainingTimer(navigation.durationRest);
           setIsExercise(!isExercise);
         } else if (!isExercise && remainingTimer == 1) {
           setRemainingTimer(listTimer[0]);
+          //setRemaningTimer(navigation.durationExercises)
           setIsExercise(!isExercise);
           roundsCounter += 1;
         }
@@ -107,6 +112,7 @@ function TimerAndCountdowns( { navigation }) {
         <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
         <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
       </View>
+
 
       <View style={styles.buttons}>
         <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>

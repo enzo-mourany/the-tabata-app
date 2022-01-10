@@ -4,6 +4,7 @@ import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animate
 import { StatusBar } from 'expo-status-bar';
 import HomePage, { durationExercises, durationRest, timersExercises, timersRest, indexExercise } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
+//import { LinearGradient } from "expo-linear-gradient";
 
 
 
@@ -33,7 +34,7 @@ const getRemaining = (time) => {
 const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
 const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 
-//const listTimer = [listAllTimersExercises[1], listAllTimersRest[1]];
+const listTimer = [listAllTimersExercises[1], listAllTimersRest[1]];
 let roundsCounter = 1;
 
 
@@ -44,7 +45,7 @@ let roundsCounter = 1;
 
 function TimerAndCountdowns({ navigation }) {
 
-  const listTimer = [navigation.durationExercises, navigation.durationRest];
+  //const listTimer = [navigation.durationExercises, navigation.durationRest];
 
   const [remainingSecs, setRemainingSecs] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -184,6 +185,7 @@ const styles = StyleSheet.create({
   startButton: {
     backgroundColor: "#5C6698",
     borderColor: '#9DA3EA',
+    borderBottomColor: 'red',
     borderWidth: 3,
     width: width / 4,
     height: width / 4,

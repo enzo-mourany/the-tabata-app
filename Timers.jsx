@@ -53,6 +53,7 @@ function TimerAndCountdowns({ navigation }) {
   const [isExercise, setIsExercise] = useState(true);
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
   //const [remainingTimer, setRemainingTimer] = useState(navigation.durationExercises);
+  const [durationRest, setDurationRest] = useState(1);
 
 
   const toggle = () => {    // If one of buttons is clicked

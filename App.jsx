@@ -21,8 +21,6 @@ import TimerAndCountdowns from './Timers';
 import { UserContext } from "./UserContext";
 
 
-
-
 const Stack = createStackNavigator();
 
 

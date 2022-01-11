@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext, useMemo } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animated, Button }
   from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import HomePage, { durationExercises, durationRest, timersExercises, timersRest, indexExercise } from './HomePageApp';
+import HomePage from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
-//import { LinearGradient } from "expo-linear-gradient";
-
-
+import { UserContext } from "./UserContext";
 
 
 // ========================  General Const  =============================
@@ -17,7 +15,6 @@ const colors = {
   button: '#FAFAFF',
   times: '#FAFAFF'
 }
-
 
 // =====================  Const for main timer  ==========================
 
@@ -34,7 +31,6 @@ const getRemaining = (time) => {
 const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
 const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 
-const listTimer = [listAllTimersExercises[1], listAllTimersRest[1]];
 let roundsCounter = 1;
 
 
@@ -45,15 +41,22 @@ let roundsCounter = 1;
 
 function TimerAndCountdowns({ navigation }) {
 
-  //const listTimer = [navigation.durationExercises, navigation.durationRest];
-
   const [remainingSecs, setRemainingSecs] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const { mins, secs } = getRemaining(remainingSecs);
   const [isExercise, setIsExercise] = useState(true);
-  const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
-  //const [remainingTimer, setRemainingTimer] = useState(navigation.durationExercises);
+
+  // Durations values exported from HomePage
+  const [durationExercises, setDurationExercises] = useState(1)
   const [durationRest, setDurationRest] = useState(1);
+
+  const providerDurationExercises = useMemo(() => ({ durationExercises, setDurationExercises }), [durationExercises, setDurationExercises]);
+  const providerDurationRest = useMemo(() => ({ durationRest, setDurationRest }), [durationRest, setDurationRest]);
+
+  const listTimer = [providerDurationExercises, providerDurationRest];
+
+
+  const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
 
   const toggle = () => {    // If one of buttons is clicked
@@ -64,8 +67,7 @@ function TimerAndCountdowns({ navigation }) {
     setRemainingSecs(0);
     setIsActive(false);
     setIsExercise(true);
-    setRemainingTimer(listTimer[0]);
-    //setRemaningTimer(navigation.durationExercises)
+    setRemainingTimer(durationExercises);
     roundsCounter = 1;
   }
 
@@ -78,11 +80,9 @@ function TimerAndCountdowns({ navigation }) {
         setRemainingTimer(remainingTimer - 1)
         if (remainingTimer == 1 && isExercise) {
           setRemainingTimer(listTimer[1]);
-          //setRemainingTimer(navigation.durationRest);
           setIsExercise(!isExercise);
         } else if (!isExercise && remainingTimer == 1) {
           setRemainingTimer(listTimer[0]);
-          //setRemaningTimer(navigation.durationExercises)
           setIsExercise(!isExercise);
           roundsCounter += 1;
         }
@@ -94,10 +94,10 @@ function TimerAndCountdowns({ navigation }) {
     return () => clearInterval(interval);
   }, [isActive, remainingSecs, remainingTimer])
 
+
   // =======================================================================
   // =============================  Display  ===============================
   // =======================================================================
-
 
 
   return (
@@ -131,9 +131,11 @@ function TimerAndCountdowns({ navigation }) {
   );
 }
 
+
 // =======================================================================
 // =============================  Styles  ================================
 // =======================================================================
+
 
 const styles = StyleSheet.create({
   container: {

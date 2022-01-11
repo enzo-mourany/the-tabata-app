@@ -42,10 +42,8 @@ const item_spacing = (width - item_size) / 2;
 function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
-  const [durationExercises, setDurationExercises] = React.useState(timersExercises[0]);
+  const { durationExercises, setDurationExercises } = React.useContext(UserContext);
   const { durationRest, setDurationRest } = React.useContext(UserContext);
-
-
 
   return (
     <View style={styles.container}>
@@ -67,10 +65,6 @@ function HomePage({ navigation }) {
         </TouchableOpacity>
       </Animated.View>
 
-      <Text style={styles.textExTimers}>{durationExercises}</Text>
-
-
-
       {/* =================  Timers Exercises  =================== */}
       <View
         style={{
@@ -90,14 +84,10 @@ function HomePage({ navigation }) {
               {useNativeDriver: true}
             )}
 
-
-            //TODO
             onMomentumScrollEnd={ev => {
               const indexExercise = Math.round(ev.nativeEvent.contentOffset.x / item_size);
               setDurationExercises(timersExercises[indexExercise]);
             }}
-
-
 
             showsHorizontalScrollIndicator={false}
             snapToInterval={item_size}
@@ -152,14 +142,10 @@ function HomePage({ navigation }) {
               {useNativeDriver: true}
             )}
 
-
-            //TODO
             onMomentumScrollEnd={ev => {
               const indexRest = Math.round(ev.nativeEvent.contentOffset.x / item_size);
               setDurationRest(timersRest[indexRest]); 
             }}
-
-
 
             showsHorizontalScrollIndicator={false}
             snapToInterval={item_size}
@@ -195,9 +181,6 @@ function HomePage({ navigation }) {
           />
         </View>
     </View>
-
-
-
   );
 }
 

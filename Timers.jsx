@@ -39,7 +39,7 @@ let roundsCounter = 1;
 // ====================  Function TimerAndCountdowns  ====================
 // =======================================================================
 
-function TimerAndCountdowns({ navigation }) {
+function TimerAndCountdowns() {
 
   const [remainingSecs, setRemainingSecs] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -50,10 +50,10 @@ function TimerAndCountdowns({ navigation }) {
   const [durationExercises, setDurationExercises] = useState(1)
   const [durationRest, setDurationRest] = useState(1);
 
-  const providerDurationExercises = useMemo(() => ({ durationExercises, setDurationExercises }), [durationExercises, setDurationExercises]);
-  const providerDurationRest = useMemo(() => ({ durationRest, setDurationRest }), [durationRest, setDurationRest]);
+  //const providerDurationExercises = useMemo(() => ({ durationExercises, setDurationExercises }), [durationExercises, setDurationExercises]);
+  //const providerDurationRest = useMemo(() => ({ durationRest, setDurationRest }), [durationRest, setDurationRest]);
 
-  const listTimer = [providerDurationExercises, providerDurationRest];
+  const listTimer = [durationExercises, durationRest];
 
 
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);

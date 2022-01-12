@@ -42,8 +42,9 @@ const item_spacing = (width - item_size) / 2;
 function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
-  const { durationExercises, setDurationExercises } = React.useContext(UserContext);
-  const { durationRest, setDurationRest } = React.useContext(UserContext);
+
+  const {setDurationExercises} = React.useContext(UserContext);
+  const {setDurationRest} = React.useContext(UserContext);
 
   return (
     <View style={styles.container}>

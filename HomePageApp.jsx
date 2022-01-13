@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { listAllTimersExercises, listTimer } from './Timers';
 import TimerAndCountdowns from './Timers';
-import { UserContext } from './UserContext';
+import { DurationProvider } from './DurationProvider';
 
 
 // =======================================================================
@@ -42,9 +42,7 @@ const item_spacing = (width - item_size) / 2;
 function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
-
-  const [ durationExercises, setDurationExercises ] = React.useState(timersExercises[0]);
-  const [ durationRest, setDurationRest ] = React.useState(timersRest[0]);
+  const duration = React.useContext(DurationContext);
 
   return (
     <View style={styles.container}>
@@ -87,7 +85,7 @@ function HomePage({ navigation }) {
 
             onMomentumScrollEnd={ev => {
               const indexExercise = Math.round(ev.nativeEvent.contentOffset.x / item_size);
-              setDurationExercises(timersExercises[indexExercise]);
+              duration.setDurationExercises(timersExercises[indexExercise]);
             }}
 
             showsHorizontalScrollIndicator={false}
@@ -145,7 +143,7 @@ function HomePage({ navigation }) {
 
             onMomentumScrollEnd={ev => {
               const indexRest = Math.round(ev.nativeEvent.contentOffset.x / item_size);
-              setDurationRest(timersRest[indexRest]); 
+              duration.setDurationRest(timersRest[indexRest]); 
             }}
 
             showsHorizontalScrollIndicator={false}

@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import HomePage from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { UserContext } from "./UserContext";
+import { DurationProvider } from './DurationProvider';
 
 
 // ========================  General Const  =============================
@@ -46,16 +47,8 @@ function TimerAndCountdowns() {
   const { mins, secs } = getRemaining(remainingSecs);
   const [isExercise, setIsExercise] = useState(true);
 
-  // Durations values exported from HomePage
-  const [durationExercises, setDurationExercises] = useState(1)
-  const [durationRest, setDurationRest] = useState(1);
-
-  //const providerDurationExercises = useMemo(() => ({ durationExercises, setDurationExercises }), [durationExercises, setDurationExercises]);
-  //const providerDurationRest = useMemo(() => ({ durationRest, setDurationRest }), [durationRest, setDurationRest]);
-
-  const listTimer = [durationExercises, durationRest];
-
-
+  const duration = useContext(DurationContext);
+  const listTimer = [duration.durationExercises, duration.durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
 
@@ -67,7 +60,7 @@ function TimerAndCountdowns() {
     setRemainingSecs(0);
     setIsActive(false);
     setIsExercise(true);
-    setRemainingTimer(durationExercises);
+    setRemainingTimer(listTimer[0]);
     roundsCounter = 1;
   }
 

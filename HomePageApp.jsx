@@ -43,8 +43,8 @@ function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
 
-  const {setDurationExercises} = React.useContext(UserContext);
-  const {setDurationRest} = React.useContext(UserContext);
+  const [ durationExercises, setDurationExercises ] = React.useState(timersExercises[0]);
+  const [ durationRest, setDurationRest ] = React.useState(timersRest[0]);
 
   return (
     <View style={styles.container}>

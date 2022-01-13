@@ -18,7 +18,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomePage from './HomePageApp';
 import TimerAndCountdowns from './Timers';
-import { UserContext } from "./UserContext";
 
 
 const Stack = createStackNavigator();

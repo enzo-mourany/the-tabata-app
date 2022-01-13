@@ -2,10 +2,9 @@ import React, { useState, useEffect, useRef, useContext, useMemo } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animated, Button }
   from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import HomePage from './HomePageApp';
+import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
-import { UserContext } from "./UserContext";
-import { DurationProvider } from './DurationProvider';
+import { DurationProvider, DurationContext } from './DurationProvider';
 
 
 // ========================  General Const  =============================
@@ -34,6 +33,7 @@ const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 
 let roundsCounter = 1;
 
+const duration = useContext(DurationContext);
 
 
 // =======================================================================
@@ -41,13 +41,12 @@ let roundsCounter = 1;
 // =======================================================================
 
 function TimerAndCountdowns() {
-
+  
   const [remainingSecs, setRemainingSecs] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const { mins, secs } = getRemaining(remainingSecs);
   const [isExercise, setIsExercise] = useState(true);
 
-  const duration = useContext(DurationContext);
   const listTimer = [duration.durationExercises, duration.durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 

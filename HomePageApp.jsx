@@ -1,4 +1,3 @@
-import { duration } from 'moment';
 import * as React from 'react';
 import {
   Vibration,
@@ -13,9 +12,8 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import { listAllTimersExercises, listTimer } from './Timers';
-import TimerAndCountdowns from './Timers';
-import { DurationProvider } from './DurationProvider';
+//import { duration } from './Timers';
+import { DurationProvider, DurationContext } from './DurationProvider';
 
 
 // =======================================================================
@@ -33,7 +31,7 @@ const timersExercises = [...Array(20).keys()].map((i) => (i === 0 ? 1 : i * 5));
 const timersRest = [...Array(13).keys()].map((i) => (i === 0 ? 1 : i * 5));
 const item_size = width * 0.38;
 const item_spacing = (width - item_size) / 2;
-
+const duration = React.useContext(DurationContext);
 
 // =======================================================================
 // ========================  Function HomePage  ==========================
@@ -42,7 +40,7 @@ const item_spacing = (width - item_size) / 2;
 function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
-  const duration = React.useContext(DurationContext);
+  
 
   return (
     <View style={styles.container}>

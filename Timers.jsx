@@ -28,8 +28,8 @@ const getRemaining = (time) => {
 
 // ===========  Const/Var for countdown exercises and rest  ==============
 
-const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
-const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
+//const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
+//const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 
 let roundsCounter = 1;
 
@@ -51,11 +51,13 @@ function TimerAndCountdowns() {
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
 
-  const toggle = () => {    // If one of buttons is clicked
+  // If one of buttons is clicked
+  const toggle = () => {    
     setIsActive(!isActive);
   }
 
-  const reset = () => {   // To reset const useState
+  // reset values when this function is called
+  const reset = () => {   
     setRemainingSecs(0);
     setIsActive(false);
     setIsExercise(true);
@@ -67,8 +69,10 @@ function TimerAndCountdowns() {
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
+        // timer
         setRemainingSecs(remainingSecs + 1);
 
+        // countDown
         setRemainingTimer(remainingTimer - 1)
         if (remainingTimer == 1 && isExercise) {
           setRemainingTimer(listTimer[1]);

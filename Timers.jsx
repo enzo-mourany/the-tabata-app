@@ -43,10 +43,10 @@ const duration = useContext(DurationContext);
 function TimerAndCountdowns() {
   
   const [remainingSecs, setRemainingSecs] = useState(0);
-  const [isActive, setIsActive] = useState(false);
   const { mins, secs } = getRemaining(remainingSecs);
+  const [isActive, setIsActive] = useState(false);
+  
   const [isExercise, setIsExercise] = useState(true);
-
   const listTimer = [duration.durationExercises, duration.durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 

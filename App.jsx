@@ -18,6 +18,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomePage from './HomePageApp';
 import TimerAndCountdowns from './Timers';
+import { DurationProvider } from './DurationContext';
 
 
 const Stack = createStackNavigator();
@@ -29,32 +30,34 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="Home" style={styles.navigator}>
-        <Stack.Screen name="Home" component={HomePage}
-        options={{
-          title: '',
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: '#04112A',
-          },
-        }}
-        />
-        <Stack.Screen name="Timers" component={TimerAndCountdowns} 
-        options={{
-          title: '',
-          headerStyle: {
-            shadowColor: 'transparent',
-            backgroundColor: '#04112A',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <DurationProvider>
+      <NavigationContainer style={styles.container}>
+        <Stack.Navigator initialRouteName="Home" style={styles.navigator}>
+          <Stack.Screen name="Home" component={HomePage}
+            options={{
+              title: '',
+              headerShown: false,
+              headerStyle: {
+                backgroundColor: '#04112A',
+              },
+            }}
+          />
+          <Stack.Screen name="Timers" component={TimerAndCountdowns}
+            options={{
+              title: '',
+              headerStyle: {
+                shadowColor: 'transparent',
+                backgroundColor: '#04112A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </DurationProvider>
   )
 }
 

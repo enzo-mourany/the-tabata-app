@@ -40,12 +40,12 @@ const item_spacing = (width - item_size) / 2;
 function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
-  const { durationExercises, setDurationExercises } = React.useContext(DurationContext);
-  const { durationRest, setDurationRest } = React.useContext(DurationContext);
+  const { setDurationExercises, setDurationRest } = React.useContext(DurationContext);
 
   return (
     <View style={styles.container}>
       <StatusBar hidden />
+
       <Animated.View
         style={[
           StyleSheet.absoluteFillObject,
@@ -55,6 +55,8 @@ function HomePage({ navigation }) {
             paddingBottom: 100,
           },
         ]}>
+
+        {/** ==============  Go to Timer ======================= */}
         <TouchableOpacity
           onPress={() => navigation.navigate('Timers')}>
           <View
@@ -72,56 +74,58 @@ function HomePage({ navigation }) {
           right: 0,
           flex: 1,
         }}>
-          <Animated.FlatList 
-            data={timersExercises}
-            keyExtractor={item => item.toString()}
-            horizontal
-            bounces={false}
-            onScroll={Animated.event(
-              [{nativeEvent: {contentOffset: {x: scrollX}}}],
-              {useNativeDriver: true}
-            )}
+        <Animated.FlatList
+          data={timersExercises}
+          keyExtractor={item => item.toString()}
+          horizontal
+          bounces={false}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: true }
+          )}
 
-            onMomentumScrollEnd={ev => {
-              const indexExercise = Math.round(ev.nativeEvent.contentOffset.x / item_size);
-              setDurationExercises(timersExercises[indexExercise]);
-            }}
+          onMomentumScrollEnd={ev => {
+            const indexExercise = Math.round(ev.nativeEvent.contentOffset.x / item_size);
+            setDurationExercises(timersExercises[indexExercise]);
+          }}
 
-            showsHorizontalScrollIndicator={false}
-            snapToInterval={item_size}
-            decelerationRate="fast"
-            style={{flexGrow: 0}}
-            contentContainerStyle={{
-              paddingHorizontal: item_spacing
-            }}
-            renderItem={({item, index}) => {
-              const inputRange = [
-                (index - 1) * item_size,
-                index * item_size,
-                (index + 1) * item_size,
-              ]
-              const opacity = scrollX.interpolate({
-                inputRange,
-                outputRange: [.4, 1, .4]
-              })
-              const scale = scrollX.interpolate({
-                inputRange,
-                outputRange: [.6, 1, .6]
-              })
-              return <View style={{width: item_size, justifyContent: 'center', alignItems: 'center'}}>
-                <Animated.Text style={[styles.textExTimers, 
-                  {opacity, transform: [{
-                    scale
-                  }]}
-                ]}>
-                  {item}
-                </Animated.Text>
-              </View>
-            }}
-          />
-        </View>
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={item_size}
+          decelerationRate="fast"
+          style={{ flexGrow: 0 }}
+          contentContainerStyle={{
+            paddingHorizontal: item_spacing
+          }}
+          renderItem={({ item, index }) => {
+            const inputRange = [
+              (index - 1) * item_size,
+              index * item_size,
+              (index + 1) * item_size,
+            ]
+            const opacity = scrollX.interpolate({
+              inputRange,
+              outputRange: [.4, 1, .4]
+            })
+            const scale = scrollX.interpolate({
+              inputRange,
+              outputRange: [.6, 1, .6]
+            })
+            return <View style={{ width: item_size, justifyContent: 'center', alignItems: 'center' }}>
+              <Animated.Text style={[styles.textExTimers,
+              {
+                opacity, transform: [{
+                  scale
+                }]
+              }
+              ]}>
+                {item}
+              </Animated.Text>
+            </View>
+          }}
+        />
+      </View>
 
-        {/* ===================  Timers Rest  ==================== */}
+      {/* ===================  Timers Rest  ==================== */}
       <View
         style={{
           position: 'absolute',
@@ -130,54 +134,56 @@ function HomePage({ navigation }) {
           right: 0,
           flex: 1,
         }}>
-          <Animated.FlatList 
-            data={timersRest}
-            keyExtractor={item => item.toString()}
-            horizontal
-            bounces={false}
-            onScroll={Animated.event(
-              [{nativeEvent: {contentOffset: {x: scrollXRest}}}],
-              {useNativeDriver: true}
-            )}
+        <Animated.FlatList
+          data={timersRest}
+          keyExtractor={item => item.toString()}
+          horizontal
+          bounces={false}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollXRest } } }],
+            { useNativeDriver: true }
+          )}
 
-            onMomentumScrollEnd={ev => {
-              const indexRest = Math.round(ev.nativeEvent.contentOffset.x / item_size);
-              setDurationRest(timersRest[indexRest]); 
-            }}
+          onMomentumScrollEnd={ev => {
+            const indexRest = Math.round(ev.nativeEvent.contentOffset.x / item_size);
+            setDurationRest(timersRest[indexRest]);
+          }}
 
-            showsHorizontalScrollIndicator={false}
-            snapToInterval={item_size}
-            decelerationRate="fast"
-            style={{flexGrow: 0}}
-            contentContainerStyle={{
-              paddingHorizontal: item_spacing
-            }}
-            renderItem={({item, index}) => {
-              const inputRange = [
-                (index - 1) * item_size,
-                index * item_size,
-                (index + 1) * item_size,
-              ]
-              const opacity = scrollXRest.interpolate({
-                inputRange,
-                outputRange: [.4, 1, .4]
-              })
-              const scale = scrollXRest.interpolate({
-                inputRange,
-                outputRange: [.6, 1, .6]
-              })
-              return <View style={{width: item_size, justifyContent: 'center', alignItems: 'center'}}>
-                <Animated.Text style={[styles.textExTimers, 
-                  {opacity, transform: [{
-                    scale
-                  }]}
-                ]}>
-                  {item}
-                </Animated.Text>
-              </View>
-            }}
-          />
-        </View>
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={item_size}
+          decelerationRate="fast"
+          style={{ flexGrow: 0 }}
+          contentContainerStyle={{
+            paddingHorizontal: item_spacing
+          }}
+          renderItem={({ item, index }) => {
+            const inputRange = [
+              (index - 1) * item_size,
+              index * item_size,
+              (index + 1) * item_size,
+            ]
+            const opacity = scrollXRest.interpolate({
+              inputRange,
+              outputRange: [.4, 1, .4]
+            })
+            const scale = scrollXRest.interpolate({
+              inputRange,
+              outputRange: [.6, 1, .6]
+            })
+            return <View style={{ width: item_size, justifyContent: 'center', alignItems: 'center' }}>
+              <Animated.Text style={[styles.textExTimers,
+              {
+                opacity, transform: [{
+                  scale
+                }]
+              }
+              ]}>
+                {item}
+              </Animated.Text>
+            </View>
+          }}
+        />
+      </View>
     </View>
   );
 }

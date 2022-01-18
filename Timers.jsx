@@ -43,25 +43,24 @@ let roundsCounter = 1;
 
 function TimerAndCountdowns() {
 
-  const { durationExercises, setDurationExercises } = React.useContext(DurationContext);
-  const { durationRest, setDurationRest } = React.useContext(DurationContext);
-  
+  const { durationExercises, durationRest } = React.useContext(DurationContext);
+
   const [remainingSecs, setRemainingSecs] = useState(0);
   const { mins, secs } = getRemaining(remainingSecs);
   const [isActive, setIsActive] = useState(false);
-  
+
   const [isExercise, setIsExercise] = useState(true);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
 
   // If one of buttons is clicked
-  const toggle = () => {    
+  const toggle = () => {
     setIsActive(!isActive);
   }
 
   // reset values when this function is called
-  const reset = () => {   
+  const reset = () => {
     setRemainingSecs(0);
     setIsActive(false);
     setIsExercise(true);

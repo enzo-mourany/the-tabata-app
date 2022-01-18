@@ -12,7 +12,9 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import { DurationProvider, DurationContext } from './DurationProvider';
+//import { DurationProvider, DurationContext } from './DurationProvider';
+import { useContext } from 'react-native';
+import { DurationContext } from './DurationContext';
 
 // =======================================================================
 // =============================  Const  =================================
@@ -30,7 +32,7 @@ const timersRest = [...Array(13).keys()].map((i) => (i === 0 ? 1 : i * 5));
 const item_size = width * 0.38;
 const item_spacing = (width - item_size) / 2;
 
-const duration = React.useContext(DurationContext);
+//const duration = React.useContext(DurationContext);
 
 // =======================================================================
 // ========================  Function HomePage  ==========================
@@ -39,7 +41,8 @@ const duration = React.useContext(DurationContext);
 function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
-  
+  const { durationExercises, setDurationExercises } = useContext(DurationContext);
+
   return (
     <View style={styles.container}>
       <StatusBar hidden />

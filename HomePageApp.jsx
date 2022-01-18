@@ -13,7 +13,6 @@ import {
   StyleSheet,
 } from 'react-native';
 //import { DurationProvider, DurationContext } from './DurationProvider';
-import { useContext } from 'react-native';
 import { DurationContext } from './DurationContext';
 
 // =======================================================================
@@ -41,7 +40,8 @@ const item_spacing = (width - item_size) / 2;
 function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
-  const { durationExercises, setDurationExercises } = useContext(DurationContext);
+  const { durationExercises, setDurationExercises } = React.useContext(DurationContext);
+  const { durationRest, setDurationRest } = React.useContext(DurationContext);
 
   return (
     <View style={styles.container}>
@@ -84,7 +84,7 @@ function HomePage({ navigation }) {
 
             onMomentumScrollEnd={ev => {
               const indexExercise = Math.round(ev.nativeEvent.contentOffset.x / item_size);
-              duration.setDurationExercises(timersExercises[indexExercise]);
+              setDurationExercises(timersExercises[indexExercise]);
             }}
 
             showsHorizontalScrollIndicator={false}
@@ -142,7 +142,7 @@ function HomePage({ navigation }) {
 
             onMomentumScrollEnd={ev => {
               const indexRest = Math.round(ev.nativeEvent.contentOffset.x / item_size);
-              duration.setDurationRest(timersRest[indexRest]); 
+              setDurationRest(timersRest[indexRest]); 
             }}
 
             showsHorizontalScrollIndicator={false}

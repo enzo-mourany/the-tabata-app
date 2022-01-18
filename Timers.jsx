@@ -4,7 +4,8 @@ import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animate
 import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
-import { DurationProvider, DurationContext } from './DurationProvider';
+//import { DurationProvider, DurationContext } from './DurationProvider';
+import { DurationContext } from './DurationContext';
 
 
 // ========================  General Const  =============================
@@ -33,7 +34,7 @@ const getRemaining = (time) => {
 
 let roundsCounter = 1;
 
-const duration = useContext(DurationContext);
+//const duration = useContext(DurationContext);
 
 
 // =======================================================================
@@ -41,13 +42,16 @@ const duration = useContext(DurationContext);
 // =======================================================================
 
 function TimerAndCountdowns() {
+
+  const { durationExercises, setDurationExercises } = React.useContext(DurationContext);
+  const { durationRest, setDurationRest } = React.useContext(DurationContext);
   
   const [remainingSecs, setRemainingSecs] = useState(0);
   const { mins, secs } = getRemaining(remainingSecs);
   const [isActive, setIsActive] = useState(false);
   
   const [isExercise, setIsExercise] = useState(true);
-  const listTimer = [duration.durationExercises, duration.durationRest];
+  const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
 

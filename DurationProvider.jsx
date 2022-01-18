@@ -1,3 +1,4 @@
+/*
 import React, { useState } from 'react';
 import { timersExercises, timersRest } from './HomePageApp';
 
@@ -21,3 +22,4 @@ const DurationProvider = (props) => {
 }
 
 export { DurationProvider, DurationContext };
+*/

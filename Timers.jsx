@@ -31,21 +31,18 @@ const getRemaining = (time) => {
 let roundsCounter = 1;
 
 // =======================================================================
-// ====================  Function TimerAndCountdowns  ====================
+//                       Function TimerAndCountdowns  
 // =======================================================================
 
 function TimerAndCountdowns() {
 
-  const { durationExercises, durationRest } = React.useContext(DurationContext);
-
   const [remainingSecs, setRemainingSecs] = useState(0);
   const { mins, secs } = getRemaining(remainingSecs);
   const [isActive, setIsActive] = useState(false);
-
   const [isExercise, setIsExercise] = useState(true);
+  const { durationExercises, durationRest } = React.useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
-
 
   // If one of buttons is clicked
   const toggle = () => {
@@ -88,7 +85,7 @@ function TimerAndCountdowns() {
 
 
   // =======================================================================
-  // =============================  Display  ===============================
+  //                                Display  
   // =======================================================================
 
 
@@ -125,7 +122,7 @@ function TimerAndCountdowns() {
 
 
 // =======================================================================
-// =============================  Styles  ================================
+//                                Styles  
 // =======================================================================
 
 

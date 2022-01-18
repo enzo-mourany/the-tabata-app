@@ -4,7 +4,6 @@ import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animate
 import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
-//import { DurationProvider, DurationContext } from './DurationProvider';
 import { DurationContext } from './DurationContext';
 
 
@@ -27,15 +26,9 @@ const getRemaining = (time) => {
   return { mins: formatNumber(mins), secs: formatNumber(secs) };
 }
 
-// ===========  Const/Var for countdown exercises and rest  ==============
 
-//const listAllTimersExercises = [20, 30, 40, 45, 50, 60, 75, 100];
-//const listAllTimersRest = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 
 let roundsCounter = 1;
-
-//const duration = useContext(DurationContext);
-
 
 // =======================================================================
 // ====================  Function TimerAndCountdowns  ====================

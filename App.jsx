@@ -23,6 +23,18 @@ import { DurationProvider } from './DurationContext';
 
 const Stack = createStackNavigator();
 
+const config = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
+
 
 // =======================================================================
 //                              Main Function  
@@ -32,7 +44,17 @@ export default function App() {
   return (
     <DurationProvider>
       <NavigationContainer style={styles.container}>
-        <Stack.Navigator initialRouteName="Home" style={styles.navigator}>
+        <Stack.Navigator
+          initialRouteName="Home"
+          style={styles.navigator}
+          screenOptions={{
+            gestureEnable: true,
+            gestureDirection: "horizontal",
+
+          }}
+          headerMode="float"
+          animation="fade"
+        >
           <Stack.Screen name="Home" component={HomePage}
             options={{
               title: '',

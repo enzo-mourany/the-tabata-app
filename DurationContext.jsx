@@ -1,12 +1,10 @@
-import { createContext } from 'react';
-import { timersExercises, timersRest } from './HomePageApp';
-
+import React, { createContext, useState } from 'react';
 
 export const DurationContext = createContext();
 
 export const DurationProvider = ({ children }) => {
-    const [durationExercises, setDurationExercises] = useState(timersExercises[0]);
-    const [durationRest, setDurationRest] = useState(timersRest[0]);
+    const [durationExercises, setDurationExercises] = useState(1);
+    const [durationRest, setDurationRest] = useState(1);
 
     return (
         <DurationContext.Provider value={{ durationExercises, setDurationExercises, durationRest, setDurationRest }}>

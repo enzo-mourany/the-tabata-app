@@ -127,7 +127,7 @@ function HomePage({ navigation }) {
       <View
         style={{
           position: 'absolute',
-          top: height / 2.2,
+          top: height / 2,
           left: 0,
           right: 0,
           flex: 1,
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 80,
-    backgroundColor: colors.red,
+    backgroundColor: colors.red
   },
   text: {
     fontSize: item_size * 0.8,

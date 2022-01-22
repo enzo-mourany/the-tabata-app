@@ -20,7 +20,7 @@ import { DurationContext } from './DurationContext';
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  black: '#04112A',
+  black: '#3B2D60',
   red: '#F76A6A',
   text: '#ffffff',
 };
@@ -55,6 +55,7 @@ function HomePage({ navigation }) {
         ]}>
 
         {/** ==============  Go to Timer ======================= */}
+
         <TouchableOpacity
           onPress={() => navigation.navigate('Timers')}>
           <View
@@ -64,6 +65,7 @@ function HomePage({ navigation }) {
       </Animated.View>
 
       {/* =================  Timers Exercises  =================== */}
+
       <View
         style={{
           position: 'absolute',
@@ -124,6 +126,7 @@ function HomePage({ navigation }) {
       </View>
 
       {/* ===================  Timers Rest  ==================== */}
+
       <View
         style={{
           position: 'absolute',

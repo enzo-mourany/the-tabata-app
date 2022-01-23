@@ -11,6 +11,7 @@ import {
   Text,
   View,
   StyleSheet,
+  Image
 } from 'react-native';
 import { DurationContext } from './DurationContext';
 
@@ -58,8 +59,9 @@ function HomePage({ navigation }) {
 
         <TouchableOpacity
           onPress={() => navigation.navigate('Timers')}>
-          <View
+          <Image
             style={styles.roundButton}
+            source={require('./IMG/start-timer-button.png')}
           />
         </TouchableOpacity>
       </Animated.View>
@@ -74,6 +76,11 @@ function HomePage({ navigation }) {
           right: 0,
           flex: 1,
         }}>
+
+        <Text
+          style={styles.textIndicator}
+        >Exercise Duration</Text>
+
         <Animated.FlatList
           data={timersExercises}
           keyExtractor={item => item.toString()}
@@ -199,10 +206,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
   },
   roundButton: {
-    width: 80,
-    height: 80,
+    bottom: 1,
+    width: 120,
+    height: 120,
     borderRadius: 80,
-    backgroundColor: colors.red
   },
   text: {
     fontSize: item_size * 0.8,
@@ -213,6 +220,11 @@ const styles = StyleSheet.create({
   textExTimers: {
     color: "#fff",
     fontSize: 100
+  },
+  textIndicator: {
+    fontFamily: 'Poppins',
+    color: "#fff",
+    fontSize: 20
   }
 });
 

@@ -5,6 +5,8 @@ import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
+//import { BlurView, VibrancyView } from "@react-native-community/blur";
+import CircularProgress from 'react-native-circular-progress-indicator';
 
 
 // ========================  General Const  =============================
@@ -25,8 +27,6 @@ const getRemaining = (time) => {
   const secs = time - mins * 60;
   return { mins: formatNumber(mins), secs: formatNumber(secs) };
 }
-
-
 
 let roundsCounter = 1;
 
@@ -104,8 +104,15 @@ function TimerAndCountdowns() {
         <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
       </View>
 
+      <CircularProgress
+        radius={90}
+        value={85}
+        textColor={'#fff'}
+      />
 
-      <View style={styles.buttons}>
+      <View
+        style={styles.buttons}>
+
         <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
           <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
         </TouchableOpacity>
@@ -113,6 +120,7 @@ function TimerAndCountdowns() {
         <TouchableOpacity onPress={reset} style={styles.resetButton}>
           <Text style={styles.resetButtonText}>Reset</Text>
         </TouchableOpacity>
+
 
       </View>
 
@@ -175,9 +183,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   startButton: {
-    backgroundColor: "#5C6698",
-    borderColor: '#9DA3EA',
-    borderBottomColor: 'red',
+    backgroundColor: "#fff",
     borderWidth: 3,
     width: width / 4,
     height: width / 4,

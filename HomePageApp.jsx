@@ -14,6 +14,7 @@ import {
   Image
 } from 'react-native';
 import { DurationContext } from './DurationContext';
+import { useFonts } from 'expo-font';
 
 // =======================================================================
 //                                Const   
@@ -21,7 +22,7 @@ import { DurationContext } from './DurationContext';
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  black: '#3B2D60',
+  black: '#061A40',
   red: '#F76A6A',
   text: '#ffffff',
 };
@@ -222,7 +223,7 @@ const styles = StyleSheet.create({
     fontSize: 100
   },
   textIndicator: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     color: "#fff",
     fontSize: 20
   }

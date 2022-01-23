@@ -69,7 +69,7 @@ export default function App() {
               title: '',
               headerStyle: {
                 shadowColor: 'transparent',
-                backgroundColor: '#04112A',
+                backgroundColor: '#061A40',
               },
               headerTintColor: '#fff',
               headerTitleStyle: {

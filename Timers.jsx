@@ -11,7 +11,7 @@ import { DurationContext } from './DurationContext';
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  backGround: '#1E2749',
+  backGround: '#061A40',
   button: '#FAFAFF',
   times: '#FAFAFF'
 }
@@ -129,7 +129,7 @@ function TimerAndCountdowns() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#04112A',
+    backgroundColor: '#061A40',
 
   },
   // ===========================  Timer Div  ==============================
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   // ==========================  Buttons Div  ==============================
   buttons: {
     flex: 2,
-    backgroundColor: "#04112A",
+    backgroundColor: "#061A40",
     justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: 'flex-end'

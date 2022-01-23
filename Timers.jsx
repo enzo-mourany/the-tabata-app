@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef, useContext, useMemo } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animated, Button }
   from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { HomePage } from './HomePageApp';
+//import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 //import { BlurView, VibrancyView } from "@react-native-community/blur";
-import CircularProgress from 'react-native-circular-progress-indicator';
+//import CircularProgress from 'react-native-circular-progress-indicator';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 
 // ========================  General Const  =============================
@@ -104,10 +105,11 @@ function TimerAndCountdowns() {
         <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
       </View>
 
-      <CircularProgress
-        radius={90}
-        value={85}
-        textColor={'#fff'}
+      <AnimatedCircularProgress
+        size={120}
+        width={15}
+        fill={100}
+        values={24}
       />
 
       <View

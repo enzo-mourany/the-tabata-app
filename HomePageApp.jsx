@@ -83,7 +83,7 @@ function HomePage({ navigation }) {
           {
             justifyContent: 'flex-end',
             alignItems: 'center',
-            paddingBottom: 100,
+            paddingBottom: 60,
           },
         ]}>
 
@@ -170,7 +170,7 @@ function HomePage({ navigation }) {
       <View
         style={{
           position: 'absolute',
-          top: height / 2,
+          top: height / 2.1,
           left: 0,
           right: 0,
           flex: 1,
@@ -245,10 +245,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
   },
   roundButton: {
-    bottom: 1,
+    bottom: 2,
     width: 120,
     height: 120,
-    borderRadius: 80,
+    borderRadius: 120,
   },
   text: {
     fontSize: item_size * 0.8,

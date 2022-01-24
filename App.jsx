@@ -57,7 +57,7 @@ export default function App() {
         >
           <Stack.Screen name="Home" component={HomePage}
             options={{
-              title: '',
+              title: ' ',
               headerShown: false,
               headerStyle: {
                 backgroundColor: '#04112A',
@@ -66,7 +66,7 @@ export default function App() {
           />
           <Stack.Screen name="Timers" component={TimerAndCountdowns}
             options={{
-              title: '',
+              title: ' ',
               headerStyle: {
                 shadowColor: 'transparent',
                 backgroundColor: '#061A40',

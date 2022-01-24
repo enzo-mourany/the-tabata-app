@@ -10,6 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/poppins": "^0.2.2",
     "@react-native-community/blur": "^3.6.0",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
@@ -30,7 +31,9 @@
     "react-native-screens": "~3.8.0",
     "react-native-styled-components": "^2.1.0",
     "react-native-svg": "^12.1.1",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "expo-app-loading": "~1.2.1",
+    "expo-font": "~10.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -15,6 +15,18 @@ import {
 } from 'react-native';
 import { DurationContext } from './DurationContext';
 import { useFonts } from 'expo-font';
+import {
+  Poppins_100Thin,
+  Poppins_200ExtraLight,
+  Poppins_300Light,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+  Poppins_800ExtraBold,
+  Poppins_900Black,
+} from '@expo-google-fonts/poppins'
+import AppLoading from 'expo-app-loading';
 
 // =======================================================================
 //                                Const   
@@ -41,6 +53,22 @@ function HomePage({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollXRest = React.useRef(new Animated.Value(0)).current;
   const { setDurationExercises, setDurationRest } = React.useContext(DurationContext);
+
+  let [fontLoaded, error]: useFonts({
+    Poppins_100Thin,
+    Poppins_200ExtraLight,
+    Poppins_300Light,
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+    Poppins_800ExtraBold,
+    Poppins_900Black,
+  });
+
+  if (!fontLoaded) {
+    return <AppLoading />
+  }
 
   return (
     <View style={styles.container}>
@@ -223,7 +251,7 @@ const styles = StyleSheet.create({
     fontSize: 100
   },
   textIndicator: {
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins_500Medium',
     color: "#fff",
     fontSize: 20
   }

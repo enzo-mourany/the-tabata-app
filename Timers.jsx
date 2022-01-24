@@ -100,17 +100,18 @@ function TimerAndCountdowns() {
       </View>
 
       <View style={styles.countDowns}>
+        <AnimatedCircularProgress
+          size={200}
+          width={7}
+          fill={200}
+          tintColor="#fff"
+        />
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
         <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
         <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
       </View>
 
-      <AnimatedCircularProgress
-        size={120}
-        width={15}
-        fill={100}
-        values={24}
-      />
+
 
       <View
         style={styles.buttons}>

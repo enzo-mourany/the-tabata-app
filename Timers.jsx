@@ -21,7 +21,6 @@ const colors = {
 
 // =====================  Const for main timer  ==========================
 
-// Format number < 10 , add 0 in front of them
 const formatNumber = number => `0${number}`.slice(-2);
 const getRemaining = (time) => {
   const mins = Math.floor(time / 60);
@@ -45,12 +44,12 @@ function TimerAndCountdowns() {
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
-  // If one of buttons is clicked
+
   const toggle = () => {
     setIsActive(!isActive);
   }
 
-  // reset values when this function is called
+
   const reset = () => {
     setRemainingSecs(0);
     setIsActive(false);

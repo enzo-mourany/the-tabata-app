@@ -14,7 +14,7 @@ import {
   Image
 } from 'react-native';
 import { DurationContext } from './DurationContext';
-import { useFonts } from 'expo-font';
+//import { useFonts } from 'expo-font';
 /*import {
   Poppins_100Thin,
   Poppins_200ExtraLight,
@@ -103,10 +103,11 @@ function HomePage({ navigation }) {
       <View
         style={{
           position: 'absolute',
-          top: height / 5,
+          top: height / 6,
           left: 0,
           right: 0,
           flex: 1,
+          alignItems: 'center',
         }}>
 
         <Text
@@ -173,7 +174,13 @@ function HomePage({ navigation }) {
           left: 0,
           right: 0,
           flex: 1,
+          alignItems: 'center',
         }}>
+
+        <Text
+          style={styles.textIndicator}
+        >Exercise Rest</Text>
+
         <Animated.FlatList
           data={timersRest}
           keyExtractor={item => item.toString()}
@@ -256,7 +263,8 @@ const styles = StyleSheet.create({
   textIndicator: {
     //fontFamily: 'Poppins_500Medium',
     color: "#fff",
-    fontSize: 20
+    fontSize: 20,
+    paddingBottom: 20
   }
 });
 

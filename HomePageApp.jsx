@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { DurationContext } from './DurationContext';
 //import { useFonts } from 'expo-font';
-/*import {
+import {
   Poppins_100Thin,
   Poppins_200ExtraLight,
   Poppins_300Light,
@@ -26,9 +26,7 @@ import { DurationContext } from './DurationContext';
   Poppins_800ExtraBold,
   Poppins_900Black,
 } from '@expo-google-fonts/poppins'
-import AppLoading from 'expo-app-loading';
-*/
-
+//import AppLoading from 'expo-app-loading';
 // =======================================================================
 //                                Const   
 // =======================================================================
@@ -261,7 +259,6 @@ const styles = StyleSheet.create({
     fontSize: 100
   },
   textIndicator: {
-    //fontFamily: 'Poppins_500Medium',
     color: "#fff",
     fontSize: 20,
     paddingBottom: 20

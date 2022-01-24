@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, useContext, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useContext, useMemo, Image } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animated, Button }
   from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 //import { HomePage } from './HomePageApp';
-import { NavigationContainer } from '@react-navigation/native';
+//import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 //import { BlurView, VibrancyView } from "@react-native-community/blur";
 //import CircularProgress from 'react-native-circular-progress-indicator';

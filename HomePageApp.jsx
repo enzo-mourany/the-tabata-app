@@ -14,6 +14,7 @@ import {
   Image
 } from 'react-native';
 import { DurationContext } from './DurationContext';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 // =======================================================================
@@ -45,6 +46,7 @@ function HomePage({ navigation }) {
 
   return (
     <View style={styles.container}>
+
       <StatusBar hidden />
 
       <Animated.View
@@ -201,6 +203,7 @@ function HomePage({ navigation }) {
           }}
         />
       </View>
+
     </View>
   );
 }

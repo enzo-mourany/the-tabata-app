@@ -30,6 +30,8 @@ const getRemaining = (time) => {
 
 let roundsCounter = 1;
 
+
+
 // =======================================================================
 //                       Function TimerAndCountdowns  
 // =======================================================================
@@ -118,6 +120,7 @@ function TimerAndCountdowns() {
         <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
           <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
         </TouchableOpacity>
+
 
         <TouchableOpacity onPress={reset} style={styles.resetButton}>
           <Text style={styles.resetButtonText}>Reset</Text>

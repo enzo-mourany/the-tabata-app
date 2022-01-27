@@ -8,9 +8,22 @@ import { DurationContext } from './DurationContext';
 //import { BlurView, VibrancyView } from "@react-native-community/blur";
 //import CircularProgress from 'react-native-circular-progress-indicator';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+
 import Svg, {
   Defs, LinearGradient, Stop, Path
 } from 'react-native-svg';
+
+
+// ========================  Const Progress  =============================
+
+const { interpolate, multiply } = Animated;
+const size = width - 32;
+const strokeWidth = 50;
+const AnimatedPath = Animated.createAnimatedComponent(Path);
+const { PI } = Math;
+const r = (size - strokeWidth) / 2;
+const cx = size / 2;
+const cy = size / 2;
 
 
 // ========================  General Const  =============================

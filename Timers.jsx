@@ -5,25 +5,8 @@ import { StatusBar } from 'expo-status-bar';
 //import { HomePage } from './HomePageApp';
 //import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
-//import { BlurView, VibrancyView } from "@react-native-community/blur";
-//import CircularProgress from 'react-native-circular-progress-indicator';
+import CircularProgress from 'react-native-circular-progress-indicator';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-
-import Svg, {
-  Defs, LinearGradient, Stop, Path
-} from 'react-native-svg';
-
-
-// ========================  Const Progress  =============================
-
-const { interpolate, multiply } = Animated;
-const size = width - 32;
-const strokeWidth = 50;
-const AnimatedPath = Animated.createAnimatedComponent(Path);
-const { PI } = Math;
-const r = (size - strokeWidth) / 2;
-const cx = size / 2;
-const cy = size / 2;
 
 
 // ========================  General Const  =============================
@@ -61,6 +44,9 @@ function TimerAndCountdowns() {
   const { durationExercises, durationRest } = React.useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
+
+  // For circularProgressBar
+  const [value, setValue] = useState(0);
 
 
   const toggle = () => {
@@ -117,12 +103,20 @@ function TimerAndCountdowns() {
       </View>
 
       <View style={styles.countDowns}>
-        <AnimatedCircularProgress
-          size={200}
-          width={7}
-          fill={200}
-          tintColor="#fff"
+
+        <CircularProgress
+          radius={90}
+          value={85}
+          textColor='#fff'
+          fontSize={20}
+          valueSuffix={'%'}
+          inActiveStrokeColor={'#2ecc71'}
+          inActiveStrokeOpacity={0.2}
+          inActiveStrokeWidth={6}
+          duration={3000}
+          onAnimationComplete={() => setValue(50)}
         />
+
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
         <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
         <Text style={styles.counterRounds}>Round {roundsCounter}</Text>

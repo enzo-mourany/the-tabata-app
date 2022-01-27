@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useContext, useMemo, Image } from '
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animated, Button }
   from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-//import { HomePage } from './HomePageApp';
-//import { NavigationContainer } from '@react-navigation/native';
+import { HomePage } from './HomePageApp';
+import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';

@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 
 import Svg, { Circle } from 'react-native-svg';
-import { useSharedValue } from 'react-circular-reanimated'
+//import { useSharedValue } from 'react-circular-reanimated'
 
 
 // ======================  ProgressBar Const  ===========================
@@ -52,7 +52,7 @@ function TimerAndCountdowns() {
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
-  const progress = useSharedValue(0);
+  //const progress = useSharedValue(0);
 
 
   const toggle = () => {

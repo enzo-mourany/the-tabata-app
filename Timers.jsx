@@ -5,8 +5,6 @@ import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
-import CircularProgress from 'react-native-circular-progress-indicator';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 
 // ========================  General Const  =============================
@@ -44,9 +42,6 @@ function TimerAndCountdowns() {
   const { durationExercises, durationRest } = React.useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
-
-  // For circularProgressBar
-  const [value, setValue] = useState(0);
 
 
   const toggle = () => {
@@ -103,25 +98,10 @@ function TimerAndCountdowns() {
       </View>
 
       <View style={styles.countDowns}>
-
-        <CircularProgress
-          radius={90}
-          value={85}
-          textColor='#fff'
-          fontSize={20}
-          valueSuffix={'%'}
-          inActiveStrokeColor={'#2ecc71'}
-          inActiveStrokeOpacity={0.2}
-          inActiveStrokeWidth={6}
-          duration={3000}
-          onAnimationComplete={() => setValue(50)}
-        />
-
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
         <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
         <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
       </View>
-
 
 
       <View

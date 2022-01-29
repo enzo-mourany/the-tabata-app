@@ -6,6 +6,13 @@ import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 
+import Svg, { Circle } from 'react-native-svg';
+
+
+// ======================  ProgressBar Const  ===========================
+
+const circle_length = 1000;
+const rayon = circle_length / (2 * Math.PI);
 
 // ========================  General Const  =============================
 
@@ -98,6 +105,26 @@ function TimerAndCountdowns() {
       </View>
 
       <View style={styles.countDowns}>
+
+        <Svg>
+          <Circle
+            cx={width / 2}
+            cy={height / 5}
+            r={rayon}
+            stroke={'#303858'}
+            strokeWidth={30}
+          />
+          <Circle
+            cx={width / 2}
+            cy={height / 5}
+            r={rayon}
+            stroke={'red'}
+            strokeWidth={15}
+            strokeDasharray={circle_length}
+            strokeDashoffset={circle_length * 0.5}
+          />
+        </Svg>
+
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
         <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
         <Text style={styles.counterRounds}>Round {roundsCounter}</Text>

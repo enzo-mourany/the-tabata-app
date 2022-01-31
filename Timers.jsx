@@ -125,7 +125,8 @@ function TimerAndCountdowns() {
             stroke={'red'}
             strokeWidth={10}
             strokeDasharray={circle_length}
-            strokeDashoffset={circle_length * (remainingTimer / 10)}
+            strokeDashoffset={circle_length * 0.5}
+            transform={`rotate(-90, ${circle_length/2}, ${circle_length/2})`}
           />
           <SvgText
             style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}

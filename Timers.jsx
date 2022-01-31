@@ -6,7 +6,7 @@ import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 
-import Svg, { Circle } from 'react-native-svg';
+import Svg, { Circle, Text as SvgText } from 'react-native-svg';
 //import { useSharedValue } from 'react-circular-reanimated'
 
 
@@ -127,6 +127,11 @@ function TimerAndCountdowns() {
             strokeDasharray={circle_length}
             strokeDashoffset={circle_length * 0.5}
           />
+          <SvgText
+          
+          >
+            4
+          </SvgText>
         </Svg>
 
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>

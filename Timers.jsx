@@ -5,9 +5,12 @@ import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
-
 import Svg, { Circle, Text as SvgText } from 'react-native-svg';
-//import { useSharedValue } from 'react-circular-reanimated'
+import { 
+  useAnimatedProps, 
+  withTiming,
+  useSharedValue
+} from 'react-circular-reanimated';
 
 
 
@@ -63,7 +66,19 @@ function TimerAndCountdowns() {
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
-  //const progress = useSharedValue(0);
+
+  const progress = useSharedValue(0);
+
+  useEffect(() => {
+    progress.value = withTiming(1, {duration: 2000})
+  }, []);
+
+  const animatedProps = useAnimatedProps(() => ({
+    strokeDashoffset: circle_length * progress.value 
+  }));
+
+
+
 
 
   const toggle = () => {
@@ -136,8 +151,7 @@ function TimerAndCountdowns() {
             stroke={'red'}
             strokeWidth={10}
             strokeDasharray={circle_length}
-            strokeDashoffset={circle_length * 0.5}
-            transform={`rotate(-90, ${circle_length/2}, ${circle_length/2})`}
+            animatedProps={animatedProps}
           />
           <SvgText
             style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}

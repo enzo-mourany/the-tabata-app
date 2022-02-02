@@ -10,13 +10,21 @@ import Svg, { Circle, Text as SvgText } from 'react-native-svg';
 //import { useSharedValue } from 'react-circular-reanimated'
 
 
-// ======================  ProgressBar Const  ===========================
+
+// -----------------------------------------------------------------------
+//                       CircularProgressBar Const  
+// -----------------------------------------------------------------------
+
 
 const circle_length = 1000;
 const rayon = circle_length / (2.5 * Math.PI);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-// ========================  General Const  =============================
+
+// -----------------------------------------------------------------------
+//                            General Const  
+// -----------------------------------------------------------------------
+
 
 const { width, height } = Dimensions.get('window');
 const colors = {
@@ -25,7 +33,11 @@ const colors = {
   times: '#FAFAFF'
 }
 
-// =====================  Const for main timer  ==========================
+
+// -----------------------------------------------------------------------
+//                           Main Timer Const  
+// -----------------------------------------------------------------------
+
 
 const formatNumber = number => `0${number}`.slice(-2);
 const getRemaining = (time) => {
@@ -35,7 +47,6 @@ const getRemaining = (time) => {
 }
 
 let roundsCounter = 1;
-
 
 
 // =======================================================================

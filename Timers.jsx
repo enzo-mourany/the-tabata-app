@@ -10,7 +10,7 @@ import {
   useAnimatedProps, 
   withTiming,
   useSharedValue
-} from 'react-circular-reanimated';
+} from 'react-native-reanimated';
 
 
 
@@ -56,6 +56,7 @@ let roundsCounter = 1;
 //                       Function TimerAndCountdowns  
 // =======================================================================
 
+
 function TimerAndCountdowns() {
 
   const [remainingSecs, setRemainingSecs] = useState(0);
@@ -65,6 +66,9 @@ function TimerAndCountdowns() {
   const { durationExercises, durationRest } = React.useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
+
+
+
 
 
   const progress = useSharedValue(0);

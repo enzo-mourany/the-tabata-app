@@ -82,13 +82,6 @@ function TimerAndCountdowns() {
   }));
 
 
-  // text value of circular progress but not of countDown
-  const progressText = useDerivedValue(() => {
-    return `${Math.floor(progress.value * 1000)}`;
-  })
-
-
-
   const toggle = () => {
     setIsActive(!isActive);
   }
@@ -144,6 +137,11 @@ function TimerAndCountdowns() {
 
       <View style={styles.countDowns}>
 
+        <SvgText
+          style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}
+        >
+          {remainingTimer}
+        </SvgText>
         <Svg>
           <Circle
             cx={width / 2}
@@ -162,11 +160,6 @@ function TimerAndCountdowns() {
             animatedProps={animatedProps}
             strokeLinecap={'round'}
           />
-          <SvgText
-            style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}
-          >
-            {remainingTimer}
-          </SvgText>
         </Svg>
 
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>

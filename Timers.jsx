@@ -135,13 +135,13 @@ function TimerAndCountdowns() {
 
       <View style={styles.countDowns}>
 
+        <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
+        <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
+        <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
 
         <Svg
-          justifyContent={"center"}
-          alignItems={"center"}>
-          <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
-          <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-          <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
+          style={{ position: 'absolute' }}
+        >
           <Circle
             cx={width / 2}
             cy={height / 5}
@@ -207,14 +207,14 @@ const styles = StyleSheet.create({
     fontSize: 75,
     marginBottom: 20
   },
-  // ===========================  Timer Div  ==============================
+  // ===========================  circularProgressBar ==============================
   ct2: {
     color: "#fff",
     fontSize: 70
   },
   // =========================  Countdown Div  =============================
   countDowns: {
-    flex: 2.5,
+    flex: 4.5,
     justifyContent: 'center',
     alignItems: 'center'
   },

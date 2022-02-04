@@ -6,11 +6,7 @@ import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 import Svg, { Circle, Text as SvgText } from 'react-native-svg';
-import {
-  useAnimatedProps,
-  withTiming,
-  useSharedValue
-} from 'react-native-reanimated';
+
 
 
 
@@ -21,7 +17,7 @@ import {
 
 const circle_length = 1000;
 const rayon = circle_length / (2.5 * Math.PI);
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+//const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 
 // -----------------------------------------------------------------------
@@ -70,16 +66,18 @@ function TimerAndCountdowns() {
 
 
 
-
-  const progress = useSharedValue(0);
-
-  useEffect(() => {
-    progress.value = withTiming(1, { duration: 2000 })
-  }, []);
-
-  const animatedProps = useAnimatedProps(() => ({
-    strokeDashoffset: circle_length * (1 - progress.value),
-  }));
+  /*
+    const progress = useSharedValue(0);
+  
+    useEffect(() => {
+      progress.value = withTiming(1, { duration: 2000 })
+    }, []);
+  
+    const animatedProps = useAnimatedProps(() => ({
+      strokeDashoffset: circle_length * (1 - progress.value),
+    }));
+  
+    */
 
 
   const toggle = () => {
@@ -137,11 +135,7 @@ function TimerAndCountdowns() {
 
       <View style={styles.countDowns}>
 
-        <SvgText
-          style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}
-        >
-          {remainingTimer}
-        </SvgText>
+
         <Svg>
           <Circle
             cx={width / 2}
@@ -150,17 +144,17 @@ function TimerAndCountdowns() {
             stroke={'#303858'}
             strokeWidth={20}
           />
-          <AnimatedCircle
+          <Circle
             cx={width / 2}
             cy={height / 5}
             r={rayon}
-            stroke={'red'}
+            stroke={'white'}
             strokeWidth={10}
             strokeDasharray={circle_length}
-            animatedProps={animatedProps}
             strokeLinecap={'round'}
           />
         </Svg>
+
 
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
         <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
@@ -242,7 +236,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   startButton: {
-    backgroundColor: "#fff",
+    borderColor: '#fff',
     borderWidth: 3,
     width: width / 4,
     height: width / 4,
@@ -253,10 +247,10 @@ const styles = StyleSheet.create({
   },
   startButtonText: {
     fontSize: 28,
-    color: '#FAFAFF'
+    color: '#fff'
   },
   pauseButton: {
-    borderColor: '#65AFFF',
+    borderColor: '#fff',
     borderWidth: 3,
     width: width / 4,
     height: width / 4,
@@ -270,8 +264,7 @@ const styles = StyleSheet.create({
     color: '#FAFAFF'
   },
   resetButton: {
-    backgroundColor: "#5C6698",
-    borderColor: '#9DA3EA',
+    borderColor: '#fff',
     borderWidth: 3,
     width: width / 4,
     height: width / 4,

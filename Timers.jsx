@@ -136,7 +136,12 @@ function TimerAndCountdowns() {
       <View style={styles.countDowns}>
 
 
-        <Svg>
+        <Svg
+          justifyContent={"center"}
+          alignItems={"center"}>
+          <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
+          <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
+          <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
           <Circle
             cx={width / 2}
             cy={height / 5}
@@ -156,9 +161,7 @@ function TimerAndCountdowns() {
         </Svg>
 
 
-        <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
-        <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-        <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
+
       </View>
 
 
@@ -203,6 +206,11 @@ const styles = StyleSheet.create({
     color: '#FAFAFF',
     fontSize: 75,
     marginBottom: 20
+  },
+  // ===========================  Timer Div  ==============================
+  ct2: {
+    color: "#fff",
+    fontSize: 70
   },
   // =========================  Countdown Div  =============================
   countDowns: {

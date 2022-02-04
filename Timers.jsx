@@ -6,8 +6,8 @@ import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 import Svg, { Circle, Text as SvgText } from 'react-native-svg';
-import { 
-  useAnimatedProps, 
+import {
+  useAnimatedProps,
   withTiming,
   useSharedValue
 } from 'react-native-reanimated';
@@ -74,14 +74,18 @@ function TimerAndCountdowns() {
   const progress = useSharedValue(0);
 
   useEffect(() => {
-    progress.value = withTiming(1, {duration: 2000})
+    progress.value = withTiming(1, { duration: 2000 })
   }, []);
 
   const animatedProps = useAnimatedProps(() => ({
-    strokeDashoffset: circle_length * progress.value 
+    strokeDashoffset: circle_length * (1 - progress.value),
   }));
 
 
+  // text value of circular progress but not of countDown
+  const progressText = useDerivedValue(() => {
+    return `${Math.floor(progress.value * 1000)}`;
+  })
 
 
 
@@ -156,6 +160,7 @@ function TimerAndCountdowns() {
             strokeWidth={10}
             strokeDasharray={circle_length}
             animatedProps={animatedProps}
+            strokeLinecap={'round'}
           />
           <SvgText
             style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}

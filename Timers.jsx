@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef, useContext, useMemo, Image } from 'react';
-import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Animated, Button }
+import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Button }
   from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 import Svg, { Circle, Text as SvgText } from 'react-native-svg';
-
+import Animated, { useSharedValue, withTiming, useAnimatedProps } from 'react-native-reanimated';
 
 
 
@@ -17,7 +17,7 @@ import Svg, { Circle, Text as SvgText } from 'react-native-svg';
 
 const circle_length = 1000;
 const rayon = circle_length / (2.5 * Math.PI);
-//const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 
 // -----------------------------------------------------------------------
@@ -66,18 +66,10 @@ function TimerAndCountdowns() {
 
 
 
-  /*
-    const progress = useSharedValue(0);
-  
-    useEffect(() => {
-      progress.value = withTiming(1, { duration: 2000 })
-    }, []);
-  
-    const animatedProps = useAnimatedProps(() => ({
-      strokeDashoffset: circle_length * (1 - progress.value),
-    }));
-  
-    */
+
+
+
+
 
 
   const toggle = () => {
@@ -118,6 +110,16 @@ function TimerAndCountdowns() {
     return () => clearInterval(interval);
   }, [isActive, remainingSecs, remainingTimer])
 
+  const progress = useSharedValue(0);
+
+  useEffect(() => {
+    progress.value = withTiming(1, { duration: remainingTimer * 1000 })
+  }, []);
+
+  const animatedProps = useAnimatedProps(() => ({
+    strokeDashoffset: circle_length * (1 - progress.value),
+  }));
+
 
   // =======================================================================
   //                                Display  
@@ -131,13 +133,13 @@ function TimerAndCountdowns() {
 
       <View style={styles.timers}>
         <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
+        <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
+        <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
       </View>
 
       <View style={styles.countDowns}>
 
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
-        <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-        <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
 
         <Svg
           style={{ position: 'absolute' }}
@@ -149,7 +151,7 @@ function TimerAndCountdowns() {
             stroke={'#303858'}
             strokeWidth={20}
           />
-          <Circle
+          <AnimatedCircle
             cx={width / 2}
             cy={height / 5}
             r={rayon}
@@ -157,6 +159,7 @@ function TimerAndCountdowns() {
             strokeWidth={10}
             strokeDasharray={circle_length}
             strokeLinecap={'round'}
+            animatedProps={animatedProps}
           />
         </Svg>
 
@@ -214,9 +217,9 @@ const styles = StyleSheet.create({
   },
   // =========================  Countdown Div  =============================
   countDowns: {
-    flex: 4.5,
+    flex: 3.5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   timerExOrRest: {
     color: "#fff",

@@ -1,23 +1,36 @@
-import React, { useState, useEffect, useRef, useContext, useMemo, Image } from 'react';
-import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View, Button }
-  from 'react-native';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+  useMemo,
+  Image
+} from 'react';
+import {
+  Dimensions,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Button
+} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
-import Svg, { Circle, Text as SvgText } from 'react-native-svg';
-import Animated, { useSharedValue, withTiming, useAnimatedProps } from 'react-native-reanimated';
+import Svg, {
+  Circle,
+  Text as SvgText
+} from 'react-native-svg';
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedProps
+} from 'react-native-reanimated';
+import ReactDOM from "react-dom";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
-
-
-// -----------------------------------------------------------------------
-//                       CircularProgressBar Const  
-// -----------------------------------------------------------------------
-
-
-const circle_length = 1000;
-const rayon = circle_length / (2.5 * Math.PI);
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 
 // -----------------------------------------------------------------------
@@ -46,6 +59,17 @@ const getRemaining = (time) => {
 }
 
 let roundsCounter = 1;
+
+
+// -----------------------------------------------------------------------
+//                       CircularProgressBar Const  
+// -----------------------------------------------------------------------
+
+
+const circle_length = 1000;
+const rayon = circle_length / (2.5 * Math.PI);
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
 
 
 // =======================================================================
@@ -110,6 +134,9 @@ function TimerAndCountdowns() {
     return () => clearInterval(interval);
   }, [isActive, remainingSecs, remainingTimer])
 
+
+
+
   const progress = useSharedValue(0);
 
   useEffect(() => {
@@ -119,6 +146,8 @@ function TimerAndCountdowns() {
   const animatedProps = useAnimatedProps(() => ({
     strokeDashoffset: circle_length * (1 - progress.value),
   }));
+
+
 
 
   // =======================================================================
@@ -162,7 +191,6 @@ function TimerAndCountdowns() {
             animatedProps={animatedProps}
           />
         </Svg>
-
 
 
       </View>

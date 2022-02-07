@@ -1,44 +1,58 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import Animated, { multiply } from 'react-native-reanimated';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import Animated, {
+  Extrapolate,
+  interpolate,
+  lessThan,
+  multiply,
+} from "react-native-reanimated";
 
-import HalfCircle from './HalfCircle';
+import { transformOrigin } from "react-native-redash";
+import HalfCircle from "./HalfCircle";
 import { PI, RADIUS } from "./Constants";
 
 interface CircularProgressProps {
-    progress: Animated.Node<number>;
-    bg: string;
-    fg: string;
+  progress: Animated.Node<number>;
+  bg: string;
+  fg: string;
 }
 
 export default ({ progress, bg, fg }: CircularProgressProps) => {
-
-    const theta = multiply(progress, 2 * PI);
-    const rotateTop = interpolate(theta, {
-        inputRange: [0, PI],
-        outputRange: [0, PI],
-        extrapolate: Extrapolate.CLAMP
-    })
-
-    return (
+  const theta = multiply(progress, 2 * PI);
+  const opacity = lessThan(theta, PI);
+  const rotate = interpolate(theta, {
+    inputRange: [PI, 2 * PI],
+    outputRange: [0, PI],
+    extrapolate: Extrapolate.CLAMP,
+  });
+  return (
     <>
-        <View style={{ zIndex: 1 }}>
-            <HalfCircle color={bg} />
-            <Animated.View 
-                style={{
-                    ...StyleSheet.absoluteFillObject, 
-                    transform: transformOrigin(0, RADIUS/2, { rotate: rotateTop })
-                }}
-            >
-                <HalfCircle color={fg} />
-            </Animated.View>
-        </View>
-        <View style={{ transform: [{ rotate: "180deg" }] }}>
-            <HalfCircle color={bg} />
-            <Animated.View style={{...StyleSheet.absoluteFillObject }}>
-                <HalfCircle color={fg} />
-            </Animated.View>
-        </View>
-            </>
-    );
+      <View style={{ zIndex: 1 }}>
+        <HalfCircle color={fg} />
+        <Animated.View
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            transform: transformOrigin(
+              { x: 0, y: RADIUS / 2 },
+              { rotate: theta }
+            ),
+            opacity,
+          }}
+        >
+          <HalfCircle color={bg} />
+        </Animated.View>
+      </View>
+      <View style={{ transform: [{ rotate: "180deg" }] }}>
+        <HalfCircle color={fg} />
+        <Animated.View
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            transform: transformOrigin({ x: 0, y: RADIUS / 2 }, { rotate }),
+          }}
+        >
+          <HalfCircle color={bg} />
+        </Animated.View>
+      </View>
+    </>
+  );
 };

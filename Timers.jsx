@@ -39,6 +39,7 @@ import { COLOR_BG, COLOR_FG, RADIUS, STROKE_WiDTH } from './Constants';
 
 
 
+
 // -----------------------------------------------------------------------
 //                            General Const  
 // -----------------------------------------------------------------------
@@ -91,12 +92,8 @@ function TimerAndCountdowns() {
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
 
-  // ProgresssBar
-
   const progress = new Value(0);
   useCode(() => set(progress, timing({ duration: 10000 })), [progress]);
-
-  // End
 
 
   const toggle = () => {
@@ -160,11 +157,19 @@ function TimerAndCountdowns() {
 
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
 
-        <CircularProgress
-          bg={COLOR_BG}
-          fg={COLOR_FG}
-          {...{ progress }}
-        />
+        <View style={styles.overlay}>
+          <CircularProgress bg={COLOR_BG} fg={COLOR_FG} {...{ progress }} />
+        </View>
+        <View style={styles.overlay}>
+          <View
+            style={{
+              width: RADIUS * 2 - STROKE_WIDTH,
+              height: RADIUS * 2 - STROKE_WIDTH,
+              borderRadius: RADIUS - STROKE_WIDTH / 2,
+              backgroundColor: COLOR_BG,
+            }}
+          />
+        </View>
 
       </View>
 
@@ -288,6 +293,11 @@ const styles = StyleSheet.create({
   resetButtonText: {
     fontSize: 28,
     color: '#FAFAFF'
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    alignItems: "center",
   }
 });
 

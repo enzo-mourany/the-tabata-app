@@ -26,10 +26,16 @@ import Svg, {
 import Animated, {
   useSharedValue,
   withTiming,
-  useAnimatedProps
+  useAnimatedProps,
+  Value,
+  set,
+  useCode
 } from 'react-native-reanimated';
 import ReactDOM from "react-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { timing } from "react-native-redash";
+import CircularProgress from './CircularProgess'
+import { COLOR_BG, COLOR_FG, RADIUS, STROKE_WiDTH } from './Constants';
 
 
 
@@ -153,6 +159,12 @@ function TimerAndCountdowns() {
       <View style={styles.countDowns}>
 
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
+
+        <CircularProgress
+          bg={COLOR_BG}
+          fg={COLOR_FG}
+          {...{ progress }}
+        />
 
       </View>
 

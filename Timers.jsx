@@ -69,6 +69,7 @@ let roundsCounter = 1;
 const circle_length = 1000;
 const rayon = circle_length / (2.5 * Math.PI);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+const circumference = 2 * Math.PI / rayon;
 
 
 
@@ -180,13 +181,13 @@ function TimerAndCountdowns() {
             stroke={'#303858'}
             strokeWidth={20}
           />
-          <AnimatedCircle
+          <Circle
             cx={width / 2}
             cy={height / 5}
             r={rayon}
             stroke={'white'}
             strokeWidth={10}
-            strokeDasharray={circle_length}
+            strokeDasharray={circumference}
             strokeLinecap={'round'}
             animatedProps={animatedProps}
           />

@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: item_size * 0.8,
-    fontFamily: 'Menlo',
+    fontFamily: 'Poppins-Medium',
     color: colors.text,
     fontWeight: '900',
   },

@@ -66,10 +66,6 @@ let roundsCounter = 1;
 // -----------------------------------------------------------------------
 
 
-const circle_length = 1000;
-const rayon = circle_length / (2.5 * Math.PI);
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const circumference = 2 * Math.PI / rayon;
 
 
 
@@ -87,13 +83,6 @@ function TimerAndCountdowns() {
   const { durationExercises, durationRest } = React.useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
-
-
-
-
-
-
-
 
 
 
@@ -138,19 +127,6 @@ function TimerAndCountdowns() {
 
 
 
-  const progress = useSharedValue(0);
-
-  useEffect(() => {
-    progress.value = withTiming(1, { duration: remainingTimer * 1000 })
-  }, []);
-
-  const animatedProps = useAnimatedProps(() => ({
-    strokeDashoffset: circle_length * (1 - progress.value),
-  }));
-
-
-
-
   // =======================================================================
   //                                Display  
   // =======================================================================
@@ -170,29 +146,6 @@ function TimerAndCountdowns() {
       <View style={styles.countDowns}>
 
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
-
-        <Svg
-          style={{ position: 'absolute' }}
-        >
-          <Circle
-            cx={width / 2}
-            cy={height / 5}
-            r={rayon}
-            stroke={'#303858'}
-            strokeWidth={20}
-          />
-          <Circle
-            cx={width / 2}
-            cy={height / 5}
-            r={rayon}
-            stroke={'white'}
-            strokeWidth={10}
-            strokeDasharray={circumference}
-            strokeLinecap={'round'}
-            animatedProps={animatedProps}
-          />
-        </Svg>
-
 
       </View>
 

@@ -85,6 +85,13 @@ function TimerAndCountdowns() {
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
 
+  // ProgresssBar
+
+  const progress = new Value(0);
+  useCode(() => set(progress, timing({ duration: 10000 })), [progress]);
+
+  // End
+
 
   const toggle = () => {
     setIsActive(!isActive);

@@ -31,6 +31,7 @@
     "react-native-gesture-handler": "~1.10.2",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-reanimated": "~2.2.0",
+    "react-native-redash": "^16.2.3",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "~3.8.0",
     "react-native-styled-components": "^2.1.0",

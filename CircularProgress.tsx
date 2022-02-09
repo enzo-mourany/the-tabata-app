@@ -23,7 +23,7 @@ export default ({ progress, bg, fg }: CircularProgressProps) => {
   const rotate = interpolate(theta, {
     inputRange: [PI, 2 * PI],
     outputRange: [0, PI],
-    extrapolate: Extrapolate.CLAMP,
+    extrapolate: Extrapolate.CLAMP
   });
   return (
     <>

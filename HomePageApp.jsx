@@ -225,7 +225,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: item_size * 0.8,
-    fontFamily: 'Poppins',
     color: colors.text,
     fontWeight: '900',
   },
@@ -234,7 +233,6 @@ const styles = StyleSheet.create({
     fontSize: 100
   },
   textIndicator: {
-    fontFamily: 'Poppins-Bold',
     color: "#fff",
     fontSize: 20,
     paddingBottom: 20

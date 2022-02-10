@@ -173,6 +173,7 @@ function TimerAndCountdowns() {
       <View style={styles.buttons}>
 
 
+
         <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
           <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
         </TouchableOpacity>
@@ -258,7 +259,6 @@ const styles = StyleSheet.create({
   startButtonText: {
     fontSize: 28,
     color: '#fff',
-    fontFamily: 'Poppins'
   },
   pauseButton: {
     borderColor: '#fff',

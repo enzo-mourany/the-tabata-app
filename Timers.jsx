@@ -156,21 +156,16 @@ function TimerAndCountdowns() {
 
         <CircularProgress
           radius={width / 2.5}
-          initialValue={0}
           value={remainingTimer}
           maxValue={isExercise ? listTimer[0] : listTimer[1]}
           title={remainingTimer}
           titleColor={remainingTimer <= 3 ? '#EF2D56' : '#fff'}
           showProgressValue={false}
-          //textColor={remainingTimer <= 3 ? '#EF2D56' : '#fff'}
           fontSize={70}
           activeStrokeColor={isExercise ? '#0CCE6B' : '#C589E8'}
           inActiveStrokeColor={isExercise ? '#0CCE6B' : '#C589E8'}
           inActiveStrokeOpacity={0.2}
           inActiveStrokeWidth={6}
-          delay={1}
-        //duration={isExercise ? listTimer[0] : listTimer[1]}
-        //clockwise={false}
         />
 
 
@@ -268,7 +263,8 @@ const styles = StyleSheet.create({
   },
   startButtonText: {
     fontSize: 28,
-    color: '#fff'
+    color: '#fff',
+    fontFamily: 'Poppins'
   },
   pauseButton: {
     borderColor: '#fff',

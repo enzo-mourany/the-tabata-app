@@ -153,7 +153,6 @@ function TimerAndCountdowns() {
       </View>
 
       <View style={styles.countDowns}>
-
         <CircularProgress
           radius={width / 2.5}
           value={remainingTimer}
@@ -162,30 +161,25 @@ function TimerAndCountdowns() {
           titleColor={remainingTimer <= 3 ? '#EF2D56' : '#fff'}
           showProgressValue={false}
           fontSize={70}
-          activeStrokeColor={isExercise ? '#0CCE6B' : '#C589E8'}
-          inActiveStrokeColor={isExercise ? '#0CCE6B' : '#C589E8'}
+          activeStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
+          activeStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
+          inActiveStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
+          inActiveStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
           inActiveStrokeOpacity={0.2}
           inActiveStrokeWidth={6}
         />
-
-
-
       </View>
 
+      <View style={styles.buttons}>
 
-      <View
-        style={styles.buttons}>
 
         <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
           <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
         </TouchableOpacity>
 
-
         <TouchableOpacity onPress={reset} style={styles.resetButton}>
           <Text style={styles.resetButtonText}>Reset</Text>
         </TouchableOpacity>
-
-
       </View>
 
     </View>

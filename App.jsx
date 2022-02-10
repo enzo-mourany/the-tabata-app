@@ -38,9 +38,8 @@ export default function App() {
           screenOptions={{
             gestureEnable: true,
             gestureDirection: "horizontal",
-
+            headerMode: "float"
           }}
-          headerMode="float"
           animation="fade"
         >
           <Stack.Screen name="Home" component={HomePage}

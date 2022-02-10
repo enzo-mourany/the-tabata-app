@@ -66,7 +66,6 @@ const getRemaining = (time) => {
   const secs = time - mins * 60;
   return { mins: formatNumber(mins), secs: formatNumber(secs) };
 }
-
 let roundsCounter = 1;
 
 
@@ -158,7 +157,7 @@ function TimerAndCountdowns() {
           value={remainingTimer}
           maxValue={isExercise ? listTimer[0] : listTimer[1]}
           title={remainingTimer}
-          titleColor={remainingTimer <= 3 ? '#EF2D56' : '#fff'}
+          titleColor={remainingTimer <= 3 ? '#EF8DFF' : '#fff'}
           showProgressValue={false}
           fontSize={70}
           activeStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}

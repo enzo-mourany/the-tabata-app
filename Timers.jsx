@@ -31,11 +31,13 @@ import Animated, {
   set,
   useCode
 } from 'react-native-reanimated';
-import ReactDOM from "react-dom";
+import CircularProgress from 'react-native-circular-progress-indicator';
+/*import ReactDOM from "react-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { timing } from "react-native-redash";
 import CircularProgress from './CircularProgess'
 import { COLOR_BG, COLOR_FG, RADIUS, STROKE_WiDTH } from './Constants';
+*/
 
 
 
@@ -91,9 +93,6 @@ function TimerAndCountdowns() {
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
-
-  const progress = new Value(0);
-  useCode(() => set(progress, timing({ duration: 10000 })), [progress]);
 
 
   const toggle = () => {
@@ -156,20 +155,18 @@ function TimerAndCountdowns() {
       <View style={styles.countDowns}>
 
         <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
+        <CircularProgress
+          radius={140}
+          value={remainingTimer}
+          maxValue={isExercise ? listTimer[0] : listTimer[1]}
+          textColor={remainingTimer <= 3 ? '#EF2D56' : '#fff'}
+          fontSize={70}
+          activeStrokeColor={isExercise ? '#0CCE6B' : '#C589E8'}
+          inActiveStrokeColor={isExercise ? '#0CCE6B' : '#C589E8'}
+          inActiveStrokeOpacity={0.2}
+          inActiveStrokeWidth={6}
+        />
 
-        <View style={styles.overlay}>
-          <CircularProgress bg={COLOR_BG} fg={COLOR_FG} {...{ progress }} />
-        </View>
-        <View style={styles.overlay}>
-          <View
-            style={{
-              width: RADIUS * 2 - STROKE_WIDTH,
-              height: RADIUS * 2 - STROKE_WIDTH,
-              borderRadius: RADIUS - STROKE_WIDTH / 2,
-              backgroundColor: COLOR_BG,
-            }}
-          />
-        </View>
 
       </View>
 

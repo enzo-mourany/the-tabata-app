@@ -154,18 +154,25 @@ function TimerAndCountdowns() {
 
       <View style={styles.countDowns}>
 
-        <Text style={remainingTimer <= 3 ? styles.timeLessThreeSecs : styles.timerExOrRest}>{remainingTimer}</Text>
         <CircularProgress
-          radius={140}
+          radius={width / 2.5}
+          initialValue={0}
           value={remainingTimer}
           maxValue={isExercise ? listTimer[0] : listTimer[1]}
-          textColor={remainingTimer <= 3 ? '#EF2D56' : '#fff'}
+          title={remainingTimer}
+          titleColor={remainingTimer <= 3 ? '#EF2D56' : '#fff'}
+          showProgressValue={false}
+          //textColor={remainingTimer <= 3 ? '#EF2D56' : '#fff'}
           fontSize={70}
           activeStrokeColor={isExercise ? '#0CCE6B' : '#C589E8'}
           inActiveStrokeColor={isExercise ? '#0CCE6B' : '#C589E8'}
           inActiveStrokeOpacity={0.2}
           inActiveStrokeWidth={6}
+          delay={1}
+        //duration={isExercise ? listTimer[0] : listTimer[1]}
+        //clockwise={false}
         />
+
 
 
       </View>

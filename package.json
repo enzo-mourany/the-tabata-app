@@ -19,6 +19,7 @@
     "expo-app-loading": "~1.2.1",
     "expo-font": "~10.0.3",
     "expo-status-bar": "~1.1.0",
+    "get-google-fonts": "^1.2.2",
     "interval": "^0.1.1",
     "moment": "^2.29.1",
     "react": "17.0.1",

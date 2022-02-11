@@ -37,7 +37,8 @@
     "react-native-screens": "~3.8.0",
     "react-native-styled-components": "^2.1.0",
     "react-native-svg": "^12.1.1",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "undefined": "@expo-google-fonts/"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

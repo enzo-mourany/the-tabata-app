@@ -19,26 +19,30 @@ import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
 import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
-import Svg, {
-  Circle,
-  Text as SvgText
-} from 'react-native-svg';
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedProps,
-  Value,
-  set,
-  useCode
-} from 'react-native-reanimated';
 import CircularProgress from 'react-native-circular-progress-indicator';
-/*import ReactDOM from "react-dom";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { timing } from "react-native-redash";
-import CircularProgress from './CircularProgess'
-import { COLOR_BG, COLOR_FG, RADIUS, STROKE_WiDTH } from './Constants';
-*/
-
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts,
+  Poppins_100Thin,
+  Poppins_100Thin_Italic,
+  Poppins_200ExtraLight,
+  Poppins_200ExtraLight_Italic,
+  Poppins_300Light,
+  Poppins_300Light_Italic,
+  Poppins_400Regular,
+  Poppins_400Regular_Italic,
+  Poppins_500Medium,
+  Poppins_500Medium_Italic,
+  Poppins_600SemiBold,
+  Poppins_600SemiBold_Italic,
+  Poppins_700Bold,
+  Poppins_700Bold_Italic,
+  Poppins_800ExtraBold,
+  Poppins_800ExtraBold_Italic,
+  Poppins_900Black,
+  Poppins_900Black_Italic,
+} from '@expo-google-fonts/poppins';
+import Sound from 'react-native-sound';
 
 
 
@@ -69,14 +73,6 @@ const getRemaining = (time) => {
 let roundsCounter = 1;
 
 
-// -----------------------------------------------------------------------
-//                       CircularProgressBar Const  
-// -----------------------------------------------------------------------
-
-
-
-
-
 // =======================================================================
 //                       Function TimerAndCountdowns  
 // =======================================================================
@@ -91,7 +87,6 @@ function TimerAndCountdowns() {
   const { durationExercises, durationRest } = React.useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
-
 
 
   const toggle = () => {
@@ -134,56 +129,81 @@ function TimerAndCountdowns() {
 
 
 
+  let [fontsLoaded] = useFonts({
+    Poppins_100Thin,
+    Poppins_100Thin_Italic,
+    Poppins_200ExtraLight,
+    Poppins_200ExtraLight_Italic,
+    Poppins_300Light,
+    Poppins_300Light_Italic,
+    Poppins_400Regular,
+    Poppins_400Regular_Italic,
+    Poppins_500Medium,
+    Poppins_500Medium_Italic,
+    Poppins_600SemiBold,
+    Poppins_600SemiBold_Italic,
+    Poppins_700Bold,
+    Poppins_700Bold_Italic,
+    Poppins_800ExtraBold,
+    Poppins_800ExtraBold_Italic,
+    Poppins_900Black,
+    Poppins_900Black_Italic,
+  });
 
-  // =======================================================================
-  //                                Display  
-  // =======================================================================
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+
+    // =======================================================================
+    //                                Display  
+    // =======================================================================
 
 
-  return (
-    <View style={styles.container}>
+    return (
+      <View style={styles.container}>
 
-      <StatusBar style="light-content" />
+        <StatusBar style="light-content" />
 
-      <View style={styles.timers}>
-        <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
-        <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-        <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
+        <View style={styles.timers}>
+          <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
+          <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
+          <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
+        </View>
+
+        <View style={styles.countDowns}>
+          <CircularProgress
+            radius={width / 2.5}
+            value={remainingTimer}
+            maxValue={isExercise ? listTimer[0] : listTimer[1]}
+            title={remainingTimer}
+            titleColor={remainingTimer <= 3 ? '#EF8DFF' : '#fff'}
+            showProgressValue={false}
+            fontSize={70}
+            activeStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
+            activeStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
+            inActiveStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
+            inActiveStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
+            inActiveStrokeOpacity={0.2}
+            inActiveStrokeWidth={6}
+          />
+        </View>
+
+        <View style={styles.buttons}>
+
+
+
+          <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
+            <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={reset} style={styles.resetButton}>
+            <Text style={styles.resetButtonText}>Reset</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
-
-      <View style={styles.countDowns}>
-        <CircularProgress
-          radius={width / 2.5}
-          value={remainingTimer}
-          maxValue={isExercise ? listTimer[0] : listTimer[1]}
-          title={remainingTimer}
-          titleColor={remainingTimer <= 3 ? '#EF8DFF' : '#fff'}
-          showProgressValue={false}
-          fontSize={70}
-          activeStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
-          activeStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
-          inActiveStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
-          inActiveStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
-          inActiveStrokeOpacity={0.2}
-          inActiveStrokeWidth={6}
-        />
-      </View>
-
-      <View style={styles.buttons}>
-
-
-
-        <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
-          <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={reset} style={styles.resetButton}>
-          <Text style={styles.resetButtonText}>Reset</Text>
-        </TouchableOpacity>
-      </View>
-
-    </View>
-  );
+    );
+  }
 }
 
 
@@ -207,7 +227,7 @@ const styles = StyleSheet.create({
   timerText: {
     color: '#FAFAFF',
     fontSize: 75,
-    marginBottom: 20
+    marginBottom: 20,
   },
   // ===========================  circularProgressBar ==============================
   ct2: {
@@ -231,11 +251,13 @@ const styles = StyleSheet.create({
   exOrRest: {
     color: "#fff",
     fontSize: 17,
-    marginBottom: 7
+    marginBottom: 7,
+    fontFamily: 'Poppins_600SemiBold'
   },
   counterRounds: {
     color: '#fff',
-    fontSize: 17
+    fontSize: 17,
+    fontFamily: 'Poppins_600SemiBold'
   },
   // ==========================  Buttons Div  ==============================
   buttons: {

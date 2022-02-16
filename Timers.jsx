@@ -52,7 +52,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  backGround: '#0C052C',
+  backGround: '#020311',
   button: '#FAFAFF',
   times: '#FAFAFF'
 }
@@ -178,8 +178,8 @@ function TimerAndCountdowns() {
             titleColor={remainingTimer <= 3 ? '#EF8DFF' : '#fff'}
             showProgressValue={false}
             fontSize={70}
-            activeStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
-            activeStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
+            activeStrokeColor={isExercise ? '#16DB65' : '#f9b4ed'}
+            activeStrokeSecondaryColor={isExercise ? '#03F7EB' : '#ff87ab'}
             inActiveStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
             inActiveStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
             inActiveStrokeOpacity={0.2}
@@ -213,9 +213,9 @@ function TimerAndCountdowns() {
 }
 
 
-// =======================================================================
+// -----------------------------------------------------------------------
 //                                Styles  
-// =======================================================================
+// -----------------------------------------------------------------------
 
 
 const styles = StyleSheet.create({
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backGround,
 
   },
-  // ===========================  Timer Div  ==============================
+  // ========================  timer div  ================================
   timers: {
     flex: 2,
     justifyContent: 'center',
@@ -235,12 +235,12 @@ const styles = StyleSheet.create({
     fontSize: 75,
     marginBottom: 20,
   },
-  // ===========================  circularProgressBar ==============================
+  // ========================  circularProgressBar  ======================
   ct2: {
     color: "#fff",
     fontSize: 70
   },
-  // =========================  Countdown Div  =============================
+  // ========================  countdown div  ============================
   countDowns: {
     flex: 3.5,
     justifyContent: 'center',

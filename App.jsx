@@ -2,9 +2,9 @@
 // =======================================================================
 // =========================                   ===========================
 // ========================   The Tabata App    ==========================
-// ======================                        =========================
-// =====================      By Enzo Mourany     ========================
-// ======================                        =========================
+// ======================                         ========================
+// =====================      By Enzo Mourany      =======================
+// ======================                         ========================
 // ========================       @NaysWer      ==========================
 // =========================                   ===========================
 // =======================================================================
@@ -36,7 +36,6 @@ export default function App() {
           initialRouteName="Home"
           style={styles.navigator}
           screenOptions={{
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             gestureEnable: true,
             gestureDirection: "horizontal",
             headerMode: "float"
@@ -57,7 +56,7 @@ export default function App() {
               title: ' ',
               headerStyle: {
                 shadowColor: 'transparent',
-                backgroundColor: '#0C052C',
+                backgroundColor: '#020311',
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -71,9 +70,9 @@ export default function App() {
   )
 }
 
-// =======================================================================
+// -----------------------------------------------------------------------
 //                                 Styles  
-// =======================================================================
+// -----------------------------------------------------------------------
 
 const styles = StyleSheet.create({
   container: {
@@ -85,3 +84,4 @@ const styles = StyleSheet.create({
 
 // TODO: Animated swicthing between pages (stack navigator)
 // TODO: Smooth circularProgressBar
+// TODO: Add sound button to 3 last seconds

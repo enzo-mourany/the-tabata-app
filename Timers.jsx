@@ -153,10 +153,6 @@ function TimerAndCountdowns() {
     return <AppLoading />;
   } else {
 
-    // =======================================================================
-    //                                Display  
-    // =======================================================================
-
 
     return (
       <View style={styles.container}>

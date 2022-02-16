@@ -42,7 +42,6 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
-import Sound from 'react-native-sound';
 
 
 

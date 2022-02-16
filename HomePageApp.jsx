@@ -14,7 +14,6 @@ import {
   Image
 } from 'react-native';
 import { DurationContext } from './DurationContext';
-import LinearGradient from 'react-native-linear-gradient';
 
 import AppLoading from 'expo-app-loading';
 import {
@@ -45,7 +44,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  black: '#061A40',
+  black: '#0C052C',
   red: '#F76A6A',
   text: '#ffffff',
 };

@@ -15,7 +15,7 @@ import React from 'react';
 import { StyleSheet }
   from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import HomePage from './HomePageApp';
 import TimerAndCountdowns from './Timers';
 import { DurationProvider } from './DurationContext';
@@ -36,6 +36,7 @@ export default function App() {
           initialRouteName="Home"
           style={styles.navigator}
           screenOptions={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             gestureEnable: true,
             gestureDirection: "horizontal",
             headerMode: "float"
@@ -56,7 +57,7 @@ export default function App() {
               title: ' ',
               headerStyle: {
                 shadowColor: 'transparent',
-                backgroundColor: '#061A40',
+                backgroundColor: '#0C052C',
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -79,3 +80,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#1E2749'
   },
 })
+
+
+
+// TODO: Animated swicthing between pages (stack navigator)
+// TODO: Smooth circularProgressBar

@@ -52,7 +52,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  backGround: '#061A40',
+  backGround: '#0C052C',
   button: '#FAFAFF',
   times: '#FAFAFF'
 }
@@ -221,7 +221,7 @@ function TimerAndCountdowns() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#061A40',
+    backgroundColor: colors.backGround,
 
   },
   // ===========================  Timer Div  ==============================
@@ -258,17 +258,19 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 17,
     marginBottom: 7,
-    fontFamily: 'Poppins_600SemiBold'
+    fontFamily: 'Poppins_600SemiBold',
+    letterSpacing: 1
   },
   counterRounds: {
     color: '#fff',
     fontSize: 17,
-    fontFamily: 'Poppins_600SemiBold'
+    fontFamily: 'Poppins_600SemiBold',
+    letterSpacing: 1
   },
   // ==========================  Buttons Div  ==============================
   buttons: {
     flex: 2,
-    backgroundColor: "#061A40",
+    backgroundColor: colors.backGround,
     justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: 'flex-end'
@@ -278,7 +280,7 @@ const styles = StyleSheet.create({
     height: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 100
+    marginBottom: width / 4
   },
   startButtonText: {
     fontSize: 28,
@@ -289,7 +291,7 @@ const styles = StyleSheet.create({
     height: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 100
+    marginBottom: width / 4
   },
   pauseButtonText: {
     fontSize: 28,
@@ -300,7 +302,7 @@ const styles = StyleSheet.create({
     height: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 100
+    marginBottom: width / 4
   },
   resetButtonText: {
     fontSize: 28,

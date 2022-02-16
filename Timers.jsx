@@ -1,23 +1,16 @@
 import React, {
   useState,
   useEffect,
-  useRef,
-  useContext,
-  useMemo
 } from 'react';
 import {
   Dimensions,
-  FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Button,
   Image
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { HomePage } from './HomePageApp';
-import { NavigationContainer } from '@react-navigation/native';
 import { DurationContext } from './DurationContext';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import AppLoading from 'expo-app-loading';
@@ -101,6 +94,7 @@ function TimerAndCountdowns() {
     roundsCounter = 1;
   }
 
+
   useEffect(() => {
     let interval = null;
     if (isActive) {
@@ -125,7 +119,6 @@ function TimerAndCountdowns() {
     }
     return () => clearInterval(interval);
   }, [isActive, remainingSecs, remainingTimer])
-
 
 
   let [fontsLoaded] = useFonts({

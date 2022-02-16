@@ -194,7 +194,7 @@ function TimerAndCountdowns() {
 
           <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
             <Image
-              style={{ width: width / 7, height: width / 7 }}
+              style={isActive ? { width: width / 6, height: width / 6 } : { width: width / 7, height: width / 7 }}
               source={isActive ? require('./IMG/pause-button.png') : require('./IMG/play-button.png')}
             />
           </TouchableOpacity>

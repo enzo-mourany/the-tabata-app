@@ -194,13 +194,16 @@ function TimerAndCountdowns() {
 
           <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
             <Image
-              source={require('./IMG/pause-button.png')}
+              style={{ width: width / 7, height: width / 7 }}
+              source={isActive ? require('./IMG/pause-button.png') : require('./IMG/play-button.png')}
             />
-            <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={reset} style={styles.resetButton}>
-            <Text style={styles.resetButtonText}>Reset</Text>
+            <Image
+              style={{ width: width / 6, height: width / 6 }}
+              source={require('./IMG/reset-button.png')}
+            />
           </TouchableOpacity>
         </View>
 
@@ -271,11 +274,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   startButton: {
-    borderColor: '#fff',
-    borderWidth: 3,
     width: width / 4,
     height: width / 4,
-    borderRadius: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 100
@@ -285,11 +285,8 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   pauseButton: {
-    borderColor: '#fff',
-    borderWidth: 3,
     width: width / 4,
     height: width / 4,
-    borderRadius: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 100
@@ -299,11 +296,8 @@ const styles = StyleSheet.create({
     color: '#FAFAFF'
   },
   resetButton: {
-    borderColor: '#fff',
-    borderWidth: 3,
     width: width / 4,
     height: width / 4,
-    borderRadius: width / 4,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 100

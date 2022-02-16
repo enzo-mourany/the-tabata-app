@@ -3,8 +3,7 @@ import React, {
   useEffect,
   useRef,
   useContext,
-  useMemo,
-  Image
+  useMemo
 } from 'react';
 import {
   Dimensions,
@@ -13,7 +12,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button
+  Button,
+  Image
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { HomePage } from './HomePageApp';
@@ -171,9 +171,9 @@ function TimerAndCountdowns() {
 
         <View style={styles.countDowns}>
           <CircularProgress
-            radius={width / 2.5}
             value={remainingTimer}
             maxValue={isExercise ? listTimer[0] : listTimer[1]}
+            radius={width / 2.5}
             title={remainingTimer}
             titleColor={remainingTimer <= 3 ? '#EF8DFF' : '#fff'}
             showProgressValue={false}
@@ -184,6 +184,7 @@ function TimerAndCountdowns() {
             inActiveStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
             inActiveStrokeOpacity={0.2}
             inActiveStrokeWidth={6}
+            onAnimationComplete={() => console.log('onAnimationComplete')}
           />
         </View>
 
@@ -192,6 +193,9 @@ function TimerAndCountdowns() {
 
 
           <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
+            <Image
+              source={require('./IMG/pause-button.png')}
+            />
             <Text style={isActive ? styles.pauseButtonText : styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
           </TouchableOpacity>
 

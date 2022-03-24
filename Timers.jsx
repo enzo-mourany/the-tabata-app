@@ -36,6 +36,7 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
+import LinearGradient from 'react-native-linear-gradient';
 //import TrackPlayer from 'react-native-track-player';
 
 

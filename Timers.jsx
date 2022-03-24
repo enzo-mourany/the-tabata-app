@@ -35,7 +35,8 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
-import useSound from "react-native-use-sound";
+//import TrackPlayer from 'react-native-track-player';
+
 
 
 
@@ -173,7 +174,7 @@ function TimerAndCountdowns() {
             inActiveStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
             inActiveStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
             inActiveStrokeOpacity={0.2}
-            inActiveStrokeWidth={6}
+            inActiveStrokeWidth={5}
           />
         </View>
 

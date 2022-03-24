@@ -196,7 +196,7 @@ function HomePage({ navigation }) {
 
           <Text
             style={styles.textIndicator}
-          >Exercise Rest</Text>
+          >Rest Duration</Text>
 
           <Animated.FlatList
             data={timersRest}

@@ -35,6 +35,7 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
+import useSound from "react-native-use-sound";
 
 
 
@@ -173,7 +174,6 @@ function TimerAndCountdowns() {
             inActiveStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
             inActiveStrokeOpacity={0.2}
             inActiveStrokeWidth={6}
-            onAnimationComplete={() => console.log('onAnimationComplete')}
           />
         </View>
 
@@ -183,14 +183,14 @@ function TimerAndCountdowns() {
 
           <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
             <Image
-              style={isActive ? { width: width / 6, height: width / 6 } : { width: width / 7, height: width / 7 }}
+              style={isActive ? { width: width / 6, height: width / 6 } : { width: width / 8, height: width / 8 }}
               source={isActive ? require('./IMG/pause-button.png') : require('./IMG/play-button.png')}
             />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={reset} style={styles.resetButton}>
             <Image
-              style={{ width: width / 6, height: width / 6 }}
+              style={{ width: width / 7, height: width / 7 }}
               source={require('./IMG/reset-button.png')}
             />
           </TouchableOpacity>

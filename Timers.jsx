@@ -157,8 +157,6 @@ function TimerAndCountdowns() {
 
         <View style={styles.timers}>
           <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
-          <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-          <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
         </View>
 
         <View style={styles.countDowns}>
@@ -179,9 +177,19 @@ function TimerAndCountdowns() {
           />
         </View>
 
+        <View style={styles.infos}>
+
+          <View style={styles.exOrRestView}>
+            <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
+          </View>
+          <View style={styles.counterRoundsView}>
+            <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
+          </View>
+
+
+        </View>
+
         <View style={styles.buttons}>
-
-
 
           <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
             <Image
@@ -258,17 +266,24 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1
   },
+  // ==========================  Infos  ==============================
+  infos: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
   // ==========================  Buttons Div  ==============================
   buttons: {
-    flex: 2,
+    flex: 1.5,
     backgroundColor: colors.backGround,
     justifyContent: 'space-around',
     flexDirection: 'row',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   startButton: {
     width: width / 4,
-    height: width / 4,
+    height: width / 8,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: width / 4
@@ -279,7 +294,7 @@ const styles = StyleSheet.create({
   },
   pauseButton: {
     width: width / 4,
-    height: width / 4,
+    height: width / 8,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: width / 4
@@ -290,7 +305,7 @@ const styles = StyleSheet.create({
   },
   resetButton: {
     width: width / 4,
-    height: width / 4,
+    height: width / 8,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: width / 4

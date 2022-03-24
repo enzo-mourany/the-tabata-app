@@ -8,13 +8,14 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Image
+  Image,
+  Animated
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { DurationContext } from './DurationContext';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import AppLoading from 'expo-app-loading';
-import { Svg, Path, Circle, Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
+import { Svg, Path, Circle } from 'react-native-svg';
 import {
   useFonts,
   Poppins_100Thin,
@@ -36,6 +37,7 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
+import { LinearGradient } from "expo-linear-gradient";
 //import LinearGradient from 'react-native-linear-gradient';
 //import TrackPlayer from 'react-native-track-player';
 
@@ -178,29 +180,19 @@ function TimerAndCountdowns() {
           />
         </View>
 
-        <Svg style={styles.exOrRestView}>
-          <Defs>
-            <LinearGradient id="grad" x1="30%" y1="50%" x2="0%" y2="50%">
-              <Stop offset="0%" stopColor="blue" stopOpacity="1" />
-              <Stop offset="100%" stopColor="red" stopOpacity="1" />
-            </LinearGradient>
-          </Defs>
-
-          <Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" />
-        </Svg>
         <View style={styles.infos}>
 
 
-          <View
-            //start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#4c669f', '#3b5998', '#192f6a']}
+          <LinearGradient
+            colors={['#B9F9F4', '#C6AFFA']}
             style={styles.exOrRestView}>
             <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-          </View>
-          <View
-            //start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#4c669f', '#3b5998', '#192f6a']}
+          </LinearGradient>
+          <LinearGradient
+            colors={['#B9F9F4', '#C6AFFA']}
             style={styles.counterRoundsView}>
             <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
-          </View>
+          </LinearGradient>
 
 
         </View>
@@ -297,13 +289,13 @@ const styles = StyleSheet.create({
   exOrRest: {
     color: "#fff",
     fontSize: 17,
-    fontFamily: 'Poppins_600SemiBold',
+    fontFamily: 'Poppins_400Regular',
     letterSpacing: 1
   },
   counterRounds: {
     color: '#fff',
     fontSize: 17,
-    fontFamily: 'Poppins_600SemiBold',
+    fontFamily: 'Poppins_400Regular',
     letterSpacing: 1
   },
   // ==========================  Buttons Div  ==============================

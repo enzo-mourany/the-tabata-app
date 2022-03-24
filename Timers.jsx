@@ -14,6 +14,7 @@ import { StatusBar } from 'expo-status-bar';
 import { DurationContext } from './DurationContext';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import AppLoading from 'expo-app-loading';
+import { Svg, Path, Circle } from 'react-native-svg';
 import {
   useFonts,
   Poppins_100Thin,
@@ -184,15 +185,15 @@ function TimerAndCountdowns() {
 
           <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
             <Image
-              style={isActive ? { width: width / 6, height: width / 6 } : { width: width / 8, height: width / 8 }}
-              source={isActive ? require('./IMG/pause-button.png') : require('./IMG/play-button.png')}
+              style={{ width: width / 5, height: width / 5 }}
+              source={isActive ? require('./IMG/pausebutton.png') : require('./IMG/playbutton.png')}
             />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={reset} style={styles.resetButton}>
             <Image
-              style={{ width: width / 7, height: width / 7 }}
-              source={require('./IMG/reset-button.png')}
+              style={{ width: width / 5, height: width / 5 }}
+              source={require('./IMG/resetbutton.png')}
             />
           </TouchableOpacity>
         </View>

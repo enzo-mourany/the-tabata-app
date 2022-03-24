@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
   },
   // ========================  countdown div  ============================
   countDowns: {
-    flex: 3.5,
+    flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -253,10 +253,34 @@ const styles = StyleSheet.create({
     fontSize: 70,
     color: 'red'
   },
+  // ==========================  Infos  ==============================
+  infos: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  exOrRestView: {
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    width: 120,
+    height: 40,
+    margin: 20
+  },
+  counterRoundsView: {
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    width: 120,
+    height: 40,
+    margin: 20
+  },
   exOrRest: {
     color: "#fff",
     fontSize: 17,
-    marginBottom: 7,
     fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1
   },
@@ -265,13 +289,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1
-  },
-  // ==========================  Infos  ==============================
-  infos: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
   },
   // ==========================  Buttons Div  ==============================
   buttons: {

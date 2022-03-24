@@ -11,6 +11,7 @@ import {
   Image,
   Animated
 } from 'react-native';
+import data from './data';
 import { StatusBar } from 'expo-status-bar';
 import { DurationContext } from './DurationContext';
 import CircularProgress from 'react-native-circular-progress-indicator';
@@ -199,7 +200,7 @@ function Countdowns() {
           <View style={styles.menu}>
             <TouchableOpacity onPress={toggle}>
               <LinearGradient
-                colors={['#5ABEE6', '#7FE4EA']}
+                colors={[data.LIGHTBLUE, '#7FE4EA']}
                 start={[0, 0]} end={[1, 0]}
                 style={styles.linearGStartButton}
               >

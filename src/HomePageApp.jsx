@@ -107,7 +107,7 @@ function HomePage({ navigation }) {
 
 
           <TouchableOpacity
-            onPress={() => navigation.navigate('Timers')}>
+            onPress={() => navigation.navigate('Countdown')}>
             <Image
               style={styles.roundButton}
               source={require('./IMG/start-timer-button.png')}

@@ -16,9 +16,9 @@ import { StyleSheet }
   from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import HomePage from './HomePageApp';
-import TimerAndCountdowns from './Timers';
-import { DurationProvider } from './DurationContext';
+import HomePage from './src/HomePageApp';
+import Countdowns from './src/Countdown';
+import { DurationProvider } from './src/DurationContext';
 
 
 const Stack = createStackNavigator();
@@ -51,7 +51,7 @@ export default function App() {
               },
             }}
           />
-          <Stack.Screen name="Timers" component={TimerAndCountdowns}
+          <Stack.Screen name="Countdown" component={Countdowns}
             options={{
               title: ' ',
               headerStyle: {
@@ -87,3 +87,4 @@ const styles = StyleSheet.create({
 // TODO: Add sound button to 3 last seconds
 // TODO: After 60s, set time with min and sec
 // TODO: Animation rotate reset button
+// TODO: White theme

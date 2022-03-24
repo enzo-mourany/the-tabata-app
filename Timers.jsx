@@ -189,42 +189,45 @@ function TimerAndCountdowns() {
             style={styles.exOrRestView}>
             <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
           </LinearGradient>
-          <LinearGradient
-            colors={['#5ABEE6', '#7FE4EA']}
-            start={[0, 0]} end={[1, 0]}
-            style={styles.counterRoundsView}>
-            <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
-          </LinearGradient>
+
 
 
         </View>
+
 
         <View style={styles.buttons}>
 
+          <View style={styles.menu}>
+            <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
+          </View>
+
+          <View style={styles.menu}>
+            <TouchableOpacity onPress={toggle} style={styles.startButton}>
+              <LinearGradient
+                colors={['#5ABEE6', '#7FE4EA']}
+                start={[0, 0]} end={[1, 0]}
+                style={styles.linearGStartButton}
+              >
+                <Text style={styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.menu}>
+            <TouchableOpacity onPress={reset} style={styles.resetButton}>
+              <Image
+                style={{ width: 40, height: 40 }}
+                source={require('./IMG/reset.png')}
+              />
+            </TouchableOpacity>
+          </View>
 
 
-          <TouchableOpacity onPress={toggle} style={styles.startButton}>
-            <LinearGradient
-              colors={['#5ABEE6', '#7FE4EA']}
-              start={[0, 0]} end={[1, 0]}
-              style={styles.linearGStartButton}
-            >
-              <Text style={styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
-            </LinearGradient>
 
 
-
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={reset} style={styles.resetButton}>
-            <Image
-              style={{ width: width / 5, height: width / 5 }}
-              source={require('./IMG/reset.png')}
-            />
-          </TouchableOpacity>
         </View>
 
-      </View>
+      </View >
     );
   }
 }
@@ -286,68 +289,61 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 20
   },
-  counterRoundsView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20,
-    width: 130,
-    height: 40,
-    margin: 20
-  },
+
   exOrRest: {
     color: "#fff",
     fontSize: 17,
     fontFamily: 'Poppins_400Regular',
     letterSpacing: 1
   },
-  counterRounds: {
-    color: '#fff',
-    fontSize: 17,
-    fontFamily: 'Poppins_400Regular',
-    letterSpacing: 1
-  },
+
   // ==========================  Buttons Div  ==============================
   buttons: {
     flex: 1.5,
     backgroundColor: colors.backGround,
-    justifyContent: 'space-around',
     flexDirection: 'row',
-    alignItems: 'flex-end',
+  },
+  menu: {
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  counterRounds: {
+    color: '#fff',
+    fontSize: 12,
+    fontFamily: 'Poppins_400Regular',
+    letterSpacing: 1
   },
   startButton: {
-    width: width / 4,
-    height: width / 8,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: width / 4
+    marginBottom: width / 4,
   },
   linearGStartButton: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 30,
-    width: 180,
+    width: 100,
     height: 60,
     margin: 20
   },
   startButtonText: {
     fontSize: 20,
     color: '#fff',
-    fontFamily: 'Poppins_400Regular'
+    fontFamily: 'Poppins_400Regular',
+    letterSpacing: 1
   },
   pauseButton: {
-    width: width / 4,
-    height: width / 8,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: width / 4
+    marginBottom: width / 4,
+    letterSpacing: 1
   },
   pauseButtonText: {
     fontSize: 28,
     color: '#FAFAFF'
   },
   resetButton: {
-    width: width / 4,
-    height: width / 8,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: width / 4

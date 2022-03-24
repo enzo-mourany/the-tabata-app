@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
 
 
 
-// TODO: Animated swicthing between pages (stack navigator)
+// TODO: Animated switch between pages (stack navigator)
 // TODO: Smooth circularProgressBar
 // TODO: Add sound button to 3 last seconds
 // TODO: After 60s, set time with min and sec
+// TODO: Animation rotate reset button

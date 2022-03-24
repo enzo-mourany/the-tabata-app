@@ -160,6 +160,13 @@ function TimerAndCountdowns() {
 
         <View style={styles.timers}>
           <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
+
+          <LinearGradient
+            colors={['#5ABEE6', '#7FE4EA']}
+            start={[0, 0]} end={[1, 0]}
+            style={styles.exOrRestView}>
+            <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
+          </LinearGradient>
         </View>
 
         <View style={styles.countDowns}>
@@ -180,29 +187,17 @@ function TimerAndCountdowns() {
           />
         </View>
 
-        <View style={styles.infos}>
-
-
-          <LinearGradient
-            colors={['#5ABEE6', '#7FE4EA']}
-            start={[0, 0]} end={[1, 0]}
-            style={styles.exOrRestView}>
-            <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-          </LinearGradient>
-
-
-
-        </View>
 
 
         <View style={styles.buttons}>
 
           <View style={styles.menu}>
-            <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
+            <Text style={styles.counterRoundsText}>Round</Text>
+            <Text style={styles.counterRounds}>{roundsCounter}</Text>
           </View>
 
           <View style={styles.menu}>
-            <TouchableOpacity onPress={toggle} style={styles.startButton}>
+            <TouchableOpacity onPress={toggle}>
               <LinearGradient
                 colors={['#5ABEE6', '#7FE4EA']}
                 start={[0, 0]} end={[1, 0]}
@@ -223,10 +218,7 @@ function TimerAndCountdowns() {
           </View>
 
 
-
-
         </View>
-
       </View >
     );
   }
@@ -275,19 +267,12 @@ const styles = StyleSheet.create({
     color: 'red'
   },
   // ==========================  Infos  ==============================
-  infos: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
   exOrRestView: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
     width: 130,
     height: 40,
-    margin: 20
   },
 
   exOrRest: {
@@ -301,29 +286,31 @@ const styles = StyleSheet.create({
   buttons: {
     flex: 1.5,
     backgroundColor: colors.backGround,
-    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'row'
   },
   menu: {
-    backgroundColor: 'red',
-    justifyContent: 'center',
+    margin: 1,
     alignItems: 'center',
+  },
+  counterRoundsText: {
+    color: '#fff',
+    fontSize: 12,
+    fontFamily: 'Poppins_600SemiBold',
+    letterSpacing: 1
   },
   counterRounds: {
     color: '#fff',
-    fontSize: 12,
-    fontFamily: 'Poppins_400Regular',
+    fontSize: 22,
+    fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1
-  },
-  startButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: width / 4,
   },
   linearGStartButton: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 30,
-    width: 100,
+    width: 170,
     height: 60,
     margin: 20
   },
@@ -346,11 +333,6 @@ const styles = StyleSheet.create({
   resetButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: width / 4
-  },
-  resetButtonText: {
-    fontSize: 28,
-    color: '#FAFAFF'
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

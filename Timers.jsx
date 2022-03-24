@@ -38,8 +38,8 @@ import {
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 import { LinearGradient } from "expo-linear-gradient";
-//import LinearGradient from 'react-native-linear-gradient';
 //import TrackPlayer from 'react-native-track-player';
+import AppIntroSlider from 'react-native-app-intro-slider';
 
 
 
@@ -168,7 +168,7 @@ function TimerAndCountdowns() {
             maxValue={isExercise ? listTimer[0] : listTimer[1]}
             radius={width / 2.5}
             title={remainingTimer}
-            titleColor={'#fff'}
+            titleColor={isExercise ? '#03F7EB' : '#ff87ab'}
             showProgressValue={false}
             fontSize={70}
             activeStrokeColor={isExercise ? '#16DB65' : '#f9b4ed'}
@@ -201,17 +201,25 @@ function TimerAndCountdowns() {
 
         <View style={styles.buttons}>
 
-          <TouchableOpacity onPress={toggle} style={isActive ? styles.pauseButton : styles.startButton}>
-            <Image
-              style={{ width: width / 5, height: width / 5 }}
-              source={isActive ? require('./IMG/pausebutton.png') : require('./IMG/playbutton.png')}
-            />
+
+
+          <TouchableOpacity onPress={toggle} style={styles.startButton}>
+            <LinearGradient
+              colors={['#5ABEE6', '#7FE4EA']}
+              start={[0, 0]} end={[1, 0]}
+              style={styles.linearGStartButton}
+            >
+              <Text style={styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
+            </LinearGradient>
+
+
+
           </TouchableOpacity>
 
           <TouchableOpacity onPress={reset} style={styles.resetButton}>
             <Image
               style={{ width: width / 5, height: width / 5 }}
-              source={require('./IMG/resetbutton.png')}
+              source={require('./IMG/reset.png')}
             />
           </TouchableOpacity>
         </View>
@@ -235,7 +243,7 @@ const styles = StyleSheet.create({
   },
   // ========================  timer div  ================================
   timers: {
-    flex: 2,
+    flex: 1.5,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -271,7 +279,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   exOrRestView: {
-    backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
@@ -280,7 +287,6 @@ const styles = StyleSheet.create({
     margin: 20
   },
   counterRoundsView: {
-    backgroundColor: 'green',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
@@ -315,9 +321,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: width / 4
   },
+  linearGStartButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    width: 180,
+    height: 60,
+    margin: 20
+  },
   startButtonText: {
-    fontSize: 28,
+    fontSize: 20,
     color: '#fff',
+    fontFamily: 'Poppins_400Regular'
   },
   pauseButton: {
     width: width / 4,

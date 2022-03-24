@@ -76,7 +76,7 @@ let roundsCounter = 1;
 // =======================================================================
 
 
-function TimerAndCountdowns() {
+function Countdowns() {
 
   const [remainingSecs, setRemainingSecs] = useState(0);
   const { mins, secs } = getRemaining(remainingSecs);
@@ -203,7 +203,13 @@ function TimerAndCountdowns() {
                 start={[0, 0]} end={[1, 0]}
                 style={styles.linearGStartButton}
               >
-                <Text style={styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
+                <LinearGradient
+                  colors={toggle ? ['transparent', 'transparent'] : ['colors.backGround', 'colors.backGround']}
+                  start={[0, 0]} end={[1, 0]}
+                  style={styles.linearGStartButtonInactive}
+                >
+                  <Text style={styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
+                </LinearGradient>
               </LinearGradient>
             </TouchableOpacity>
           </View>
@@ -211,7 +217,7 @@ function TimerAndCountdowns() {
           <View style={styles.menu}>
             <TouchableOpacity onPress={reset} style={styles.resetButton}>
               <Image
-                style={{ width: 40, height: 40 }}
+                style={{ width: 30, height: 30 }}
                 source={require('./IMG/reset.png')}
               />
             </TouchableOpacity>
@@ -298,20 +304,30 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 12,
     fontFamily: 'Poppins_600SemiBold',
-    letterSpacing: 1
+    letterSpacing: 1,
+    marginLeft: 20
   },
   counterRounds: {
     color: '#fff',
     fontSize: 22,
     fontFamily: 'Poppins_600SemiBold',
-    letterSpacing: 1
+    letterSpacing: 1,
+    marginLeft: 20
   },
   linearGStartButton: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 30,
-    width: 170,
+    width: 190,
     height: 60,
+    margin: 20
+  },
+  linearGStartButtonInactive: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    width: 185,
+    height: 55,
     margin: 20
   },
   startButtonText: {
@@ -333,6 +349,7 @@ const styles = StyleSheet.create({
   resetButton: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: 20
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -341,4 +358,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default TimerAndCountdowns;
+export default Countdowns;

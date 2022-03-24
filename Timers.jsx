@@ -168,7 +168,7 @@ function TimerAndCountdowns() {
             maxValue={isExercise ? listTimer[0] : listTimer[1]}
             radius={width / 2.5}
             title={remainingTimer}
-            titleColor={remainingTimer <= 3 ? '#EF8DFF' : '#fff'}
+            titleColor={'#fff'}
             showProgressValue={false}
             fontSize={70}
             activeStrokeColor={isExercise ? '#16DB65' : '#f9b4ed'}
@@ -184,12 +184,14 @@ function TimerAndCountdowns() {
 
 
           <LinearGradient
-            colors={['#B9F9F4', '#C6AFFA']}
+            colors={['#5ABEE6', '#7FE4EA']}
+            start={[0, 0]} end={[1, 0]}
             style={styles.exOrRestView}>
             <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
           </LinearGradient>
           <LinearGradient
-            colors={['#B9F9F4', '#C6AFFA']}
+            colors={['#5ABEE6', '#7FE4EA']}
+            start={[0, 0]} end={[1, 0]}
             style={styles.counterRoundsView}>
             <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
           </LinearGradient>
@@ -272,8 +274,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
-    width: 120,
+    borderRadius: 20,
+    width: 130,
     height: 40,
     margin: 20
   },
@@ -281,8 +283,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
-    width: 120,
+    borderRadius: 20,
+    width: 130,
     height: 40,
     margin: 20
   },

@@ -14,7 +14,7 @@ import { StatusBar } from 'expo-status-bar';
 import { DurationContext } from './DurationContext';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import AppLoading from 'expo-app-loading';
-import { Svg, Path, Circle } from 'react-native-svg';
+import { Svg, Path, Circle, Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 import {
   useFonts,
   Poppins_100Thin,
@@ -36,7 +36,7 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
-import LinearGradient from 'react-native-linear-gradient';
+//import LinearGradient from 'react-native-linear-gradient';
 //import TrackPlayer from 'react-native-track-player';
 
 
@@ -178,12 +178,27 @@ function TimerAndCountdowns() {
           />
         </View>
 
+        <Svg style={styles.exOrRestView}>
+          <Defs>
+            <LinearGradient id="grad" x1="30%" y1="50%" x2="0%" y2="50%">
+              <Stop offset="0%" stopColor="blue" stopOpacity="1" />
+              <Stop offset="100%" stopColor="red" stopOpacity="1" />
+            </LinearGradient>
+          </Defs>
+
+          <Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" />
+        </Svg>
         <View style={styles.infos}>
 
-          <View style={styles.exOrRestView}>
+
+          <View
+            //start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#4c669f', '#3b5998', '#192f6a']}
+            style={styles.exOrRestView}>
             <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
           </View>
-          <View style={styles.counterRoundsView}>
+          <View
+            //start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#4c669f', '#3b5998', '#192f6a']}
+            style={styles.counterRoundsView}>
             <Text style={styles.counterRounds}>Round {roundsCounter}</Text>
           </View>
 

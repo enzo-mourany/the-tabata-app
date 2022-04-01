@@ -41,8 +41,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 //import TrackPlayer from 'react-native-track-player';
 import AppIntroSlider from 'react-native-app-intro-slider';
-
-
+import { motion } from "framer-motion";
 
 
 // -----------------------------------------------------------------------
@@ -86,6 +85,16 @@ function Countdowns() {
   const { durationExercises, durationRest } = React.useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
+
+
+  const resetButtonAnimation = () => {
+    Animated.timing(rotateAnimation, {
+      toValue: 1,
+      duration: 800,
+    }).start(() => {
+      rotateAnimation.setValue(0);
+    });
+  };
 
 
   const toggle = () => {
@@ -200,7 +209,7 @@ function Countdowns() {
           <View style={styles.menu}>
             <TouchableOpacity onPress={toggle}>
               <LinearGradient
-                colors={[data.LIGHTBLUE, '#7FE4EA']}
+                colors={['#5ABEE6', '#7FE4EA']}
                 start={[0, 0]} end={[1, 0]}
                 style={styles.linearGStartButton}
               >
@@ -216,10 +225,12 @@ function Countdowns() {
           </View>
 
           <View style={styles.menu}>
-            <TouchableOpacity onPress={reset} style={styles.resetButton}>
+            <TouchableOpacity
+              onPress={reset}
+              style={styles.resetButton}>
               <Image
                 style={{ width: 30, height: 30 }}
-                source={require('./IMG/reset.png')}
+                source={require('../IMG/reset.png')}
               />
             </TouchableOpacity>
           </View>
@@ -283,7 +294,7 @@ const styles = StyleSheet.create({
   },
 
   exOrRest: {
-    color: "#fff",
+    color: "#020311",
     fontSize: 17,
     fontFamily: 'Poppins_400Regular',
     letterSpacing: 1
@@ -333,7 +344,7 @@ const styles = StyleSheet.create({
   },
   startButtonText: {
     fontSize: 20,
-    color: '#fff',
+    color: '#020311',
     fontFamily: 'Poppins_400Regular',
     letterSpacing: 1
   },

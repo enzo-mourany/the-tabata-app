@@ -30,7 +30,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <DurationProvider>
+    <DurationProvider style={styles.main}>
       <NavigationContainer style={styles.container}>
         <Stack.Navigator
           initialRouteName="Home"
@@ -76,7 +76,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#1E2749'
+    backgroundColor: '#020311'
+  },
+  main: {
+    backgroundColor: '#020311'
   },
 })
 

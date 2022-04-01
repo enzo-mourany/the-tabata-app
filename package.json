@@ -20,6 +20,7 @@
     "expo-font": "~10.0.3",
     "expo-linear-gradient": "^11.0.3",
     "expo-status-bar": "~1.1.0",
+    "framer-motion": "^6.2.8",
     "get-google-fonts": "^1.2.2",
     "interval": "^0.1.1",
     "moment": "^2.29.1",

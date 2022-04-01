@@ -110,7 +110,7 @@ function HomePage({ navigation }) {
             onPress={() => navigation.navigate('Countdown')}>
             <Image
               style={styles.roundButton}
-              source={require('./IMG/start-timer-button.png')}
+              source={require('../IMG/start-timer-button.png')}
             />
           </TouchableOpacity>
         </Animated.View>

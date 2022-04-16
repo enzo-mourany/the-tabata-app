@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   View,
   Image,
-  Animated
+  Animated,
+  Easing,
 } from 'react-native';
 import data from './data';
 import { StatusBar } from 'expo-status-bar';
@@ -86,15 +87,6 @@ function Countdowns() {
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
-
-  const resetButtonAnimation = () => {
-    Animated.timing(rotateAnimation, {
-      toValue: 1,
-      duration: 800,
-    }).start(() => {
-      rotateAnimation.setValue(0);
-    });
-  };
 
 
   const toggle = () => {
@@ -181,7 +173,9 @@ function Countdowns() {
 
         <View style={styles.countDowns}>
           <CircularProgress
-            value={remainingTimer}
+            //value={remainingTimer}
+            value={isActive ? 0 : 10}
+            duration={10000}
             maxValue={isExercise ? listTimer[0] : listTimer[1]}
             radius={width / 2.5}
             title={remainingTimer}
@@ -209,8 +203,9 @@ function Countdowns() {
           <View style={styles.menu}>
             <TouchableOpacity onPress={toggle}>
               <LinearGradient
-                colors={['#5ABEE6', '#7FE4EA']}
-                start={[0, 0]} end={[1, 0]}
+                colors={['#5ABEE6', '#BBF1F4']}
+                start={[0, 1]} end={[0, 0]}
+                //start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }}
                 style={styles.linearGStartButton}
               >
                 <LinearGradient
@@ -218,7 +213,7 @@ function Countdowns() {
                   start={[0, 0]} end={[1, 0]}
                   style={styles.linearGStartButtonInactive}
                 >
-                  <Text style={styles.startButtonText}>{isActive ? 'Pause' : 'Start'}</Text>
+                  <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
                 </LinearGradient>
               </LinearGradient>
             </TouchableOpacity>
@@ -228,7 +223,7 @@ function Countdowns() {
             <TouchableOpacity
               onPress={reset}
               style={styles.resetButton}>
-              <Image
+              <Animated.Image
                 style={{ width: 30, height: 30 }}
                 source={require('../IMG/reset.png')}
               />
@@ -324,7 +319,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1,
-    marginLeft: 20
+    marginLeft: 20,
+    marginBottom: 100
   },
   linearGStartButton: {
     justifyContent: 'center',
@@ -361,7 +357,8 @@ const styles = StyleSheet.create({
   resetButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 20
+    marginRight: 20,
+    marginBottom: 100
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

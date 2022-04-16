@@ -43,6 +43,7 @@ import { LinearGradient } from "expo-linear-gradient";
 //import TrackPlayer from 'react-native-track-player';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { motion } from "framer-motion";
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 
 
 // -----------------------------------------------------------------------
@@ -172,23 +173,19 @@ function Countdowns() {
         </View>
 
         <View style={styles.countDowns}>
-          <CircularProgress
-            //value={remainingTimer}
-            value={isActive ? 0 : 10}
-            duration={10000}
-            maxValue={isExercise ? listTimer[0] : listTimer[1]}
-            radius={width / 2.5}
-            title={remainingTimer}
-            titleColor={isExercise ? '#03F7EB' : '#ff87ab'}
-            showProgressValue={false}
-            fontSize={70}
-            activeStrokeColor={isExercise ? '#16DB65' : '#f9b4ed'}
-            activeStrokeSecondaryColor={isExercise ? '#03F7EB' : '#ff87ab'}
-            inActiveStrokeColor={isExercise ? '#00D1FF' : '#C589E8'}
-            inActiveStrokeSecondaryColor={isExercise ? '#EF8DFF' : '#80ffdb'}
-            inActiveStrokeOpacity={0.2}
-            inActiveStrokeWidth={5}
-          />
+
+          <CountdownCircleTimer
+            isPlaying={isActive ? true : false}
+            duration={isExercise ? durationExercises : durationRest}
+            trailStrokeWidth={5}
+            size={300}
+            colors={['#5ABEE6']}
+            onComplete={() => {
+              return { shouldRepeat: true }
+            }}
+          >
+            <Text style={styles.timerExOrRest}>{remainingTimer}</Text>
+          </CountdownCircleTimer>
         </View>
 
 

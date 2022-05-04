@@ -184,53 +184,58 @@ function Countdowns() {
           </CountdownCircleTimer>
         </View>
 
+        <View alt="start / pause button" style={styles.menu}>
+          <TouchableOpacity onPress={toggle}>
+            <LinearGradient
+              colors={['#5ABEE6', '#BBF1F4']}
+              start={[0, 1]} end={[0, 0]}
+              //start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }}
+              style={styles.linearGStartButton}
+            >
+              <LinearGradient
+                colors={toggle ? ['transparent', 'transparent'] : ['colors.backGround', 'colors.backGround']}
+                start={[0, 0]} end={[1, 0]}
+                style={styles.linearGStartButtonInactive}
+              >
+                <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
+              </LinearGradient>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+
+        <View alt="reset button">
+          <TouchableOpacity
+            onPress={reset}
+            style={styles.resetButton}>
+            <Animated.Image
+              style={{ width: 30, height: 30 }}
+              source={require('../IMG/reset.png')}
+            />
+          </TouchableOpacity>
+        </View>
+
 
 
         <View style={styles.buttons}>
           <View style={styles.info}>
 
 
-            <View style={styles.menu}>
-              <Text style={styles.counterRoundsText}>Round</Text>
-              <Text style={styles.counterRounds}>{roundsCounter}</Text>
+            <View alt="round counter"
+              style={{ width: "90%", height: "40%", justifyContent: "center", alignItems: "center" }}
+            >
+              <Text style={styles.exOrRest}>Round {roundsCounter}</Text>
             </View>
 
-            <View style={styles.menu}>
-              <TouchableOpacity onPress={toggle}>
-                <LinearGradient
-                  colors={['#5ABEE6', '#BBF1F4']}
-                  start={[0, 1]} end={[0, 0]}
-                  //start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }}
-                  style={styles.linearGStartButton}
-                >
-                  <LinearGradient
-                    colors={toggle ? ['transparent', 'transparent'] : ['colors.backGround', 'colors.backGround']}
-                    start={[0, 0]} end={[1, 0]}
-                    style={styles.linearGStartButtonInactive}
-                  >
-                    <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
-                  </LinearGradient>
-                </LinearGradient>
-              </TouchableOpacity>
-            </View>
+            <View
+              style={{ width: "90%", height: 1, backgroundColor: "white", opacity: 0.4 }}
+            />
 
-            <View style={styles.menu}>
-              <TouchableOpacity
-                onPress={reset}
-                style={styles.resetButton}>
-                <Animated.Image
-                  style={{ width: 30, height: 30 }}
-                  source={require('../IMG/reset.png')}
-                />
-              </TouchableOpacity>
-            </View>
 
-            <LinearGradient
-              colors={['#5ABEE6', '#7FE4EA']}
-              start={[0, 0]} end={[1, 0]}
-              style={styles.exOrRestView}>
+
+            <View alt="exercise or rest" style={{ width: "90%", height: "40%", justifyContent: "center", alignItems: "center" }}>
               <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-            </LinearGradient>
+            </View>
+
 
 
           </View>
@@ -293,7 +298,7 @@ const styles = StyleSheet.create({
   },
 
   exOrRest: {
-    color: "#020311",
+    color: "#fff",
     fontSize: 17,
     fontFamily: 'Poppins_400Regular',
     letterSpacing: 1
@@ -314,8 +319,8 @@ const styles = StyleSheet.create({
     height: '80%',
     borderRadius: 30,
     alignItems: 'center',
-    justifyContent: 'space-around',
-    flexDirection: 'row'
+    justifyContent: 'center',
+    flexDirection: 'column'
   },
   menu: {
     margin: 1,
@@ -372,7 +377,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 20,
-    marginBottom: 100
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

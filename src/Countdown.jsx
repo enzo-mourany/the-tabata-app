@@ -164,12 +164,7 @@ function Countdowns() {
         <View style={styles.timers}>
           <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
 
-          <LinearGradient
-            colors={['#5ABEE6', '#7FE4EA']}
-            start={[0, 0]} end={[1, 0]}
-            style={styles.exOrRestView}>
-            <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
-          </LinearGradient>
+
         </View>
 
         <View style={styles.countDowns}>
@@ -185,48 +180,60 @@ function Countdowns() {
             }}
           >
             <Text style={styles.timerExOrRest}>{remainingTimer}</Text>
+            <View style={{ backgroundColor: "red" }}></View>
           </CountdownCircleTimer>
         </View>
 
 
 
         <View style={styles.buttons}>
+          <View style={styles.info}>
 
-          <View style={styles.menu}>
-            <Text style={styles.counterRoundsText}>Round</Text>
-            <Text style={styles.counterRounds}>{roundsCounter}</Text>
-          </View>
 
-          <View style={styles.menu}>
-            <TouchableOpacity onPress={toggle}>
-              <LinearGradient
-                colors={['#5ABEE6', '#BBF1F4']}
-                start={[0, 1]} end={[0, 0]}
-                //start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }}
-                style={styles.linearGStartButton}
-              >
+            <View style={styles.menu}>
+              <Text style={styles.counterRoundsText}>Round</Text>
+              <Text style={styles.counterRounds}>{roundsCounter}</Text>
+            </View>
+
+            <View style={styles.menu}>
+              <TouchableOpacity onPress={toggle}>
                 <LinearGradient
-                  colors={toggle ? ['transparent', 'transparent'] : ['colors.backGround', 'colors.backGround']}
-                  start={[0, 0]} end={[1, 0]}
-                  style={styles.linearGStartButtonInactive}
+                  colors={['#5ABEE6', '#BBF1F4']}
+                  start={[0, 1]} end={[0, 0]}
+                  //start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }}
+                  style={styles.linearGStartButton}
                 >
-                  <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
+                  <LinearGradient
+                    colors={toggle ? ['transparent', 'transparent'] : ['colors.backGround', 'colors.backGround']}
+                    start={[0, 0]} end={[1, 0]}
+                    style={styles.linearGStartButtonInactive}
+                  >
+                    <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
+                  </LinearGradient>
                 </LinearGradient>
-              </LinearGradient>
-            </TouchableOpacity>
-          </View>
+              </TouchableOpacity>
+            </View>
 
-          <View style={styles.menu}>
-            <TouchableOpacity
-              onPress={reset}
-              style={styles.resetButton}>
-              <Animated.Image
-                style={{ width: 30, height: 30 }}
-                source={require('../IMG/reset.png')}
-              />
-            </TouchableOpacity>
-          </View>
+            <View style={styles.menu}>
+              <TouchableOpacity
+                onPress={reset}
+                style={styles.resetButton}>
+                <Animated.Image
+                  style={{ width: 30, height: 30 }}
+                  source={require('../IMG/reset.png')}
+                />
+              </TouchableOpacity>
+            </View>
 
+            <LinearGradient
+              colors={['#5ABEE6', '#7FE4EA']}
+              start={[0, 0]} end={[1, 0]}
+              style={styles.exOrRestView}>
+              <Text style={styles.exOrRest}>{isExercise ? 'Exercise' : 'Rest'}</Text>
+            </LinearGradient>
+
+
+          </View>
 
         </View>
       </View >
@@ -248,7 +255,7 @@ const styles = StyleSheet.create({
   },
   // ========================  timer div  ================================
   timers: {
-    flex: 1.5,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -295,7 +302,17 @@ const styles = StyleSheet.create({
   // ==========================  Buttons Div  ==============================
   buttons: {
     flex: 1.5,
-    backgroundColor: colors.backGround,
+    //backgroundColor: colors.backGround,
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'row'
+  },
+  info: {
+    backgroundColor: 'blue',
+    width: '90%',
+    height: '80%',
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'space-around',
     flexDirection: 'row'

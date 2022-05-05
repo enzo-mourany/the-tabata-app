@@ -44,6 +44,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { motion } from "framer-motion";
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
+import PlayButton from './PlayButton';
 
 
 // -----------------------------------------------------------------------
@@ -184,28 +185,19 @@ function Countdowns() {
 
 
 
-        <View alt="button" style={{ justifyContent: "center", flexDirection: "row", backgroundColor: "green" }}>
-          <View alt="start / pause button" style={styles.menu}>
+        <View alt="button" style={{ justifyContent: "center", alignItems: 'center', flexDirection: "row" }}>
+          <View alt="start / pause button" style={{ marginLeft: 30, marginRight: 30 }}>
             <TouchableOpacity onPress={toggle}>
-              <LinearGradient
-                colors={['#5ABEE6', '#BBF1F4']}
-                start={[0, 1]} end={[0, 0]}
-                //start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }}
-                style={styles.linearGStartButton}
-              >
-                <LinearGradient
-                  colors={toggle ? ['transparent', 'transparent'] : ['colors.backGround', 'colors.backGround']}
-                  start={[0, 0]} end={[1, 0]}
-                  style={styles.linearGStartButtonInactive}
-                >
-                  <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
 
-                </LinearGradient>
-              </LinearGradient>
+              <PlayButton></PlayButton>
+
+
             </TouchableOpacity>
           </View>
 
-          <View alt="reset button">
+
+
+          <View alt="reset button" style={{ marginLeft: 30, marginRight: 30 }}>
             <TouchableOpacity
               onPress={reset}
               style={styles.resetButton}>

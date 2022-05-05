@@ -174,13 +174,15 @@ function Countdowns() {
             duration={isExercise ? durationExercises : durationRest}
             trailStrokeWidth={5}
             size={300}
+            text={"ee"}
             colors={['#5ABEE6']}
             onComplete={() => {
               return { shouldRepeat: true }
             }}
           >
-            {({ remainingTimer }) => <Text style={styles.timerExOrRest}>{remainingTimer}</Text>}
+            {({ remainingTime }) => <Text style={{ color: 'white', fontSize: 30 }}>{remainingTime}</Text>}
           </CountdownCircleTimer>
+          <Text style={{ color: '#fff', fontSize: 50 }}>{remainingTimer}</Text>
         </View>
 
 

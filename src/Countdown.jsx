@@ -89,7 +89,6 @@ function Countdowns() {
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
 
-
   const toggle = () => {
     setIsActive(!isActive);
   }
@@ -179,40 +178,45 @@ function Countdowns() {
               return { shouldRepeat: true }
             }}
           >
-            <Text style={styles.timerExOrRest}>{remainingTimer}</Text>
-            <View style={{ backgroundColor: "red" }}></View>
+            {({ remainingTimer }) => <Text style={styles.timerExOrRest}>{remainingTimer}</Text>}
           </CountdownCircleTimer>
         </View>
 
-        <View alt="start / pause button" style={styles.menu}>
-          <TouchableOpacity onPress={toggle}>
-            <LinearGradient
-              colors={['#5ABEE6', '#BBF1F4']}
-              start={[0, 1]} end={[0, 0]}
-              //start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }}
-              style={styles.linearGStartButton}
-            >
+
+
+        <View alt="button" style={{ justifyContent: "center", flexDirection: "row", backgroundColor: "green" }}>
+          <View alt="start / pause button" style={styles.menu}>
+            <TouchableOpacity onPress={toggle}>
               <LinearGradient
-                colors={toggle ? ['transparent', 'transparent'] : ['colors.backGround', 'colors.backGround']}
-                start={[0, 0]} end={[1, 0]}
-                style={styles.linearGStartButtonInactive}
+                colors={['#5ABEE6', '#BBF1F4']}
+                start={[0, 1]} end={[0, 0]}
+                //start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }}
+                style={styles.linearGStartButton}
               >
-                <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
+                <LinearGradient
+                  colors={toggle ? ['transparent', 'transparent'] : ['colors.backGround', 'colors.backGround']}
+                  start={[0, 0]} end={[1, 0]}
+                  style={styles.linearGStartButtonInactive}
+                >
+                  <Text style={styles.startButtonText}>{isActive ? 'PAUSE' : 'START'}</Text>
+
+                </LinearGradient>
               </LinearGradient>
-            </LinearGradient>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+
+          <View alt="reset button">
+            <TouchableOpacity
+              onPress={reset}
+              style={styles.resetButton}>
+              <Animated.Image
+                style={{ width: 30, height: 30 }}
+                source={require('../IMG/reset.png')}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
 
-        <View alt="reset button">
-          <TouchableOpacity
-            onPress={reset}
-            style={styles.resetButton}>
-            <Animated.Image
-              style={{ width: 30, height: 30 }}
-              source={require('../IMG/reset.png')}
-            />
-          </TouchableOpacity>
-        </View>
 
 
 
@@ -227,7 +231,7 @@ function Countdowns() {
             </View>
 
             <View
-              style={{ width: "90%", height: 1, backgroundColor: "white", opacity: 0.4 }}
+              style={{ width: "90%", height: 1, backgroundColor: "white", opacity: 0.4, marginBottom: 6, marginTop: 5 }}
             />
 
 
@@ -307,14 +311,12 @@ const styles = StyleSheet.create({
   // ==========================  Buttons Div  ==============================
   buttons: {
     flex: 1.5,
-    //backgroundColor: colors.backGround,
-    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'space-around',
     flexDirection: 'row'
   },
   info: {
-    backgroundColor: 'blue',
+    backgroundColor: '#14173A',
     width: '90%',
     height: '80%',
     borderRadius: 30,
@@ -375,8 +377,7 @@ const styles = StyleSheet.create({
   },
   resetButton: {
     alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 20,
+    justifyContent: 'center'
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

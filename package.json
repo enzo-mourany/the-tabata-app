@@ -24,6 +24,7 @@
     "get-google-fonts": "^1.2.2",
     "interval": "^0.1.1",
     "moment": "^2.29.1",
+    "native-base": "^3.4.4",
     "react": "17.0.1",
     "react-circular-progressbar": "^2.0.4",
     "react-countdown-circle-timer": "^3.0.8",

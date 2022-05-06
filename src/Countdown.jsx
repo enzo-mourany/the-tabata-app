@@ -180,7 +180,9 @@ function Countdowns() {
             isPlaying={isActive ? true : false}
             //duration={isExercise ? durationExercises : durationRest}
             duration={duration}
-            trailStrokeWidth={3}
+            trailStrokeWidth={2}
+            trailColor={"#A5D0E1"}
+            strokeWidth={9}
             size={300}
             text={"ee"}
             colors={['#5ABEE6']}
@@ -193,7 +195,7 @@ function Countdowns() {
               }
             }}
           >
-            {({ remainingTime }) => <Text style={{ color: 'white', fontSize: 60 }}>{remainingTime}</Text>}
+            {({ remainingTime }) => <Text style={{ color: 'white', fontSize: 80 }}>{remainingTime}</Text>}
           </CountdownCircleTimer>
           <Text style={{ color: '#fff', fontSize: 20 }}>{remainingTimer}</Text>
         </View>

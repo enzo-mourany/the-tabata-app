@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
 // TODO: Add sound button to 3 last seconds
 // TODO: After 60s, set time with min and sec
 // TODO: Animation rotate reset button
-// TODO: White theme
+// TODO: Theme use device settings

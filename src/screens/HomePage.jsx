@@ -1,20 +1,15 @@
 import * as React from 'react';
 import {
-  Vibration,
   StatusBar,
-  Easing,
-  TextInput,
   Dimensions,
   Animated,
   TouchableOpacity,
-  FlatList,
   Text,
   View,
   StyleSheet,
   Image
 } from 'react-native';
-import { DurationContext } from '../DurationContext';
-
+import { DurationContext } from '../context/DurationContext';
 import AppLoading from 'expo-app-loading';
 import {
   useFonts,
@@ -37,6 +32,7 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
+
 
 // -----------------------------------------------------------------------
 //                                Const   
@@ -113,7 +109,7 @@ function HomePage({ navigation }) {
             onPress={() => navigation.navigate('Countdown')}>
             <Image
               style={styles.roundButton}
-              source={require('../IMG/start-timer-button.png')}
+              source={require('../../IMG/start-timer-button.png')}
             />
           </TouchableOpacity>
         </Animated.View>

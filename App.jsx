@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomePage from './src/screens/HomePageApp';
+import HomePage from './src/screens/HomePage';
 import Countdowns from './src/screens/Countdown';
 import Settings from './src/screens/Settings';
 import { DurationProvider } from './src/context/DurationContext';
@@ -19,7 +19,7 @@ export default function App() {
   return (
     <AppContainer>
       <DurationProvider style={styles.main}>
-        <NavigationContainer style={styles.container}>
+        <NavigationContainer style={styles.container} independent={true}>
           <Stack.Navigator
             initialRouteName="Home"
             style={styles.navigator}
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
 
 
 // TODO: Animated switch between pages (stack navigator)
-// TODO: Smooth circularProgressBar
 // TODO: Add sound button to 3 last seconds
 // TODO: After 60s, set time with min and sec
 // TODO: Animation rotate reset button

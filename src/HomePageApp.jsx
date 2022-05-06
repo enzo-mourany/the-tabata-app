@@ -50,8 +50,11 @@ const colors = {
 };
 
 
-const timersExercises = [...Array(20).keys()].map((i) => (i === 0 ? 1 : i * 5));
-const timersRest = [...Array(13).keys()].map((i) => (i === 0 ? 1 : i * 5));
+let timersExercises = [...Array(20).keys()].map((i) => (i === 0 ? 1 : i * 5));
+timersExercises.splice(0, 1);
+let timersRest = [...Array(13).keys()].map((i) => (i === 0 ? 1 : i * 5));
+timersRest.splice(0, 1);
+
 const item_size = width * 0.38;
 const item_spacing = (width - item_size) / 2;
 

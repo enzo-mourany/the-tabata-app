@@ -7,10 +7,8 @@ import {
   View,
   Image,
   Animated,
-  Easing,
 } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { DurationContext } from '../DurationContext';
+import { DurationContext } from '../context/DurationContext';
 import AppLoading from 'expo-app-loading';
 import {
   useFonts,
@@ -35,6 +33,7 @@ import {
 } from '@expo-google-fonts/poppins';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import PlayButton from '../components/PlayButton';
+
 
 
 // -----------------------------------------------------------------------
@@ -156,7 +155,6 @@ function Countdowns({ navigation }) {
     return (
       <View style={styles.container}>
 
-        <StatusBar style="light-content" />
 
         <View style={styles.timers}>
           <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
@@ -210,7 +208,7 @@ function Countdowns({ navigation }) {
               style={styles.resetButton}>
               <Animated.Image
                 style={{ width: 30, height: 30 }}
-                source={require('../IMG/reset.png')}
+                source={require('../../IMG/reset.png')}
               />
             </TouchableOpacity>
           </View>

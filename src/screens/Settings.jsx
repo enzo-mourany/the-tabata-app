@@ -1,5 +1,6 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import ThemeToggle from '../components/theme-toggle';
 
 export default function Settings({ navigation }) {
     return (
@@ -10,6 +11,7 @@ export default function Settings({ navigation }) {
                 </View>
                 <View alt="title" style={{ backgroundColor: "grey", width: "80%", alignItems: 'center', marginTop: 30, borderRadius: 14 }}>
                     <Text style={{ padding: 20, color: "white", fontSize: 20, }}>Mode</Text>
+                    <ThemeToggle />
                 </View>
                 <View alt="title" style={{ backgroundColor: "grey", width: "80%", alignItems: 'center', marginTop: 30, borderRadius: 14 }}>
                     <Text style={{ padding: 20, color: "white", fontSize: 20, }}>Sound</Text>

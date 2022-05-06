@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -12,12 +9,9 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import data from './data';
 import { StatusBar } from 'expo-status-bar';
-import { DurationContext } from './DurationContext';
-import CircularProgress from 'react-native-circular-progress-indicator';
+import { DurationContext } from '../DurationContext';
 import AppLoading from 'expo-app-loading';
-import { Svg, Path, Circle } from 'react-native-svg';
 import {
   useFonts,
   Poppins_100Thin,
@@ -39,12 +33,8 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
-import { LinearGradient } from "expo-linear-gradient";
-//import TrackPlayer from 'react-native-track-player';
-import AppIntroSlider from 'react-native-app-intro-slider';
-import { motion } from "framer-motion";
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
-import PlayButton from './PlayButton';
+import PlayButton from '../components/PlayButton';
 
 
 // -----------------------------------------------------------------------

@@ -13,7 +13,7 @@ import {
   StyleSheet,
   Image
 } from 'react-native';
-import { DurationContext } from './DurationContext';
+import { DurationContext } from '../DurationContext';
 
 import AppLoading from 'expo-app-loading';
 import {

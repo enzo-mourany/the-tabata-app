@@ -3,9 +3,9 @@ import { StyleSheet }
   from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import HomePage from './src/HomePageApp';
-import Countdowns from './src/Countdown';
-import Settings from './src/Settings';
+import HomePage from './src/screens/HomePageApp';
+import Countdowns from './src/screens/Countdown';
+import Settings from './src/screens/Settings';
 import { DurationProvider } from './src/DurationContext';
 
 

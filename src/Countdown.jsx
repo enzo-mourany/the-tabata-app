@@ -79,7 +79,7 @@ let roundsCounter = 1;
 // =======================================================================
 
 
-function Countdowns() {
+function Countdowns({ navigation }) {
 
   const [remainingSecs, setRemainingSecs] = useState(0);
   const { mins, secs } = getRemaining(remainingSecs);
@@ -224,6 +224,12 @@ function Countdowns() {
               />
             </TouchableOpacity>
           </View>
+        </View>
+
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+            <Text style={{ color: "#fff" }}>Hello</Text>
+          </TouchableOpacity>
         </View>
 
 

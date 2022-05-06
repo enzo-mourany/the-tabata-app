@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import HomePage from './src/HomePageApp';
 import Countdowns from './src/Countdown';
+import Settings from './src/Settings';
 import { DurationProvider } from './src/DurationContext';
 
 
@@ -48,6 +49,15 @@ export default function App() {
               headerTintColor: '#fff',
               headerTitleStyle: {
                 fontWeight: 'bold',
+              },
+            }}
+          />
+          <Stack.Screen name="Settings" component={Settings}
+            options={{
+              title: ' ',
+              headerShown: false,
+              headerStyle: {
+                backgroundColor: '#04112A',
               },
             }}
           />

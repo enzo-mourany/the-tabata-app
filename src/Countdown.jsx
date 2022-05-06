@@ -88,10 +88,14 @@ function Countdowns() {
   const { durationExercises, durationRest } = React.useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
+  const [key, setKey] = useState(0);
 
+  const [duration, setDuration] = useState(durationExercises);
+  const [isDowntime, setIsDowntime] = useState(false);
 
   const toggle = () => {
     setIsActive(!isActive);
+    setKey(0);
   }
 
 
@@ -100,6 +104,7 @@ function Countdowns() {
     setIsActive(false);
     setIsExercise(true);
     setRemainingTimer(listTimer[0]);
+    setKey(durationExercises);
     roundsCounter = 1;
   }
 
@@ -171,13 +176,23 @@ function Countdowns() {
 
           <CountdownCircleTimer
             isPlaying={isActive ? true : false}
-            duration={isExercise ? durationExercises : durationRest}
+            //duration={isExercise ? durationExercises : durationRest}
+            duration={duration}
             trailStrokeWidth={5}
             size={300}
             text={"ee"}
             colors={['#5ABEE6']}
+            key={key}
             onComplete={() => {
-              return { shouldRepeat: true }
+              if (duration == durationExercises) {
+                setDuration(durationRest);
+              } else {
+                setDuration(durationExercises);
+              }
+              return {
+                shouldRepeat: true
+
+              }
             }}
           >
             {({ remainingTime }) => <Text style={{ color: 'white', fontSize: 30 }}>{remainingTime}</Text>}

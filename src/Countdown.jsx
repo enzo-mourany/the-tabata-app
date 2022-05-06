@@ -99,12 +99,14 @@ function Countdowns() {
   }
 
 
+
   const reset = () => {
     setRemainingSecs(0);
     setIsActive(false);
     setIsExercise(true);
     setRemainingTimer(listTimer[0]);
     setKey(durationExercises);
+    setDuration(durationExercises);
     roundsCounter = 1;
   }
 
@@ -178,26 +180,22 @@ function Countdowns() {
             isPlaying={isActive ? true : false}
             //duration={isExercise ? durationExercises : durationRest}
             duration={duration}
-            trailStrokeWidth={5}
+            trailStrokeWidth={3}
             size={300}
             text={"ee"}
             colors={['#5ABEE6']}
             key={key}
             onComplete={() => {
-              if (duration == durationExercises) {
-                setDuration(durationRest);
-              } else {
-                setDuration(durationExercises);
-              }
+              setIsDowntime(!isDowntime);
+              setDuration(isDowntime ? durationExercises : durationRest);
               return {
                 shouldRepeat: true
-
               }
             }}
           >
-            {({ remainingTime }) => <Text style={{ color: 'white', fontSize: 30 }}>{remainingTime}</Text>}
+            {({ remainingTime }) => <Text style={{ color: 'white', fontSize: 60 }}>{remainingTime}</Text>}
           </CountdownCircleTimer>
-          <Text style={{ color: '#fff', fontSize: 50 }}>{remainingTimer}</Text>
+          <Text style={{ color: '#fff', fontSize: 20 }}>{remainingTimer}</Text>
         </View>
 
 

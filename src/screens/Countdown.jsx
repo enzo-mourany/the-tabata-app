@@ -157,12 +157,6 @@ function Countdowns({ navigation }) {
       <View style={styles.container}>
 
 
-        <View style={styles.timers}>
-          <Text style={styles.timerText}>{`${mins}:${secs}`}</Text>
-
-
-        </View>
-
         <View style={styles.countDowns}>
 
           <CountdownCircleTimer
@@ -170,9 +164,9 @@ function Countdowns({ navigation }) {
             //duration={isExercise ? durationExercises : durationRest}
             duration={duration}
             trailStrokeWidth={2}
-            trailColor={"#A5D0E1"}
+            trailColor={"#545772"}
             strokeWidth={9}
-            size={300}
+            size={320}
             text={"ee"}
             colors={['#5ABEE6']}
             key={key}
@@ -190,12 +184,11 @@ function Countdowns({ navigation }) {
 
 
 
-        <View alt="button" style={{ justifyContent: "center", alignItems: 'center', flexDirection: "row" }}>
+        <View alt="button" style={{ justifyContent: "center", alignItems: 'center', flexDirection: "row", flex: 1.4 }}>
 
 
-          <View alt="settings button" style={{ width: 20 }}>
+          <View alt="settings button" style={{ padding: 10 }}>
             <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-
               <SettingsButton />
             </TouchableOpacity>
           </View>
@@ -381,7 +374,8 @@ const styles = StyleSheet.create({
   },
   resetButton: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 10
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

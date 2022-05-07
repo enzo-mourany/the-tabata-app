@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -35,6 +35,7 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import PlayButton from '../components/PlayButton';
 import SettingsButton from '../components/SettingsButton';
 import ResetButton from '../components/ResetButton';
+import PlayingContext from '../context/PlayingContext';
 
 
 // -----------------------------------------------------------------------
@@ -75,10 +76,11 @@ function Countdowns({ navigation }) {
   const { mins, secs } = getRemaining(remainingSecs);
   const [isActive, setIsActive] = useState(false);
   const [isExercise, setIsExercise] = useState(true);
-  const { durationExercises, durationRest } = React.useContext(DurationContext);
+  const { durationExercises, durationRest } = useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
   const [key, setKey] = useState(0);
+  // const setIsPlaying = useContext(PlayingContext);
 
   const [duration, setDuration] = useState(durationExercises);
   const [isDowntime, setIsDowntime] = useState(false);
@@ -301,7 +303,7 @@ const styles = StyleSheet.create({
   exOrRest: {
     color: colors.backGround,
     fontSize: 17,
-    fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1
   },
 

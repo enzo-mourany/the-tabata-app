@@ -235,7 +235,7 @@ function Countdowns({ navigation }) {
             </View>
 
             <View
-              style={{ width: "90%", height: 1, backgroundColor: "white", opacity: 0.4, marginBottom: 6, marginTop: 5 }}
+              style={{ width: "90%", height: 1, backgroundColor: colors.backGround, opacity: 0.4, marginBottom: 6, marginTop: 5 }}
             />
 
 
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   },
 
   exOrRest: {
-    color: "#fff",
+    color: colors.backGround,
     fontSize: 17,
     fontFamily: 'Poppins_400Regular',
     letterSpacing: 1
@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   info: {
-    backgroundColor: '#14173A',
+    backgroundColor: '#5ABEE6',
     width: '90%',
     height: '80%',
     borderRadius: 30,

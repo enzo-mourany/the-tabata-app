@@ -33,7 +33,8 @@ import {
 } from '@expo-google-fonts/poppins';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import PlayButton from '../components/PlayButton';
-
+import SettingsButton from '../components/SettingsButton';
+import ResetButton from '../components/ResetButton';
 
 
 // -----------------------------------------------------------------------
@@ -185,41 +186,41 @@ function Countdowns({ navigation }) {
           >
             {({ remainingTime }) => <Text style={{ color: 'white', fontSize: 80 }}>{remainingTime}</Text>}
           </CountdownCircleTimer>
-          <Text style={{ color: '#fff', fontSize: 20 }}>{remainingTimer}</Text>
         </View>
 
 
 
         <View alt="button" style={{ justifyContent: "center", alignItems: 'center', flexDirection: "row" }}>
-          <View alt="start / pause button" style={{ marginLeft: 30, marginRight: 30 }}>
+
+
+          <View alt="settings button" style={{ width: 20 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+
+              <SettingsButton />
+            </TouchableOpacity>
+          </View>
+
+
+          <View alt="start / pause button" style={{ marginLeft: 50, marginRight: 50 }}>
             <TouchableOpacity onPress={toggle}>
 
-              <PlayButton></PlayButton>
+              <PlayButton />
 
 
             </TouchableOpacity>
           </View>
 
 
-
-          <View alt="reset button" style={{ marginLeft: 30, marginRight: 30 }}>
+          <View alt="reset button">
             <TouchableOpacity
               onPress={reset}
               style={styles.resetButton}>
-              <Animated.Image
-                style={{ width: 30, height: 30 }}
-                source={require('../../IMG/reset.png')}
-              />
+              <ResetButton />
             </TouchableOpacity>
           </View>
-        </View>
 
-        <View>
-          <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-            <Text style={{ color: "#fff" }}>Hello</Text>
-          </TouchableOpacity>
-        </View>
 
+        </View>
 
 
 

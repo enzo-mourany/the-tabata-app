@@ -15,12 +15,12 @@ export default function Settings({ navigation }) {
                 </View>
                 <View alt="title" style={{ flexDirection: "column", backgroundColor: "grey", width: "80%", alignItems: 'center', marginTop: 30, borderRadius: 14 }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-                        <Text style={{ padding: 20, color: "white", fontSize: 20, }}>Dark mode</Text>
+                        <Text style={{ padding: 20, color: "white", fontSize: 15, fontWeight: "bold" }}>Dark mode</Text>
                         <ThemeToggle />
                     </View>
                     <View>
                         <View alt="title" style={{ backgroundColor: "grey", width: "80%", alignItems: 'center', marginTop: 30, borderRadius: 14 }}>
-                            <Text style={{ padding: 20, color: "white", fontSize: 20, }}>Sound</Text>
+                            <Text style={{ padding: 20, color: "white", fontSize: 15, fontWeight: "bold" }}>Sound</Text>
                         </View>
                     </View>
                 </View>
@@ -29,7 +29,7 @@ export default function Settings({ navigation }) {
                     style={{ backgroundColor: "green", width: "80%", alignItems: 'center', marginTop: 30, borderRadius: 14 }}
                     onPress={() => navigation.navigate('Countdown')}
                 >
-                    <Text style={{ padding: 20, color: "white", fontSize: 20, fontFamily: "System" }}>Validate</Text>
+                    <Text style={{ padding: 20, color: "white", fontSize: 15, fontFamily: "System", fontWeight: "bold" }}>Validate</Text>
                 </TouchableOpacity>
             </View>
             <Text style={{ color: "white", opacity: 0.4, fontSize: 14 }}>App made by Enzo Mourany</Text>

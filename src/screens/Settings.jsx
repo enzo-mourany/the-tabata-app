@@ -6,7 +6,9 @@ import { Svg, Path } from 'react-native-svg';
 export default function Settings({ navigation }) {
     return (
 
-        <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center', backgroundColor: "#020311" }}>
+        <View
+            style={{ justifyContent: 'center', flex: 1, alignItems: 'center', backgroundColor: "#020311" }}
+        >
             <TouchableOpacity
                 onPress={() => navigation.navigate('Countdown')}
                 style={{ marginRight: 340 }}

@@ -9,7 +9,12 @@ export default function ThemeToggle() {
     const { colorMode, toggleColorMode } = useColorMode();
     return (
         <HStack space={2} alignItems="center">
-            <Switch isChecked={colorMode === 'light'} onToggle={toggleColorMode}></Switch>
+            <Switch
+                isChecked={colorMode === 'light'}
+                onToggle={toggleColorMode}
+                trackColor={{ true: '#46DA8A', false: 'grey' }}
+            >
+            </Switch>
         </HStack>
     )
 }

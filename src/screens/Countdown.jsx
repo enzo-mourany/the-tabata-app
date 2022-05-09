@@ -5,8 +5,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Image,
-  Animated,
 } from 'react-native';
 import { DurationContext } from '../context/DurationContext';
 import AppLoading from 'expo-app-loading';
@@ -35,7 +33,7 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import PlayButton from '../components/PlayButton';
 import SettingsButton from '../components/SettingsButton';
 import ResetButton from '../components/ResetButton';
-import PlayingContext from '../context/PlayingContext';
+//import PlayingContext from '../context/PlayingContext';
 
 
 // -----------------------------------------------------------------------
@@ -73,7 +71,7 @@ let roundsCounter = 1;
 function Countdowns({ navigation }) {
 
   const [remainingSecs, setRemainingSecs] = useState(0);
-  const { mins, secs } = getRemaining(remainingSecs);
+  //const { mins, secs } = getRemaining(remainingSecs);
   const [isActive, setIsActive] = useState(false);
   const [isExercise, setIsExercise] = useState(true);
   const { durationExercises, durationRest } = useContext(DurationContext);
@@ -84,6 +82,9 @@ function Countdowns({ navigation }) {
 
   const [duration, setDuration] = useState(durationExercises);
   const [isDowntime, setIsDowntime] = useState(false);
+
+
+
 
   const toggle = () => {
     setIsActive(!isActive);
@@ -109,6 +110,12 @@ function Countdowns({ navigation }) {
       interval = setInterval(() => {
         // timer
         setRemainingSecs(remainingSecs + 1);
+
+        if (isDowntime) {
+          setDuration(durationRest);
+        } else {
+          setDuration(durationExercises);
+        }
 
         // countDown
         setRemainingTimer(remainingTimer - 1)
@@ -174,7 +181,6 @@ function Countdowns({ navigation }) {
             key={key}
             onComplete={() => {
               setIsDowntime(!isDowntime);
-              setDuration(isDowntime ? durationExercises : durationRest);
               return {
                 shouldRepeat: true
               }

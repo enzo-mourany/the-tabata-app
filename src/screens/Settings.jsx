@@ -7,8 +7,7 @@ export default function Settings({ navigation }) {
     return (
 
         <View
-            _dark={{ bg: '#020311' }}
-            _light={{ bg: '#fff' }}
+            flex={1}
             style={{ justifyContent: 'center', flex: 1, alignItems: 'center', backgroundColor: "#020311" }}
         >
             <TouchableOpacity

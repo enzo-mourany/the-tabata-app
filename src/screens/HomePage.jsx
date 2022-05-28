@@ -40,7 +40,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  black: '#020311',
+  black: '#19054A',
   red: '#F76A6A',
   text: '#ffffff',
 };

@@ -186,7 +186,7 @@ function Countdowns({ navigation }) {
             strokeWidth={9}
             size={320}
             text={"ee"}
-            colors={['#5ABEE6']}
+            colors={['#78F5F0']}
             key={key}
             onComplete={() => {
               setIsDowntime(!isDowntime);

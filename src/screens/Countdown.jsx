@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -34,6 +34,7 @@ import PlayButton from '../components/PlayButton';
 import SettingsButton from '../components/SettingsButton';
 import ResetButton from '../components/ResetButton';
 //import PlayingContext from '../context/PlayingContext';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 // -----------------------------------------------------------------------
@@ -43,7 +44,8 @@ import ResetButton from '../components/ResetButton';
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  backGround: '#020311',
+  backGround: '#311969',
+  second: '#19054A',
   button: '#FAFAFF',
   times: '#FAFAFF'
 }
@@ -82,7 +84,9 @@ function Countdowns({ navigation }) {
 
   const [duration, setDuration] = useState(durationExercises);
   const [isDowntime, setIsDowntime] = useState(false);
-
+  const changeDurationTimer = useCallback(() => {
+    setDuration(prev => !prev);
+  }, [])
 
 
 
@@ -163,7 +167,12 @@ function Countdowns({ navigation }) {
 
 
     return (
-      <View style={styles.container}>
+      <LinearGradient
+        colors={['#311969', '#19054A']}
+        start={{x: 0, y: 0}}
+        end={{x: 0, y: 1}}
+        style={styles.container}
+      >
 
 
         <View style={styles.countDowns}>
@@ -250,7 +259,7 @@ function Countdowns({ navigation }) {
           </View>
 
         </View>
-      </View >
+      </LinearGradient >
     );
   }
 }
@@ -321,7 +330,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   info: {
-    backgroundColor: '#5ABEE6',
+    backgroundColor: '#270E5E',
     width: '90%',
     height: '80%',
     borderRadius: 30,

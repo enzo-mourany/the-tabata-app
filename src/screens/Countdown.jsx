@@ -43,6 +43,8 @@ import ResetButton from '../components/ResetButton';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Svg, Ellipse } from 'react-native-svg';
 
+
+
 // -----------------------------------------------------------------------
 //                            General Const
 // -----------------------------------------------------------------------
@@ -180,6 +182,7 @@ function Countdowns({ navigation }) {
 
             </Ellipse>
           </Svg>
+
 
 
 

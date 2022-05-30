@@ -316,7 +316,8 @@ const styles = StyleSheet.create({
   },
 
   exOrRest: {
-    color: colors.backGround,
+    color: "white",
+    opacity: 0.6,
     fontSize: 17,
     fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1

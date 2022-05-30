@@ -31,6 +31,7 @@ import {
 } from '@expo-google-fonts/poppins';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import PlayButton from '../components/PlayButton';
+import PauseButton from '../components/PauseButton';
 import SettingsButton from '../components/SettingsButton';
 import ResetButton from '../components/ResetButton';
 //import PlayingContext from '../context/PlayingContext';
@@ -214,7 +215,9 @@ function Countdowns({ navigation }) {
           <View alt="start / pause button" style={{ marginLeft: 50, marginRight: 50 }}>
             <TouchableOpacity onPress={toggle}>
 
-              <PlayButton />
+              {isActive ? <PauseButton /> : <PlayButton />}
+
+
 
 
             </TouchableOpacity>

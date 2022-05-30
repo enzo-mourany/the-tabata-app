@@ -34,12 +34,10 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
-import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import PlayButton from '../components/PlayButton';
 import PauseButton from '../components/PauseButton';
 import SettingsButton from '../components/SettingsButton';
 import ResetButton from '../components/ResetButton';
-//import PlayingContext from '../context/PlayingContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Svg, Ellipse } from 'react-native-svg';
 

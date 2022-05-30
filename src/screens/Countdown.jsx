@@ -166,9 +166,11 @@ function Countdowns({ navigation }) {
         style={styles.container}
       >
         <View style={styles.countDowns}>
-          <Svg height="200" width="200">
-            <Text textAnchor="middle" style={{ fontSize: 50, color: 'white' }} >{remainingTimer}</Text>
-
+          <Svg height="200" width="200" style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <Text style={{ fontSize: 50, color: 'white', textAlign: 'center', position: 'relative' }} >{remainingTimer}</Text>
             <Ellipse
               cx="100"
               cy="100"
@@ -180,6 +182,7 @@ function Countdowns({ navigation }) {
 
             </Ellipse>
           </Svg>
+
 
 
 

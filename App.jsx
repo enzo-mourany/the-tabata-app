@@ -56,6 +56,7 @@ export default function App() {
               headerTitleStyle: {
                 fontWeight: 'bold',
               },
+              headerShown: false,
             }}
           />
           <Stack.Screen

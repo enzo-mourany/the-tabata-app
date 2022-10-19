@@ -10,10 +10,9 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Animated
+  Animated,
 } from 'react-native';
 import { DurationContext } from '../context/DurationContext';
-import AppLoading from 'expo-app-loading';
 import PlayButton from '../components/PlayButton';
 import PauseButton from '../components/PauseButton';
 import SettingsButton from '../components/SettingsButton';
@@ -95,7 +94,6 @@ function Countdowns({ navigation }) {
           setDuration(durationExercises);
         }
 
-        // countDown
         setRemainingTimer(remainingTimer - 1);
         if (remainingTimer == 1 && isExercise) {
           setRemainingTimer(listTimer[1]);
@@ -118,88 +116,69 @@ function Countdowns({ navigation }) {
   return (
     <View style={styles.container}>
 
-      <View style={styles.countDowns}>
-        <Text style={{ fontSize: 100, color: 'white', textAlign: 'center', position: 'relative' }} >{remainingTimer}</Text>
-      </View>
 
-      <View
-        alt='button'
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'row',
-          flex: 1.4,
-        }}
-      >
-        <View alt='settings button' style={{ padding: 10 }}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Settings')}
-          >
-            <SettingsButton />
-          </TouchableOpacity>
+
+      <View style={styles.wrapper}>
+        <View style={styles.countDowns}>
+          <Text style={styles.remainingTimer} >{remainingTimer}</Text>
         </View>
 
         <View
-          alt='start / pause button'
-          style={{ marginLeft: 50, marginRight: 50 }}
+          alt='button'
+          style={styles.buttons}
         >
-          <TouchableOpacity onPress={toggle}>
-            {isActive ? <PauseButton /> : <PlayButton />}
-          </TouchableOpacity>
-        </View>
-
-        <View alt='reset button'>
-          <TouchableOpacity
-            onPress={reset}
-            style={styles.resetButton}
-          >
-            <ResetButton />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <View style={styles.buttons}>
-        <View style={styles.info}>
-          <View
-            alt='round counter'
-            style={{
-              width: '90%',
-              height: '40%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Text style={styles.exOrRest}>
-              Round {roundsCounter}
-            </Text>
+          <View alt='settings button' style={{ padding: 10 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+              <SettingsButton />
+            </TouchableOpacity>
           </View>
 
-          <View
-            style={{
-              width: '90%',
-              height: 1,
-              backgroundColor: colors.backGround,
-              opacity: 0.4,
-              marginBottom: 6,
-              marginTop: 5,
-            }}
-          />
+          <View style={{ marginLeft: 50, marginRight: 50 }} >
+            <TouchableOpacity onPress={toggle}>
+              {isActive ? <PauseButton /> : <PlayButton />}
+            </TouchableOpacity>
+          </View>
 
-          <View
-            alt='exercise or rest'
-            style={{
-              width: '90%',
-              height: '40%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Text style={styles.exOrRest}>
-              {isExercise ? 'Exercise' : 'Rest'}
-            </Text>
+          <View alt='reset button'>
+            <TouchableOpacity
+              onPress={reset}
+              style={styles.resetButton}
+            >
+              <ResetButton />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.buttons}>
+          <View style={styles.info}>
+            <View style={styles.roundCounter}>
+              <Text style={styles.exOrRest}>
+                Round {roundsCounter}
+              </Text>
+            </View>
+
+            <View
+              style={{
+                width: '90%',
+                height: 1,
+                backgroundColor: colors.backGround,
+                opacity: 0.4,
+                marginBottom: 6,
+                marginTop: 5,
+              }}
+            />
+
+            <View style={styles.typeOfTimer} >
+              <Text style={styles.exOrRest}>
+                {isExercise ? 'Exercise' : 'Rest'}
+              </Text>
+            </View>
           </View>
         </View>
       </View>
+
+
+
     </View>
   );
 }
@@ -210,9 +189,13 @@ function Countdowns({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.backGround,
-    //position: 'absolute',
+  },
+  wrapper: {
+    width: width,
+    height: height,
+    backgroundColor: colors.backGround,
+    position: 'absolute',
   },
   progressBar: {
     //flex: 1,
@@ -232,6 +215,12 @@ const styles = StyleSheet.create({
     color: '#FAFAFF',
     fontSize: 75,
     marginBottom: 20,
+  },
+  remainingTimer: {
+    fontSize: 100,
+    color: 'white',
+    textAlign: 'center',
+    position: 'relative'
   },
   // ========================  circularProgressBar  ======================
   ct2: {
@@ -269,20 +258,33 @@ const styles = StyleSheet.create({
   },
 
   // ==========================  Buttons Div  ==============================
-  buttons: {
+  infos: {
     flex: 1.5,
     alignItems: 'center',
     justifyContent: 'space-around',
     flexDirection: 'row',
   },
+  buttons: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    flex: 1.4,
+    backgroundColor: 'red'
+  },
   info: {
-    backgroundColor: '#270E5E',
-    width: '90%',
-    height: '80%',
+    backgroundColor: '#222',
+    width: '70%',
+    height: '60%',
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+  },
+  roundCounter: {
+    width: '90%',
+    height: '40%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   menu: {
     margin: 1,
@@ -336,6 +338,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
+  },
+  typeOfTimer: {
+    width: '90%',
+    height: '40%',
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

@@ -10,36 +10,14 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Animated
 } from 'react-native';
 import { DurationContext } from '../context/DurationContext';
 import AppLoading from 'expo-app-loading';
-import {
-  useFonts,
-  Poppins_100Thin,
-  Poppins_100Thin_Italic,
-  Poppins_200ExtraLight,
-  Poppins_200ExtraLight_Italic,
-  Poppins_300Light,
-  Poppins_300Light_Italic,
-  Poppins_400Regular,
-  Poppins_400Regular_Italic,
-  Poppins_500Medium,
-  Poppins_500Medium_Italic,
-  Poppins_600SemiBold,
-  Poppins_600SemiBold_Italic,
-  Poppins_700Bold,
-  Poppins_700Bold_Italic,
-  Poppins_800ExtraBold,
-  Poppins_800ExtraBold_Italic,
-  Poppins_900Black,
-  Poppins_900Black_Italic,
-} from '@expo-google-fonts/poppins';
 import PlayButton from '../components/PlayButton';
 import PauseButton from '../components/PauseButton';
 import SettingsButton from '../components/SettingsButton';
 import ResetButton from '../components/ResetButton';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Svg, Ellipse } from 'react-native-svg';
 
 
 
@@ -123,9 +101,9 @@ function Countdowns({ navigation }) {
           setRemainingTimer(listTimer[1]);
           setIsExercise(!isExercise);
         } else if (!isExercise && remainingTimer == 1) {
+          roundsCounter += 1;
           setRemainingTimer(listTimer[0]);
           setIsExercise(!isExercise);
-          roundsCounter += 1;
         }
       }, 1000);
     } else if (!isActive && remainingSecs !== 0) {
@@ -134,139 +112,96 @@ function Countdowns({ navigation }) {
     return () => clearInterval(interval);
   }, [isActive, remainingSecs, remainingTimer]);
 
-  let [fontsLoaded] = useFonts({
-    Poppins_100Thin,
-    Poppins_100Thin_Italic,
-    Poppins_200ExtraLight,
-    Poppins_200ExtraLight_Italic,
-    Poppins_300Light,
-    Poppins_300Light_Italic,
-    Poppins_400Regular,
-    Poppins_400Regular_Italic,
-    Poppins_500Medium,
-    Poppins_500Medium_Italic,
-    Poppins_600SemiBold,
-    Poppins_600SemiBold_Italic,
-    Poppins_700Bold,
-    Poppins_700Bold_Italic,
-    Poppins_800ExtraBold,
-    Poppins_800ExtraBold_Italic,
-    Poppins_900Black,
-    Poppins_900Black_Italic,
-  });
+  const progressAnimation = React.useRef(new Animated.Value(height)).current;
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
+
+  return (
+    <View style={styles.container}>
+
+      <View style={styles.countDowns}>
+        <Text style={{ fontSize: 100, color: 'white', textAlign: 'center', position: 'relative' }} >{remainingTimer}</Text>
+      </View>
+
       <View
-        style={styles.container}
+        alt='button'
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+          flex: 1.4,
+        }}
       >
-        <View style={styles.countDowns}>
-          <Svg height="200" width="200" style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            <Text style={{ fontSize: 50, color: 'white', textAlign: 'center', position: 'relative' }} >{remainingTimer}</Text>
-            <Ellipse
-              cx="100"
-              cy="100"
-              rx="80"
-              ry="80"
-              stroke="white"
-              strokeWidth="5"
-            >
-
-            </Ellipse>
-          </Svg>
-
-
-
-
-
+        <View alt='settings button' style={{ padding: 10 }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Settings')}
+          >
+            <SettingsButton />
+          </TouchableOpacity>
         </View>
 
         <View
-          alt='button'
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'row',
-            flex: 1.4,
-          }}
+          alt='start / pause button'
+          style={{ marginLeft: 50, marginRight: 50 }}
         >
-          <View alt='settings button' style={{ padding: 10 }}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Settings')}
-            >
-              <SettingsButton />
-            </TouchableOpacity>
+          <TouchableOpacity onPress={toggle}>
+            {isActive ? <PauseButton /> : <PlayButton />}
+          </TouchableOpacity>
+        </View>
+
+        <View alt='reset button'>
+          <TouchableOpacity
+            onPress={reset}
+            style={styles.resetButton}
+          >
+            <ResetButton />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View style={styles.buttons}>
+        <View style={styles.info}>
+          <View
+            alt='round counter'
+            style={{
+              width: '90%',
+              height: '40%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text style={styles.exOrRest}>
+              Round {roundsCounter}
+            </Text>
           </View>
 
           <View
-            alt='start / pause button'
-            style={{ marginLeft: 50, marginRight: 50 }}
+            style={{
+              width: '90%',
+              height: 1,
+              backgroundColor: colors.backGround,
+              opacity: 0.4,
+              marginBottom: 6,
+              marginTop: 5,
+            }}
+          />
+
+          <View
+            alt='exercise or rest'
+            style={{
+              width: '90%',
+              height: '40%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
           >
-            <TouchableOpacity onPress={toggle}>
-              {isActive ? <PauseButton /> : <PlayButton />}
-            </TouchableOpacity>
-          </View>
-
-          <View alt='reset button'>
-            <TouchableOpacity
-              onPress={reset}
-              style={styles.resetButton}
-            >
-              <ResetButton />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={styles.buttons}>
-          <View style={styles.info}>
-            <View
-              alt='round counter'
-              style={{
-                width: '90%',
-                height: '40%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text style={styles.exOrRest}>
-                Round {roundsCounter}
-              </Text>
-            </View>
-
-            <View
-              style={{
-                width: '90%',
-                height: 1,
-                backgroundColor: colors.backGround,
-                opacity: 0.4,
-                marginBottom: 6,
-                marginTop: 5,
-              }}
-            />
-
-            <View
-              alt='exercise or rest'
-              style={{
-                width: '90%',
-                height: '40%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text style={styles.exOrRest}>
-                {isExercise ? 'Exercise' : 'Rest'}
-              </Text>
-            </View>
+            <Text style={styles.exOrRest}>
+              {isExercise ? 'Exercise' : 'Rest'}
+            </Text>
           </View>
         </View>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 // -----------------------------------------------------------------------
@@ -277,6 +212,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.backGround,
+    //position: 'absolute',
+  },
+  progressBar: {
+    //flex: 1,
+    zIndex: 1,
+    height: '50%',
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   // ========================  timer div  ================================
   timers: {
@@ -321,7 +265,6 @@ const styles = StyleSheet.create({
     color: 'white',
     opacity: 0.6,
     fontSize: 17,
-    fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1,
   },
 
@@ -348,14 +291,12 @@ const styles = StyleSheet.create({
   counterRoundsText: {
     color: '#fff',
     fontSize: 12,
-    fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1,
     marginLeft: 20,
   },
   counterRounds: {
     color: '#fff',
     fontSize: 22,
-    fontFamily: 'Poppins_600SemiBold',
     letterSpacing: 1,
     marginLeft: 20,
     marginBottom: 100,
@@ -379,7 +320,6 @@ const styles = StyleSheet.create({
   startButtonText: {
     fontSize: 20,
     color: '#020311',
-    fontFamily: 'Poppins_400Regular',
     letterSpacing: 1,
   },
   pauseButton: {

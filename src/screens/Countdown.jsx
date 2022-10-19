@@ -49,8 +49,8 @@ import { Svg, Ellipse } from 'react-native-svg';
 
 const { width, height } = Dimensions.get('window');
 const colors = {
-  backGround: '#311969',
-  second: '#19054A',
+  backGround: '#111',
+  second: '#111',
   button: '#FAFAFF',
   times: '#FAFAFF',
 };
@@ -159,10 +159,7 @@ function Countdowns({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <LinearGradient
-        colors={['#311969', '#19054A']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
+      <View
         style={styles.container}
       >
         <View style={styles.countDowns}>
@@ -267,7 +264,7 @@ function Countdowns({ navigation }) {
             </View>
           </View>
         </View>
-      </LinearGradient>
+      </View>
     );
   }
 }

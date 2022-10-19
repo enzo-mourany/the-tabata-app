@@ -50,7 +50,7 @@ export default function App() {
               title: ' ',
               headerStyle: {
                 shadowColor: 'transparent',
-                backgroundColor: '#311969',
+                backgroundColor: '#111',
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -65,7 +65,7 @@ export default function App() {
               title: ' ',
               headerShown: false,
               headerStyle: {
-                backgroundColor: '#04112A',
+                backgroundColor: '#111',
               },
             }}
           />

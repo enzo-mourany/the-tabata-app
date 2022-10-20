@@ -55,10 +55,8 @@ function Countdowns({ navigation }) {
     useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
-  const [key, setKey] = useState(0);
-  // const setIsPlaying = useContext(PlayingContext);
 
-  const [duration, setDuration] = useState(durationExercises);
+  const [duration, setDuration] = useState(listTimer[0]);
   const changeDurationTimer = useCallback(() => {
     setDuration((prev) => !prev);
   }, []);
@@ -69,9 +67,9 @@ function Countdowns({ navigation }) {
     setIsActive(false);
     setIsExercise(true);
     setRemainingTimer(listTimer[0]);
-    setKey(durationExercises);
-    setDuration(durationExercises);
+    setDuration(listTimer[0]);
     roundsCounter = 1;
+    animationRest();
   };
 
   useEffect(() => {
@@ -79,33 +77,38 @@ function Countdowns({ navigation }) {
     if (isActive) {
       interval = setInterval(() => {
         // timer
-        console.log(duration);
+
+
         setRemainingTimer(remainingTimer - 1);
+
         if (remainingTimer == 1 && isExercise) {
+          //setDuration(listTimer[1]);
           setRemainingTimer(listTimer[1]);
-          setIsExercise(!isExercise);
-          setDuration(durationExercises);
-          console.log(duration);
-          animations();
-        } else if (!isExercise && remainingTimer == 1) {
+          animationRest();
+        } else if (remainingTimer == 1 && !isExercise) {
+          //setDuration(listTimer[0]);
           roundsCounter += 1;
           setRemainingTimer(listTimer[0]);
-          setIsExercise(!isExercise);
-          setDuration(durationRest);
-          console.log(duration);
-          animations();
+          animationExercise();
         }
+
       }, 1000);
     } else if (!isActive) {
       clearInterval(interval);
     }
+
+    if (remainingTimer == 0) {
+      setIsExercise(!isExercise);
+      //animations();
+    }
+
     return () => clearInterval(interval);
   }, [isActive, remainingTimer]);
 
 
   // Animation according to duration
   const progressAnimation = React.useRef(new Animated.Value(height)).current;
-  const animations = React.useCallback(() => {
+  const animationExercise = React.useCallback(() => {
     Animated.sequence([
       Animated.timing(progressAnimation, {
         toValue: 0,
@@ -114,7 +117,36 @@ function Countdowns({ navigation }) {
       }),
       Animated.timing(progressAnimation, {
         toValue: height,
-        duration: duration * 1000,
+        duration: listTimer[0] * 1000,
+        useNativeDriver: true
+      })
+    ]).start(() => {
+
+    })
+  }, [duration])
+
+  const animationRest = React.useCallback(() => {
+    Animated.sequence([
+      Animated.timing(progressAnimation, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true
+      }),
+      Animated.timing(progressAnimation, {
+        toValue: height,
+        duration: listTimer[1] * 1000,
+        useNativeDriver: true
+      })
+    ]).start(() => {
+
+    })
+  }, [duration])
+
+  const animationReset = React.useCallback(() => {
+    Animated.sequence([
+      Animated.timing(progressAnimation, {
+        toValue: height,
+        duration: 500,
         useNativeDriver: true
       })
     ]).start(() => {
@@ -124,8 +156,7 @@ function Countdowns({ navigation }) {
 
   const toggle = () => {
     setIsActive(!isActive);
-    setKey(0);
-    animations();
+    //animationExercise();
   };
 
 

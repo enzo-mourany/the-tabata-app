@@ -49,8 +49,6 @@ let roundsCounter = 1;
 // =======================================================================
 
 function Countdowns({ navigation }) {
-  const [remainingSecs, setRemainingSecs] = useState(0);
-  //const { mins, secs } = getRemaining(remainingSecs);
   const [isActive, setIsActive] = useState(false);
   const [isExercise, setIsExercise] = useState(true);
   const { durationExercises, durationRest } =
@@ -61,7 +59,6 @@ function Countdowns({ navigation }) {
   // const setIsPlaying = useContext(PlayingContext);
 
   const [duration, setDuration] = useState(durationExercises);
-  const [isDowntime, setIsDowntime] = useState(false);
   const changeDurationTimer = useCallback(() => {
     setDuration((prev) => !prev);
   }, []);
@@ -69,7 +66,6 @@ function Countdowns({ navigation }) {
 
 
   const reset = () => {
-    setRemainingSecs(0);
     setIsActive(false);
     setIsExercise(true);
     setRemainingTimer(listTimer[0]);
@@ -83,32 +79,32 @@ function Countdowns({ navigation }) {
     if (isActive) {
       interval = setInterval(() => {
         // timer
-        setRemainingSecs(remainingSecs + 1);
-
-        if (isDowntime) {
-          setDuration(durationRest);
-        } else {
-          setDuration(durationExercises);
-        }
-
+        console.log(duration);
         setRemainingTimer(remainingTimer - 1);
         if (remainingTimer == 1 && isExercise) {
           setRemainingTimer(listTimer[1]);
           setIsExercise(!isExercise);
+          setDuration(durationExercises);
+          console.log(duration);
+          animations();
         } else if (!isExercise && remainingTimer == 1) {
           roundsCounter += 1;
           setRemainingTimer(listTimer[0]);
           setIsExercise(!isExercise);
+          setDuration(durationRest);
+          console.log(duration);
+          animations();
         }
       }, 1000);
-    } else if (!isActive && remainingSecs !== 0) {
+    } else if (!isActive) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [isActive, remainingSecs, remainingTimer]);
+  }, [isActive, remainingTimer]);
 
+
+  // Animation according to duration
   const progressAnimation = React.useRef(new Animated.Value(height)).current;
-
   const animations = React.useCallback(() => {
     Animated.sequence([
       Animated.timing(progressAnimation, {

@@ -66,10 +66,7 @@ function Countdowns({ navigation }) {
     setDuration((prev) => !prev);
   }, []);
 
-  const toggle = () => {
-    setIsActive(!isActive);
-    setKey(0);
-  };
+
 
   const reset = () => {
     setRemainingSecs(0);
@@ -110,15 +107,54 @@ function Countdowns({ navigation }) {
     return () => clearInterval(interval);
   }, [isActive, remainingSecs, remainingTimer]);
 
-  const progressAnimation = React.useRef(new Animated.Value(height)).current;
+  const progressAnimation = React.useRef(new Animated.Value(height / 2)).current;
+
+  const animations = React.useCallback(() => {
+    Animated.sequence([
+
+      Animated.timing(progressAnimation, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true
+      }),
+      Animated.timing(progressAnimation, {
+        toValue: height,
+        duration: 500,
+        useNativeDriver: true
+      })
+    ]).start(() => {
+
+    })
+  }, [duration])
+
+  const toggle = () => {
+    setIsActive(!isActive);
+    setKey(0);
+    animations;
+  };
 
 
   return (
     <View style={styles.container}>
 
+      <Animated.View
+        style={[
+          StyleSheet.absoluteFillObject, {
+            height,
+            width,
+            backgroundColor: 'red',
+            transform: [{ translateY: progressAnimation }],
+          }
+        ]}
+      />
 
-
-      <View style={styles.wrapper}>
+      <View style={[
+        StyleSheet.absoluteFillObject, {
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: height,
+        }
+      ]}>
         <View style={styles.countDowns}>
           <Text style={styles.remainingTimer} >{remainingTimer}</Text>
         </View>
@@ -189,19 +225,11 @@ function Countdowns({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.backGround,
-  },
-  wrapper: {
-    width: width,
-    height: height,
-    backgroundColor: colors.backGround,
-    position: 'absolute',
+    backgroundColor: "#111",
+    flex: 1,
   },
   progressBar: {
-    //flex: 1,
-    zIndex: 1,
     height: '50%',
-    backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -269,7 +297,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     flex: 1.4,
-    backgroundColor: 'red'
   },
   info: {
     backgroundColor: '#222',

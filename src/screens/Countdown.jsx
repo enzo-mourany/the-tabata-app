@@ -122,11 +122,7 @@ function Countdowns({ navigation }) {
         duration: listTimer[0] * 1000,
         useNativeDriver: true
       })
-    ]).start(() => {
-      if (isActive) {
-        animationExercise();
-      }
-    })
+    ]).start();
   }, [duration])
 
   const animationRest = React.useCallback(() => {
@@ -141,11 +137,7 @@ function Countdowns({ navigation }) {
         duration: listTimer[1] * 1000,
         useNativeDriver: true
       })
-    ]).start(() => {
-      if (isActive) {
-        animationExercise();
-      }
-    })
+    ]).start();
   }, [duration])
 
   const animationReset = React.useCallback(() => {
@@ -155,15 +147,15 @@ function Countdowns({ navigation }) {
         duration: 500,
         useNativeDriver: true
       })
-    ]).start(() => {
-
-    })
+    ]).start();
   }, [duration])
 
 
   const toggle = () => {
     setIsActive(!isActive);
-    animationExercise();
+    if (!isActive) {
+      animationExercise();
+    }
   };
 
   return (

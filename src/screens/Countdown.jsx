@@ -107,11 +107,10 @@ function Countdowns({ navigation }) {
     return () => clearInterval(interval);
   }, [isActive, remainingSecs, remainingTimer]);
 
-  const progressAnimation = React.useRef(new Animated.Value(height / 2)).current;
+  const progressAnimation = React.useRef(new Animated.Value(height)).current;
 
   const animations = React.useCallback(() => {
     Animated.sequence([
-
       Animated.timing(progressAnimation, {
         toValue: 0,
         duration: 500,
@@ -119,7 +118,7 @@ function Countdowns({ navigation }) {
       }),
       Animated.timing(progressAnimation, {
         toValue: height,
-        duration: 500,
+        duration: duration * 1000,
         useNativeDriver: true
       })
     ]).start(() => {
@@ -130,7 +129,7 @@ function Countdowns({ navigation }) {
   const toggle = () => {
     setIsActive(!isActive);
     setKey(0);
-    animations;
+    animations();
   };
 
 

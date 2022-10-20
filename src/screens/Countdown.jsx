@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
   Animated,
+  Easing
 } from 'react-native';
 import { DurationContext } from '../context/DurationContext';
 import PlayButton from '../components/PlayButton';
@@ -113,7 +114,8 @@ function Countdowns({ navigation }) {
       Animated.timing(progressAnimation, {
         toValue: 0,
         duration: 500,
-        useNativeDriver: true
+        useNativeDriver: true,
+        easing: Easing.linear
       }),
       Animated.timing(progressAnimation, {
         toValue: height,
@@ -121,7 +123,9 @@ function Countdowns({ navigation }) {
         useNativeDriver: true
       })
     ]).start(() => {
-
+      if (isActive) {
+        animationExercise();
+      }
     })
   }, [duration])
 
@@ -138,7 +142,9 @@ function Countdowns({ navigation }) {
         useNativeDriver: true
       })
     ]).start(() => {
-
+      if (isActive) {
+        animationExercise();
+      }
     })
   }, [duration])
 
@@ -154,11 +160,11 @@ function Countdowns({ navigation }) {
     })
   }, [duration])
 
+
   const toggle = () => {
     setIsActive(!isActive);
     animationExercise();
   };
-
 
   return (
     <View style={styles.container}>

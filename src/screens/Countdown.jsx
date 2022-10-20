@@ -69,7 +69,7 @@ function Countdowns({ navigation }) {
     setRemainingTimer(listTimer[0]);
     setDuration(listTimer[0]);
     roundsCounter = 1;
-    animationRest();
+    animationReset();
   };
 
   useEffect(() => {
@@ -156,7 +156,7 @@ function Countdowns({ navigation }) {
 
   const toggle = () => {
     setIsActive(!isActive);
-    //animationExercise();
+    animationExercise();
   };
 
 

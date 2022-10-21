@@ -31,6 +31,7 @@ const colors = {
   second: '#111',
   button: '#FAFAFF',
   times: '#FAFAFF',
+  progressBar: ['#F76A6A', 'green'],
 };
 
 // -----------------------------------------------------------------------
@@ -56,6 +57,8 @@ function Countdowns({ navigation }) {
     useContext(DurationContext);
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
+
+  const [progressBarColor, setProgressBarColor] = useState(colors.progressBar[0]);
 
   const [duration, setDuration] = useState(listTimer[0]);
   const changeDurationTimer = useCallback(() => {
@@ -83,13 +86,13 @@ function Countdowns({ navigation }) {
         setRemainingTimer(remainingTimer - 1);
 
         if (remainingTimer == 1 && isExercise) {
-          //setDuration(listTimer[1]);
           setRemainingTimer(listTimer[1]);
+          setProgressBarColor(colors.progressBar[1]);
           animationRest();
         } else if (remainingTimer == 1 && !isExercise) {
-          //setDuration(listTimer[0]);
           roundsCounter += 1;
           setRemainingTimer(listTimer[0]);
+          setProgressBarColor(colors.progressBar[0]);
           animationExercise();
         }
 
@@ -100,7 +103,6 @@ function Countdowns({ navigation }) {
 
     if (remainingTimer == 0) {
       setIsExercise(!isExercise);
-      //animations();
     }
 
     return () => clearInterval(interval);
@@ -166,7 +168,7 @@ function Countdowns({ navigation }) {
           StyleSheet.absoluteFillObject, {
             height,
             width,
-            backgroundColor: 'red',
+            backgroundColor: progressBarColor,
             transform: [{ translateY: progressAnimation }],
           }
         ]}

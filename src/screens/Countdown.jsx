@@ -18,6 +18,7 @@ import PlayButton from '../components/PlayButton';
 import PauseButton from '../components/PauseButton';
 import SettingsButton from '../components/SettingsButton';
 import ResetButton from '../components/ResetButton';
+import { Circle } from 'react-native-svg';
 
 
 
@@ -31,7 +32,7 @@ const colors = {
   second: '#111',
   button: '#FAFAFF',
   times: '#FAFAFF',
-  progressBar: ['#F76A6A', 'green'],
+  progressBar: ['#F76A6A', '#80D39B'],
 };
 
 // -----------------------------------------------------------------------
@@ -61,11 +62,6 @@ function Countdowns({ navigation }) {
   const [progressBarColor, setProgressBarColor] = useState(colors.progressBar[0]);
 
   const [duration, setDuration] = useState(listTimer[0]);
-  const changeDurationTimer = useCallback(() => {
-    setDuration((prev) => !prev);
-  }, []);
-
-
 
   const reset = () => {
     setIsActive(false);
@@ -80,9 +76,6 @@ function Countdowns({ navigation }) {
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
-        // timer
-
-
         setRemainingTimer(remainingTimer - 1);
 
         if (remainingTimer == 1 && isExercise) {
@@ -185,6 +178,23 @@ function Countdowns({ navigation }) {
           <Text style={styles.remainingTimer} >{remainingTimer}</Text>
         </View>
 
+        <View style={styles.buttons}>
+          <View style={styles.info}>
+            <View style={styles.roundCounter}>
+              <Text style={styles.exOrRest}>
+                Round {roundsCounter}
+              </Text>
+            </View>
+
+
+            <View style={styles.typeOfTimer} >
+              <Text style={styles.exOrRest}>
+                {isExercise ? 'Exercise' : 'Rest'}
+              </Text>
+            </View>
+          </View>
+        </View>
+
         <View
           alt='button'
           style={styles.buttons}
@@ -196,8 +206,18 @@ function Countdowns({ navigation }) {
           </View>
 
           <View style={{ marginLeft: 50, marginRight: 50 }} >
-            <TouchableOpacity onPress={toggle}>
-              {isActive ? <PauseButton /> : <PlayButton />}
+            <TouchableOpacity
+              style={{
+                borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+                width: Dimensions.get('window').width * 0.2,
+                height: Dimensions.get('window').width * 0.2,
+                backgroundColor: '#fff',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+              underlayColor='#ccc'
+              onPress={toggle}
+            >
             </TouchableOpacity>
           </View>
 
@@ -211,32 +231,7 @@ function Countdowns({ navigation }) {
           </View>
         </View>
 
-        <View style={styles.buttons}>
-          <View style={styles.info}>
-            <View style={styles.roundCounter}>
-              <Text style={styles.exOrRest}>
-                Round {roundsCounter}
-              </Text>
-            </View>
 
-            <View
-              style={{
-                width: '90%',
-                height: 1,
-                backgroundColor: colors.backGround,
-                opacity: 0.4,
-                marginBottom: 6,
-                marginTop: 5,
-              }}
-            />
-
-            <View style={styles.typeOfTimer} >
-              <Text style={styles.exOrRest}>
-                {isExercise ? 'Exercise' : 'Rest'}
-              </Text>
-            </View>
-          </View>
-        </View>
       </View>
 
 
@@ -306,7 +301,6 @@ const styles = StyleSheet.create({
 
   exOrRest: {
     color: 'white',
-    opacity: 0.6,
     fontSize: 17,
     letterSpacing: 1,
   },
@@ -325,7 +319,7 @@ const styles = StyleSheet.create({
     flex: 1.4,
   },
   info: {
-    backgroundColor: '#222',
+    backgroundColor: 'transparent',
     width: '70%',
     height: '60%',
     borderRadius: 30,
@@ -338,6 +332,10 @@ const styles = StyleSheet.create({
     height: '40%',
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 30,
+    marginBottom: 10,
   },
   menu: {
     margin: 1,
@@ -355,6 +353,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     marginBottom: 100,
+
   },
   linearGStartButton: {
     justifyContent: 'center',
@@ -397,6 +396,10 @@ const styles = StyleSheet.create({
     height: '40%',
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 30,
+
 
   },
   overlay: {

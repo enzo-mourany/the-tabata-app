@@ -190,7 +190,6 @@ function Countdowns({ navigation }) {
               </Text>
             </View>
 
-
             <View style={styles.typeOfTimer} >
               <Text style={styles.exOrRest}>
                 {isExercise ? 'Exercise' : 'Rest'}
@@ -209,16 +208,9 @@ function Countdowns({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          <View style={{ marginLeft: 50, marginRight: 50 }} >
+          <View style={{ marginLeft: 50, marginRight: 50 }} alt='play / pause button'>
             <TouchableOpacity
-              style={{
-                borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-                width: Dimensions.get('window').width * 0.2,
-                height: Dimensions.get('window').width * 0.2,
-                backgroundColor: '#fff',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
+              style={styles.playButton}
               underlayColor='#ccc'
               onPress={toggle}
             >
@@ -233,13 +225,9 @@ function Countdowns({ navigation }) {
               <ResetButton />
             </TouchableOpacity>
           </View>
+
         </View>
-
-
       </View>
-
-
-
     </View>
   );
 }
@@ -253,68 +241,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#111",
     flex: 1,
   },
-  progressBar: {
-    height: '50%',
+  countDowns: {
+    flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  // ========================  timer div  ================================
-  timers: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  timerText: {
-    color: '#FAFAFF',
-    fontSize: 75,
-    marginBottom: 20,
   },
   remainingTimer: {
     fontSize: 100,
     color: 'white',
     textAlign: 'center',
     position: 'relative'
-  },
-  // ========================  circularProgressBar  ======================
-  ct2: {
-    color: '#fff',
-    fontSize: 70,
-  },
-  // ========================  countdown div  ============================
-  countDowns: {
-    flex: 3,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  timerExOrRest: {
-    color: '#fff',
-    fontSize: 70,
-  },
-  timeLessThreeSecs: {
-    fontSize: 70,
-    color: 'red',
-  },
-  // ==========================  Infos  ==============================
-  exOrRestView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20,
-    width: 130,
-    height: 40,
-  },
-
-  exOrRest: {
-    color: 'white',
-    fontSize: 17,
-    letterSpacing: 1,
-  },
-
-  // ==========================  Buttons Div  ==============================
-  infos: {
-    flex: 1.5,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
   },
   buttons: {
     justifyContent: 'center',
@@ -341,54 +277,18 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginBottom: 10,
   },
-  menu: {
-    margin: 1,
-    alignItems: 'center',
-  },
-  counterRoundsText: {
-    color: '#fff',
-    fontSize: 12,
+  exOrRest: {
+    color: 'white',
+    fontSize: 17,
     letterSpacing: 1,
-    marginLeft: 20,
   },
-  counterRounds: {
-    color: '#fff',
-    fontSize: 22,
-    letterSpacing: 1,
-    marginLeft: 20,
-    marginBottom: 100,
-
-  },
-  linearGStartButton: {
+  playButton: {
+    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+    width: Dimensions.get('window').width * 0.2,
+    height: Dimensions.get('window').width * 0.2,
+    backgroundColor: '#fff',
     justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
-    width: 190,
-    height: 60,
-    margin: 20,
-  },
-  linearGStartButtonInactive: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
-    width: 185,
-    height: 55,
-    margin: 20,
-  },
-  startButtonText: {
-    fontSize: 20,
-    color: '#020311',
-    letterSpacing: 1,
-  },
-  pauseButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: width / 4,
-    letterSpacing: 1,
-  },
-  pauseButtonText: {
-    fontSize: 28,
-    color: '#FAFAFF',
+    alignItems: 'center'
   },
   resetButton: {
     alignItems: 'center',
@@ -403,8 +303,6 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 30,
-
-
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

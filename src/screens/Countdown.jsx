@@ -59,9 +59,13 @@ function Countdowns({ navigation }) {
   const listTimer = [durationExercises, durationRest];
   const [remainingTimer, setRemainingTimer] = useState(listTimer[0]);
 
+  const [duration, setDuration] = useState(listTimer[0]);
+
+
   const [progressBarColor, setProgressBarColor] = useState(colors.progressBar[0]);
 
-  const [duration, setDuration] = useState(listTimer[0]);
+  // Get height of progress bar View
+  const [progressBarHeight, setProgressBarHeight] = useState(height);
 
   const reset = () => {
     setIsActive(false);
@@ -145,6 +149,22 @@ function Countdowns({ navigation }) {
     ]).start();
   }, [duration])
 
+  const animationPause = React.useCallback(() => {
+    Animated.sequence([
+      Animated.timing(progressAnimation, {
+        toValue: progressBarHeight,
+        duration: 1000,
+        useNativeDriver: true
+      })
+    ]).start();
+  }, [duration])
+
+  // get the current height of the animated viewBox
+  /*
+  progressAnimation.addListener(({ value }) => {
+    setProgressBarHeight(value);
+  });
+*/
 
   const toggle = () => {
     setIsActive(!isActive);

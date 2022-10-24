@@ -14,11 +14,8 @@ import {
   Easing
 } from 'react-native';
 import { DurationContext } from '../context/DurationContext';
-import PlayButton from '../components/PlayButton';
-import PauseButton from '../components/PauseButton';
 import SettingsButton from '../components/SettingsButton';
 import ResetButton from '../components/ResetButton';
-import { Circle } from 'react-native-svg';
 
 
 
@@ -29,22 +26,9 @@ import { Circle } from 'react-native-svg';
 const { width, height } = Dimensions.get('window');
 const colors = {
   backGround: '#111',
-  second: '#111',
-  button: '#FAFAFF',
-  times: '#FAFAFF',
   progressBar: ['#F76A6A', '#80D39B'],
 };
 
-// -----------------------------------------------------------------------
-//                           Main Timer Const
-// -----------------------------------------------------------------------
-
-const formatNumber = (number) => `0${number}`.slice(-2);
-const getRemaining = (time) => {
-  const mins = Math.floor(time / 60);
-  const secs = time - mins * 60;
-  return { mins: formatNumber(mins), secs: formatNumber(secs) };
-};
 let roundsCounter = 1;
 
 // =======================================================================

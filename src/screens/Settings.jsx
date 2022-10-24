@@ -10,7 +10,7 @@ export default function Settings({ navigation }) {
                 justifyContent: 'center',
                 flex: 1,
                 alignItems: 'center',
-                backgroundColor: '#020311',
+                backgroundColor: '#111',
             }}
         >
             <TouchableOpacity

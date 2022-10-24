@@ -160,6 +160,7 @@ function Countdowns({ navigation }) {
   return (
     <View style={styles.container}>
 
+      {/* Progress bar */}
       <Animated.View
         style={[
           StyleSheet.absoluteFillObject, {
@@ -281,6 +282,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 17,
     letterSpacing: 1,
+    textTransform: 'uppercase',
   },
   playButton: {
     borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,

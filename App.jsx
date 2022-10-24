@@ -83,15 +83,11 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#020311',
+    backgroundColor: '#111',
   },
   main: {
-    backgroundColor: '#020311',
+    backgroundColor: '#111',
   },
 });
 
-// TODO: Animated switch between pages (stack navigator)
-// TODO: Add sound button to 3 last seconds
-// TODO: After 60s, set time with min and sec
-// TODO: Animation rotate reset button
 // TODO: Theme use device settings

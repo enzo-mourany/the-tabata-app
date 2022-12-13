@@ -1,8 +1,12 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Switch } from 'react-native';
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import { DarkModeContext } from '../context/DarkModeContext';
 
 export default function Settings({ navigation }) {
+
+    const { setIsDarkMode } = React.useContext(DarkModeContext);
+
     return (
         <View
             flex={1}
@@ -75,6 +79,7 @@ export default function Settings({ navigation }) {
                             Dark mode
                         </Text>
                         <View style={{ paddingRight: 20, paddingTop: 16 }}></View>
+                        <Switch onToggle={() => setIsDarkMode(!isDarkMode)}></Switch>
                     </View>
 
                     <View

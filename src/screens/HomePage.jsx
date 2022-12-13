@@ -10,7 +10,6 @@ import {
   Image
 } from 'react-native';
 import { DurationContext } from '../context/DurationContext';
-import AppLoading from 'expo-app-loading';
 
 
 // -----------------------------------------------------------------------
@@ -236,7 +235,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
     paddingBottom: 20,
-    letterSpacing: 1
+    letterSpacing: 1,
   }
 });
 
